@@ -1,0 +1,47 @@
+<section class="container-fluid newsletter-wrap">
+    <div class="row">
+        <div class="container">
+            <h2 class="tittle-wrap">get the latest from MENAMALL</h2>
+            <form #newsletterForm="ngForm" (ngSubmit)="onFormSubmit(newsletterForm, email.valid)" class="form-inline newsletter-box">
+              <div class="form-group">
+                  <input type="email" [(ngModel)]="newsletterForm.email"  class="form-control" name="email" placeholder="E-MAIL" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" #email="ngModel">
+                  <small class="error-text" [hidden]="email.valid || (email.pristine && !newsletterForm.submitted)">
+                    Valid email address is required.
+                  </small>
+              </div>
+              <button type="submit"  class="btn btn-default  ">Subscribe</button>
+              <small class="success hide">You have been successfully subscribed to our newsletter.</small>
+              <small class="exist hide">You have already subscribed to our newsletter.</small>
+            
+            </form>
+        </div>
+    </div>
+</section>
+
+<div id="subscriptionNotif" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+       
+        <div class="modal-body">
+          <h3 class="text-center" style="color: black;">{{subNotif}}</h3>
+        </div>
+       
+      </div>
+    </div>
+  </div>
+
+  <div id="subscriptionNotifErr" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+       
+        <div class="modal-body">
+          <h3 class="text-center" style="color: red;">{{subNotif}}</h3>
+        </div>
+       
+      </div>
+    </div>
+  </div>
+
+  <app-global-title-injector [titleInput] = "titleName"></app-global-title-injector>

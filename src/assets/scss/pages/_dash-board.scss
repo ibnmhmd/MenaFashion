@@ -1,0 +1,26 @@
+.uppercase{
+	text-transform:uppercase;
+}
+.dashboard-head{
+}
+.shipped-address{
+	padding-right:45px;
+}
+.my-address-book-inner h5{
+	max-width:100%;
+}
+.tab-content-head,.categori-head{
+	font-weight:500;
+}
+.nav > li > a:hover, .nav > li > a:focus{
+	background: none;
+	color: $orange;
+}
+
+.edit-address{
+	li{
+		a{
+			font-size:0.769em;
+		}
+	}
+}

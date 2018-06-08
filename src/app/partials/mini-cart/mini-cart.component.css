@@ -1,0 +1,25 @@
+.minicart-holder {
+    max-height:300px;
+    overflow-y: scroll;
+    display: block;
+}
+.ion-close {cursor:pointer;}
+
+.newClass
+{
+    overflow-x: hidden;
+}
+.no-products
+{
+    color: black;
+}
+
+.btn-white
+{
+ color: white !important;
+}
+
+.product-delete
+{
+    padding-right: 10px !important;
+}

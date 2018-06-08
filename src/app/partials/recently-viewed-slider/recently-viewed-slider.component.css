@@ -1,0 +1,11 @@
+
+.product-slider .singlerating .ellipsis {
+    overflow: hidden;
+    height: 20px;
+    line-height: 0px;
+}
+.singlerating .rating-wrap h5 {
+    height: 22px;
+    overflow: hidden;
+}
+ 

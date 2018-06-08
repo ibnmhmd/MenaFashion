@@ -1,0 +1,24 @@
+.uppercase1
+{
+    padding-top: 40px;
+}
+
+.holderDIV
+{
+    margin-left: 10px;
+}
+ .footerAlign
+{
+  text-align: center;
+}
+
+.footer-inner li:before
+{
+    display: none !important;
+}
+/*
+.footerBorder
+{
+    margin-left: 6% !important;
+} */
+

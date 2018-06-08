@@ -1,0 +1,47 @@
+//Border Radius
+@mixin border-radius($radius){
+	-webkit-border-radius:$radius;
+	-moz-border-radius:$radius;
+	border-radius:$radius;
+}
+
+//Background-size
+@mixin background-size($size){
+	-webkit-background-size:$size;
+	-moz-background-size:$size;
+	background-size:$size;
+}
+
+// Universal Mixin for Browser Prefixes
+@mixin prefix($property, $value, $prefixes: ()) {
+  @each $prefix in $prefixes {
+    #{'-' + $prefix + '-' + $property}: $value;
+  }
+  // Output standard non-prefixed declaration
+  #{$property}: $value;
+}
+
+
+// Mixing for browser prefixes in transition property
+@mixin transition($transition...) {
+    -moz-transition:    $transition;
+    -o-transition:      $transition;
+    -webkit-transition: $transition;
+    transition:         $transition;
+}
+
+// Mixing for browser prefixes in text-shadow property
+@mixin textShadow($shadows...) {
+    -moz-text-shadow:    $shadows;
+    -o-text-shadow:      $shadows;
+    -webkit-text-shadow: $shadows;
+    text-shadow:         $shadows;
+}
+@mixin boxShadow($shadows...) {
+    -moz-box-shadow:    $shadows;
+    -o-box-shadow:      $shadows;
+    -webkit-box-shadow: $shadows;
+    box-shadow:         $shadows;
+}
+
+

@@ -1,0 +1,15 @@
+<div class="col-sm-3">
+  <h4 class="categori-head">MY DASHBOARD</h4>
+  <div class="tab-panel">
+    <ul class="nav nav-tabs dashboard-nav">
+        <li><a routerLink="/profile" routerLinkActive="active">MY PROFILE</a></li>
+        <li><a routerLink="/orders" routerLinkActive="active">MY ORDERS</a></li>
+        <li><a routerLink="/address" routerLinkActive="active">MY ADDRESS BOOK</a></li>
+        <!-- <li><a routerLink="/card" routerLinkActive="active">MY CARD</a></li>  -->
+        <li><a routerLink="/wishlist" routerLinkActive="active">MY WISH LIST</a></li>
+        <li><a routerLink="/password" routerLinkActive="active" >CHANGE PASSWORD</a></li>
+        <li><a (click)="signOut()">LOGOUT</a></li>  
+      </ul>
+  </div>
+</div>  
+<app-global-title-injector [titleInput] = "titleName"></app-global-title-injector> 

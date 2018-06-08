@@ -1,0 +1,56 @@
+html,body{
+	font-size:$base-font-size;
+	font-family: $font-family-primary;
+	font-weight: $base-font-weight;
+	line-height: $base-line-height;
+	letter-spacing: 0.025em;
+}
+h1, h2, h3, h4, h5, h6{
+	font-family: $font-family-primary;
+	margin: 0.5em 0;
+	line-height: $base-line-height/1.2;
+	font-weight:600;
+}
+h1{
+	font-size: 2.428em;
+}
+
+h2{
+	font-size: 1.714em;
+}
+
+h3{
+	font-size: 1.428em;
+}
+
+h4{
+	font-size: 1.285em;
+}
+
+h5{
+	font-size: 1.142em;
+}
+
+h6{
+	font-size: 0.8571em;
+}
+
+p, input{
+	font-size: 1em;
+	font-family: $font-family-primary;
+}
+
+blockquote{
+
+}
+
+ul, ol{
+	margin:1em 0;
+	padding-left: 30px;
+}
+
+li{
+	margin-bottom: 0.900em;
+}
+
+button{@include transition(all 0.5s ease);}

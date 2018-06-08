@@ -1,0 +1,125 @@
+
+
+<section class="container-fluid">
+  <div class="row">
+    <div class="container">
+      <ol class="breadcram">
+            <li><a routerLink="/">HOME</a></li>
+            <li><a routerLink ="/profile">MY ACCOUNT</a></li>
+            <li class="active">My Profile</li>
+          </ol>
+    </div>
+  </div>
+</section>
+
+<section class="product-listing-wrap container-fluid content-wrap">
+   <div class="row">
+      <div class="container">
+         <div class="category-inner">
+            <div class="row">
+               <app-dashboard-nav></app-dashboard-nav>
+               <div class="col-sm-9">
+                  <div class="main-category-tab-content">
+                     <div class="tab-content-text myprofile-tab-content">
+                        <h4 class="tab-content-head">MY PROFILE</h4>
+                        <div class="row">
+                           <div class="contactwrap-inner">
+                              <form #formProfile="ngForm" novalidate (ngSubmit)="updateProfile(formProfile.value, formProfile.valid)">
+                                 <div class="form-group col-md-6 col-sm-6">
+                                    <label class="pass-label">First Name*</label>
+                                    <input type="text" class="form-control" name="firstname" #firstname="ngModel" placeholder="Firstname" [(ngModel)]="customerProfile.firstname">
+                                    <small class="error-text" [hidden]="firstname.valid || (firstname.pristine && !formProfile.submitted)" required minlength="2">
+                                    Firstname is required.
+                                    </small> 
+                                 </div>
+                                 <div class="form-group col-md-6 col-sm-6">
+                                    <label class="pass-label">Last Name*</label>
+                                    <input type="text" class="form-control" name="lastname" #lastname="ngModel" placeholder="Lastname" [(ngModel)]="customerProfile.lastname">
+                                    <small class="error-text" [hidden]="lastname.valid || (lastname.pristine && !formProfile.submitted)" required minlength="2">
+                                    Lastname is required.
+                                    </small> 
+                                 </div>
+                                 <div class="form-group col-md-6 col-sm-6">
+                                    <label class="pass-label">Email*</label>
+                                    <input type="email" class="form-control emailClass" name="email" #email="ngModel" placeholder="Email Address"
+                                     required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                                      [(ngModel)]="customerProfile.email" [disabled] = "disable">
+                                    <!-- <small class="error-text" [hidden]="email.valid || (email.pristine && !formProfile.submitted)">
+                                    Valid email address is required.
+                                  </small> -->
+                                 </div>
+                                 <!--<div class="form-group col-md-6 col-sm-6">
+                                    <label class="pass-label">Phone Number*</label>
+                                    <input type="text" class="form-control" name="telephone" placeholder="Phone number" [(ngModel)]="customerProfile.telephone" required minlength="6" #telephone="ngModel">
+                                    <small class="error-text" [hidden]="telephone.valid || (telephone.pristine && !formProfile.submitted)">
+                                    Phone number is required.
+                                    </small> 
+                                 </div>-->
+                                 <div class="form-group col-md-6 col-sm-6">
+                                    <div class="date-of-birth">
+                                       <label for="dob-day" class="pass-label">Date of Birth <span>(optional)</span></label>
+                                       <div class="dropdown show cart-dropdown date-of-birth-inner">
+                                          <a   class=" dropdown-toggle" href="#"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                          <span id="month-val">{{clientMonth}}</span> <i class="ion-ios-arrow-down"></i>
+                                          </a>
+                                          <div class="dropdown-menu dob-dropdown" aria-labelledby="dropdownenu">
+                                             <a *ngFor="let month of monthList" class="dropdown-item" (click)="getMonth(month.num, month.month)">
+                                                <p>{{month.month}}</p>
+                                             </a>
+                                          </div>
+                                       </div>
+                                       <div class="dropdown show cart-dropdown date-of-birth-inner border-lr">
+                                          <a  class=" dropdown-toggle" href="#"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                          <span id="day-val">{{clientDate}}</span> <i class="ion-ios-arrow-down"></i>
+                                          </a>
+                                          <div class="dropdown-menu dob-dropdown" aria-labelledby="dropdownenu">
+                                             <a *ngFor="let day of dayList" class="dropdown-item" (click)="getDay(day)">
+                                                <p>{{day}}</p>
+                                             </a>
+                                          </div>
+                                       </div>
+                                       <div class="dropdown show cart-dropdown date-of-birth-inner">
+                                          <a  class=" dropdown-toggle" href="#"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                          <span id="year-val">{{clientYear}}</span> <i class="ion-ios-arrow-down"></i>
+                                          </a>
+                                          <div class="dropdown-menu dob-dropdown" aria-labelledby="dropdownenu">
+                                             <a class="dropdown-item" *ngFor="let year of yearList" (click)="getYear(year)">
+                                                <p>{{year}}</p>
+                                             </a>
+                                          </div>
+                                       </div>
+                                       
+                                    </div>
+                                 </div>
+                                 <div class="form-group col-md-6 col-sm-6">
+                                    <label class="pass-label">Gender*</label>
+                                    <div class="custom-radio-button">
+                                       <div>
+                                          <input type="radio" id="radio01" name="gender" (click)="customerProfile.gender = 1; noGenderError = true"/>
+                                          <label for="radio01"><i class="main-border"><span></span></i>Male</label>
+                                       </div>
+                                       <div>
+                                          <input type="radio" id="radio02" name="gender" (click)="customerProfile.gender = 0; noGenderError = true"/>
+                                          <label for="radio02"><i class="main-border"><span></span></i>Female</label>
+                                       </div>
+                                    </div>
+                                    <small [hidden]="noGenderError" class="error-text">
+                                    Gender is required.
+                                    </small>
+                                 </div>
+                                 
+                                 <button type="submit" class="btn btn-default">Save All Changes</button>
+                                 <p class="pull-right profile-msg hide">Profile Updated Successfully!</p>
+                              </form>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+<app-global-title-injector [titleInput] = "titleName"></app-global-title-injector>
+

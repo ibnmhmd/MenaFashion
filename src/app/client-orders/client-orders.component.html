@@ -1,0 +1,120 @@
+<section class="container-fluid">
+  <div class="row">
+    <div class="container">
+      <ol class="breadcram">
+        <li><a routerLink ="/">HOME</a></li>
+        <li><a routerLink ="/profile">MY ACCOUNT</a></li>
+
+        <li class="active">MY ORDERS</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="product-listing-wrap container-fluid content-wrap">
+  <div class="row">
+    <div class="container">
+
+      <div class="category-inner">
+        <div class="row">
+
+          <app-dashboard-nav></app-dashboard-nav>
+
+          <div class="col-sm-9">
+            <div class="main-category-tab-content">
+              <div class="tab-content-text myprofile-tab-content tab-cart-sub-page">
+                <h4 class="tab-content-head">MY ORDERS</h4>
+                <p *ngIf="!clientOrdersCheck">You have placed no orders.</p>
+                <ul *ngIf="clientOrdersCheck" class="accordion clearfix">
+                  <li *ngFor="let order of clientOrders">
+                    <a  href="javascript:;">
+                      <div class="heading">
+                        <h2 class="cart-heading">Order Number: #{{order.order_number}}</h2>
+                      </div>
+                    </a>
+                    <div class="row">
+                      <div class="process-steps">
+                        <div class="shop_table cart single-row1 tab-content-cart">
+                          <div class="header-row">
+                            <div class="product-name">product name</div>
+                            <div class="product-price">PRICE</div>
+                            <div class="product-quantity text-center">QUANTITY</div>
+                            <div class="product-subtotal text-center">TOTAL</div>
+                            <div class="product-subtotal text-center">STATUS</div>
+                          </div>
+
+                          <div *ngFor="let product of order.product_details" class="content-row cart_item">
+
+                            <div class="product-name">
+                              <div class="media">
+                                <div class="media-left">
+                                  <a  href="javascript:void(0)">
+														      <img class="media-object" src="{{product.image}}" height="133" width="100">
+														    </a>
+                                </div>
+                                <div class="media-body media-middle">
+                                  <h5 class="media-heading"><b>{{product.name}}</b></h5>
+                                  <h6 class="product-code">Product Code: #{{product.sku}}</h6>
+                                  <!--<p><span class="fa fa-angle-right"></span> Color : <span>White</span></p>
+                                  <p><span class="fa fa-angle-right"></span> Size : <span>XL</span></p>-->
+                                </div>
+                              </div>
+                            </div>
+                            <div class="product-price">
+                              <span class="amount">{{removeFraction(product.price)}}&nbsp; AED</span>
+                            </div>
+                            <div class="product-quantity text-center">
+                              <div class="quantity buttons_added">
+                                <input type="text" min="1" name="cart" value="{{removeFractionSpecial(product.qty)}}" title="Qty" class="form-control" maxlegth="2" disabled>
+                              </div>
+                            </div>
+                            <div class="product-subtotal text-center">
+                              <span class="amount">{{removeFraction(product.total_price)}}&nbsp; AED</span>
+                            </div>
+
+                            <div class="product-subtotal text-center">
+                              <span class="amount">{{status}}</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="progress-bar">
+                          <div class="steps"></div>
+                        </div>
+                      </div>
+                      <h5>Ordered On {{order.created_at}}</h5>
+                      <div class="cart-total-price clearfix">
+                        
+                      
+
+                        <p>SUB TOTAL &nbsp;: {{removeFraction(order.subtotal)}}&nbsp; AED</p>
+                        <p>DISCOUNT AMOUNT &nbsp;: {{removeFraction(order.discount_amount)}}&nbsp; AED &nbsp; - &nbsp; COUPON CODE&nbsp;:<i> {{order.coupon_code}}</i></p>
+                        <p>SHIPPING AMOUNT &nbsp;: {{removeFraction(order.shipping_amount)}}&nbsp; AED</p>
+                        <p>TOTAL ORDER &nbsp;: {{removeFraction(order.grand_total)}}&nbsp; AED</p>
+                     
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+
+                <!--<div class="cart-pagination">
+                  <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                      <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                      <li class="page-item"><a class="page-link" href="#">1</a></li>
+                      <li class="page-item"><a class="page-link" href="#">2</a></li>
+                      <li class="page-item"><a class="page-link" href="#">3</a></li>
+                      <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                    </ul>
+                  </nav>
+                </div>-->
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-global-title-injector [titleInput] = "titleName"></app-global-title-injector>

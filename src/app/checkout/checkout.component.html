@@ -1,0 +1,1759 @@
+<div *ngIf="!successOrder">
+    <section class="container-fluid">
+    <div class="row">
+        <div class="container">
+        <ol class="breadcram">
+            <li><a [routerLink]="['/']">HOME</a></li>
+            <li class="active">Checkout</li>
+        </ol>
+        </div>
+    </div>
+    </section>
+
+
+    <section class="container Cart_wrap" id="cart_wrap">
+    <div class="rowTerrible">
+        <div class="row1">
+            <ul class="accordion clearfix ">
+                <li>
+                <a class="cart-tab-head" (click)="expandCartTab('shopping-itm','01')">
+                    <div class="heading">
+                        <h2 class="cart-heading">01. Shopping cart</h2>
+                    </div>
+                </a>
+                <div class="cart-tab-body" id="shopping-itm">
+                        <div>
+                            <div class="shop_table cart single-row1">
+                                <div class="header-row">
+                                      
+                                    <div class="product-name">product name</div>
+                                    <div class="product-price">PRICE</div>
+                                    <div class="product-quantity text-center">QUANTITY</div>
+                                    <div class="product-subtotal text-center">TOTAL</div>
+                                    <div class="product-subtotal text-center"></div>
+                                </div>
+                                <div class="content-row cart_item" *ngFor="let item of cartItems; let rowIndex = index">
+                                    <div class="product-name">
+                                    <div class="media">
+                                        <div class="media-left">
+                                            <a routerLink="/detail/{{replaceSpaces(item?.name)}}/cartEdit-{{item.item_id}}-{{item?.qty}}/{{replaceSpaces(excludeSpecialCharacter(item?.sku))}}">
+                                            <img class="media-object" src="{{item?.product_image}}" height="133" width="100" alt="{{item?.name}}">
+                                            </a>
+                                        </div>
+                                        <div class="media-body media-middle">
+                                            <a routerLink="/detail/{{replaceSpaces(item?.name)}}/cartEdit-{{item.item_id}}-{{item?.qty}}/{{replaceSpaces(excludeSpecialCharacter(item?.sku))}}">
+                                            <h5 class="media-heading"><b>{{item?.name}}</b> </h5>
+                                            </a>
+                                            <h6 class="product-code">Product Code: {{item?.sku}}</h6>
+                                        
+                                            <div *ngFor="let attribute of prodAttrs[rowIndex]">
+                                                <p *ngFor="let attributeItem of attribute">
+                                                    <span class="fa fa-angle-right"></span>
+                                                    {{attributeItem.label}} : <span>{{attributeItem.value}}</span>
+                                                </p>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div class="product-price">
+                                    <span class="amount-ii"> {{removeFraction(item?.price)}} &nbsp; AED </span>
+                                    </div>
+                                    <div class="product-quantity text-center">
+                                    <div class="quantity buttons_added">  
+                                        <input type="text" id="item{{item?.sku}}" name="cart" (change)="updateItemCart(item?.item_id, item?.sku, item?.entity_id, item?.name, item?.qty)" value="{{item?.qty}}" title="Qty" class="form-control">
+                                    </div>
+                                    </div>
+                                    <div class="product-subtotal text-center">
+                                    <span class="amount">
+                                        <i class="itemTotal">{{removeFraction(item?.price*item?.qty)}}</i> &nbsp; AED </span>
+                                    </div>
+                                    <div class="product-delete">
+                                    <a (click)="removeFromCart(item.item_id)"><span class="ion ion-close"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" checkout-wrap clearfix">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="form-group">
+                                    <label for="">Have a promo code</label>
+                                    <div class="form-inline">
+                                        <input type="text" placeholder="Enter your code here !" class="form-control" [(ngModel)]="couponCode">
+                                        <button type="submit" class="btn" (click)="applyCoupon()">apply coupon</button>
+                                        <p class="error-text" *ngIf="couponErr">Please enter a coupon code.</p>
+                                        <p class="error-text" *ngIf="couponNotValid">Coupon code is not valid.</p>
+                                        <p class="success-text" *ngIf="couponValid">Coupon successfully applied.</p>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="checkout-total-wrap">
+                                    <table>
+                                        <tr class="first-row">
+                                            <td>
+                                                <h4>sub total</h4>
+                                            </td>
+                                            <td>
+                                                <h3> {{removeFraction(cartSubtotal)}} &nbsp; AED </h3>
+                                            </td>
+                                        </tr>
+                                        <!--<tr class="first-row">
+                                            <td>
+                                                <h4>shipping changrge</h4>
+                                            </td>
+                                            <td>
+                                                <h3>$ {{shippingInclTax}}</h3>
+                                            </td>
+                                        </tr>-->
+                                        <tr *ngIf="discountAmount" class="first-row">
+                                            <td>
+                                                <h4 class="success-text">Discount amount</h4>
+                                            </td>
+                                            <td>
+                                                <h3 class="success-text">{{removeFraction(discountAmount)}} &nbsp; AED </h3>
+                                            </td>
+                                        </tr>
+                                        <tr class="firsts-row">
+                                                <td> <h5>Shipping and Handling</h5></td>
+                                                <td> <h5>{{removeFraction(shippingInclTax)}} &nbsp; AED </h5></td>
+                                            </tr>
+                                        <tr class="sec-row">
+                                            <td>
+                                                <h4>grand total</h4>
+                                            </td>
+                                            <td>
+                                                <h3> {{removeFraction(grandTotal)}} &nbsp; AED </h3>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <div class="btn-row clearfix">
+                                        <a routerLink="/" class="btn ">continue shopping</a>
+                                        <a *ngIf=" cartItems != undefined && cartItems?.length != 0 " class="btn-default"  (click)="showAddressSection();expandCartTab('address-itm', '001')">Next</a>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                </li>
+
+                <li id="address-item-section" [ngClass] ="showAddress ? 'addressSection': ''"> 
+                <a class="cart-tab-head" (click)="expandCartTab('address-itm', '02')">
+                    <div class="heading">
+                        <h2 class="cart-heading">02. address</h2>
+                    </div>
+                </a>
+                <div class="cart-tab-body" id="address-itm">
+                    <form *ngIf="shippingBillingForm" #submitAddresses="ngForm" novalidate (ngSubmit)="showPaymentSection(submitAddresses.value, submitAddresses.valid)">
+                        <div class=" payment-wrap clearfix">
+                            <div class="col-md-8">
+                                <div class="home-address clearfix">
+                                <h4>SHIPPING ADDRESS</h4>
+                                <div *ngIf="shippingBillingForm" class="col-md-12 noPad">
+                                    <div class="row">
+                                        <div class="row">
+                                        <div class="col-md-6 data-input">
+                                            <label for="wc-intuit-qbms-account-number">FIRST NAME</label>
+                                            <input [(ngModel)]="submitAddresses.shippingfirstname" type="text" class="form-control" name="shippingfirstname"
+                                             placeholder="Please enter your first name" required minlength="3" #shippingfirstname="ngModel">
+                                            <small class="error-text" [hidden]="shippingfirstname.valid || (shippingfirstname.pristine && !submitAddresses.submitted)">
+                                            Please enter your first name.
+                                            </small>
+                                        </div>
+
+                                        <div class="col-md-6 data-input">
+                                            <label for="wc-intuit-qbms-account-number">LAST NAME</label>
+                                            <input  [(ngModel)]="submitAddresses.shippinglastname" type="text" 
+                                            class="form-control" name="shippinglastname" placeholder="Please enter your last name" required minlength="3" #shippinglastname="ngModel">
+                                            <small class="error-text" [hidden]="shippinglastname.valid || (shippinglastname.pristine && !submitAddresses.submitted)">
+                                            Please enter your last name.
+                                            </small>
+                                        </div>
+
+                                        <div class="col-md-6 data-input">
+                                            <label for="wc-intuit-qbms-account-number">EMAIL</label>
+                                            <input  [(ngModel)]="submitAddresses.shippingemail" type="text" class="form-control" name="shippingemail"
+                                             placeholder="Please enter your email" required minlength="3" #shippingemail="ngModel" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+                                            <small class="error-text" [hidden]="shippingemail.valid || (shippingemail.pristine && !submitAddresses.submitted)">
+                                            Please enter valid email address.
+                                            </small>
+                                        </div>
+
+                                       
+
+                                        <div class="col-md-6 data-input">
+                                            <label for="wc-intuit-qbms-account-number">COUNTRY</label>
+                                            <select [disabled]="disableCountry"  class="form-control" [(ngModel)]="setDfaultCountry" name="shippingcountries" (change)="shippingCountrySelected(setDfaultCountry)" required #shippingcountries="ngModel">
+                                                <option *ngFor="let country of countryList;  let i=index"  [ngValue]="country.id" >{{country.full_name_english}}</option>
+                                            </select>
+                                            <!-- <small class="error-text" [hidden]="shippingcountries.valid || (shippingcountries.pristine && !submitAddresses.submitted)">
+                                             Please select country.
+                                            </small> -->
+                                        </div>
+
+                                        <div class="col-md-6 data-input">
+                                                <!-- id="customerPhoneNumber" -->
+                                            <label for="wc-intuit-qbms-account-number">MOBILE NUMBER</label>
+                                            <input  class="form-control ctryCode" type="text" disabled placeholder="+971" >
+                                            <input  [(ngModel)]="submitAddresses.shippingphone" type="tel" class="form-control inputText"
+                                          
+                                            
+                                             onPaste="return false" (keypress) ="validateNumber($event)"
+                                             name="shippingphone" placeholder="XX XXXX XXX" 
+                                             required minlength="6" #shippingphone="ngModel" maxlength="10">
+                                            <small class="error-text" [hidden]="shippingphone.valid || (shippingphone.pristine && !submitAddresses.submitted)">
+                                            Please enter your phone number.
+                                            </small>
+                                        </div>
+
+                            
+
+                                        <div class="col-md-6 data-input">
+                                            <label for="wc-intuit-qbms-account-number">CITY</label>
+                                            <input  [(ngModel)]="submitAddresses.shippingcity" type="text" 
+                                            class="form-control" name="shippingcity" placeholder="Please enter your city" required minlength="3" #shippingcity="ngModel">
+                                            <small class="error-text" [hidden]="shippingcity.valid || (shippingcity.pristine && !submitAddresses.submitted)">
+                                            Please enter your city name.
+                                            </small>
+                                        </div>
+
+                                        <div class="col-md-6 data-input">
+                                            <label for="wc-intuit-qbms-account-number">ADDRESS LINE  (Area/Street. Building Name)</label>
+                                            <input  [(ngModel)]="submitAddresses.shippingstreet" type="text"
+                                             class="form-control" name="shippingstreet" placeholder="Ex. Al Marsa Street, Marina Plaza" required minlength="3" #shippingstreet="ngModel">
+                                            <small class="error-text" [hidden]="shippingstreet.valid || (shippingstreet.pristine && !submitAddresses.submitted)">
+                                            Please enter your delivery address.
+                                            </small>
+                                        </div>
+
+                                        <div class="col-md-6 data-input">
+                                            <label for="wc-intuit-qbms-account-number">COMPANY</label>
+                                            <input  [(ngModel)]="submitAddresses.shippingcompany" 
+                                            name="shippingcompany" type="text" #shippingcompany="ngModel" 
+                                            class="form-control" placeholder="Company">
+                                        </div>
+                                        </div>
+
+
+                                        <div class="home-address-inner clearfix">
+                                            <div class="clearfix"></div>
+                                            <ul class="edit-address">
+                                            <li>
+                                                <div class="save-card-check-box make-default-checkbox cart-check">
+                                                    <p>
+                                                        <input class="shippingCheckBox" type="checkbox" id="use-this-address" (change)="setBilling(submitAddresses.value)" [checked]="setDefaultBilling">
+                                                        <label for="use-this-address" class="checkbox-label" (click)="setBilling(submitAddresses.value)">USE THIS ADDRESS AS MY BILLING ADDRESS</label>
+                                                    </p>
+                                                </div>
+                                            </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                </div>
+                                </div>
+                                <div class="home-address home-address2" *ngIf="!setDefaultBilling">
+                                <h4>BILLING ADDRESS</h4>
+                                    <div *ngIf="shippingBillingForm" class="col-md-12 np">
+                                    <div class="row">
+                                        <div class="row">
+                                        <div class="col-md-6 data-input">
+                                            <label for="wc-intuit-qbms-account-number">FIRST NAME</label>
+                                            <input [disabled]="sameAsShipping" [(ngModel)]="submitAddresses.billingfirstname" type="text" class="form-control" name="billingfirstname"
+                                             placeholder="Please enter your first name" required minlength="3" #billingfirstname="ngModel" id="billingfirstname">
+                                            <small class="error-text" [hidden]="billingfirstname.valid || (billingfirstname.pristine && !submitAddresses.submitted || sameAsShipping)">
+                                            Please enter your first name.
+                                            </small>
+                                        </div>
+
+                                        <div class="col-md-6 data-input">
+                                            <label for="wc-intuit-qbms-account-number">LAST NAME</label>
+                                            <input [disabled]="sameAsShipping" [(ngModel)]="submitAddresses.billinglastname"
+                                             type="text" class="form-control" name="billinglastname" placeholder="Please enter your last name" required
+                                             minlength="3" #billinglastname="ngModel" id="billinglastname">
+                                            <small class="error-text" [hidden]="billinglastname.valid || (billinglastname.pristine && !submitAddresses.submitted || sameAsShipping)">
+                                            Please enter your last name.
+                                            </small>
+                                        </div>
+
+                                        <div class="col-md-6 data-input">
+                                            <label for="wc-intuit-qbms-account-number">EMAIL</label>
+                                            <input [disabled]="sameAsShipping" [(ngModel)]="submitAddresses.billingemail" type="text" 
+                                            class="form-control" name="billingemail" placeholder="Please enter your email" 
+                                            required minlength="3" #billingemail="ngModel" 
+                                            pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" id="billingemail">
+                                            <small class="error-text" [hidden]="billingemail.valid || (billingemail.pristine && !submitAddresses.submitted || sameAsShipping)">
+                                            Please enter valid email address.
+                                            </small>
+                                        </div>
+
+                                       
+                                        <div *ngIf="!sameAsShipping" class="col-md-6 data-input">
+                                            <label for="wc-intuit-qbms-account-number">COUNTRY</label>
+                                            <select   [disabled]="disableCountry" class="form-control" [(ngModel)]="setDfaultCountryBilling" name="billingcountries" (change)="billingCountrySelected(setDfaultCountry)" required #billingcountries="ngModel">
+                                               
+                                                <option *ngFor="let country of countryList" (change)="getCountryId(country.id)" [ngValue]="country.id">{{country.full_name_english}}</option>
+                                            </select>
+                                          
+                                        </div>
+
+                                        <div class="col-md-6 data-input">
+                                                <!-- id="guestPhoneNumber" -->
+                                            <label for="wc-intuit-qbms-account-number">MOBILE NUMBER</label>
+                                            <input  class="form-control ctryCode" type="text" disabled placeholder="+971" >
+                                            <input [disabled]="sameAsShipping"
+                                             [(ngModel)]="submitAddresses.billingphone" 
+                                            type="tel" class="form-control inputText" name="billingphone" 
+                                            onPaste="return false" (keypress) ="validateNumber($event)" id="guestPhoneNumber" 
+                                            placeholder="XX XXXX XXX" required minlength="6" #billingphone="ngModel"  maxlength="10">
+                                            <small class="error-text" [hidden]="billingphone.valid || (billingphone.pristine && !submitAddresses.submitted || sameAsShipping)">
+                                            Please enter your phone number.
+                                            </small>
+                                        </div>
+
+
+                                        <!-- for same as billing -->
+                                        <div *ngIf="sameAsShipping" class="col-md-6 data-input">
+                                            <label for="wc-intuit-qbms-account-number">COUNTRY</label>
+                                            <select [disabled]="sameAsShipping" class="form-control" [(ngModel)]="setDfaultCountry" name="billingcountries" (change)="billingCountrySelected(submitAddresses.billingcountries)" required #billingcountries="ngModel">
+                                                
+                                                <option *ngFor="let country of countryList" (change)="getCountryId(country.id)" [ngValue]="country.id">{{country.full_name_english}}</option>
+                                            </select>
+                                            <!-- <small class="error-text" [hidden]="billingcountries.valid || (billingcountries.pristine && !submitAddresses.submitted || sameAsShipping)">
+                                            Please select country.
+                                            </small> -->
+                                        </div>
+
+                                        <div class="col-md-6 data-input">
+                                            <label for="wc-intuit-qbms-account-number">CITY</label>
+                                            <input [disabled]="sameAsShipping" [(ngModel)]="submitAddresses.billingcity"
+                                             type="text" class="form-control" name="billingcity" placeholder="Please enter your city" required minlength="3" #billingcity="ngModel" id="billingcity">
+                                            <small class="error-text" [hidden]="billingcity.valid || (billingcity.pristine && !submitAddresses.submitted || sameAsShipping)">
+                                            Please enter city name.
+                                            </small>
+                                        </div>
+
+                                        <div class="col-md-6 data-input">
+                                            <label for="wc-intuit-qbms-account-number">ADDRESS LINE 1 (Area/Street. Building Name)</label>
+                                            <input [disabled]="sameAsShipping" [(ngModel)]="submitAddresses.billingstreet" type="text" class="form-control"
+                                             name="billingstreet" placeholder="Ex. Al Marsa Street, Marina Plaza" required minlength="3" #billingstreet="ngModel" id="billingstreet">
+                                            <small class="error-text" [hidden]="billingstreet.valid || (billingstreet.pristine && !submitAddresses.submitted || sameAsShipping)">
+                                            Please enter your delivery address.
+                                            </small>
+                                        </div>
+
+                                        <div class="col-md-6 data-input">
+                                            <label for="wc-intuit-qbms-account-number">COMPANY</label>
+                                            <input [disabled]="sameAsShipping" [(ngModel)]="submitAddresses.billingcompany" name="billingcompany" type="text" class="form-control" placeholder="Company" #billingcompany="ngModel" id="billingcompany">
+                                        </div>
+                                        </div>
+
+
+                                        <div class="home-address-inner clearfix">
+                                            <div class="clearfix"></div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    
+                                </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="btn-row clearfix">
+                              
+                                <button type="submit" class="btn-default proced-payment pull-right">Next</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- //////////////////// CUSTOMER FORM //////////////////////-->
+                    <div *ngIf="!shippingBillingForm">
+                        <div class=" payment-wrap clearfix">
+                            <div class="col-md-7">
+
+                                <div class="home-address clearfix">
+                                    <h4>SHIPPING ADDRESS</h4>
+                                    <div class="clearfix">
+                                
+                                        <div *ngIf="noDefaultShipping" class="btn-row clearfix">
+                                            <a (click)="customerAddNewShippingAddress()" class="btn-default address-button">Add Shipping Address</a>
+                                        </div>
+
+                                        <div *ngIf="!noDefaultShipping">
+                                            <ul>
+                                                <li>{{customerShipping?.firstname}} {{customerShipping?.lastname}}</li>
+                                                <li>{{customerShipping?.street1}}</li>
+                                                <li>{{customerShipping?.street2}}</li>
+                                                <!-- <li>{{customerShipping?.region?.region}}</li> -->
+                                                <li>City: {{customerShipping?.city}}</li>
+                                                <li>{{customerShipping?.country}}</li>
+                                                <li>Mobile: {{customerShipping?.phone}}</li>
+                                                <li>Company: {{customerShipping?.company}}</li>
+                                            </ul> 
+
+                                            <ul class="edit-address">
+                                                <li><a (click)="editCustomerShipping()"><i class="fa fa-pencil-square-o"></i>Edit</a></li>
+                                                <li>
+                                                    <div class="save-card-check-box make-default-checkbox cart-check" style="display: none;">
+                                                        <p>
+                                                            <input [(ngModel)]="customerSameBill" type="checkbox" id="use-this-address" (change) ="customerSameBill !=customerSameBill; useShippingForBilling($event.srcElement)">
+                                                            <label (click)="customerSameBilling()" for="use-this-address" class="checkbox-label">USE THIS ADDRESS AS MY BILLING ADDRESS</label>
+                                                        </p>
+                                                    </div>
+                                                </li>
+                                            </ul>  
+                                            <a (click)="customerAddNewShippingAddressOverwrite()" class="add-ship"><span class="fa fa-plus"></span>ADD SHIPPING ADDRESS</a>
+
+                                        </div> 
+
+                                    </div>   
+                               </div>   
+
+                               <div class="home-address clearfix">
+                                    <h4>BILLING ADDRESS</h4>
+                                    <div class="clearfix">
+
+                                        <div *ngIf="noDefaultBilling" class="btn-row clearfix">
+                                            <a (click)="customerAddNewBillingAddress()" class="btn-default address-button">Add Billing Address</a>
+                                        </div>
+
+                                        <div *ngIf="!noDefaultBilling">
+                                            <ul>
+                                                <li>{{customerBilling?.firstname}} {{customerBilling?.lastname}}</li>
+                                                <li>{{customerBilling?.street1}}</li>
+                                                <li>{{customerBilling?.street2}}</li>
+                                                <!-- <li>{{customerBilling?.region?.region}}</li> -->
+                                                <li>City: {{customerBilling?.city}} </li>
+                                                <li>{{customerBilling?.country}}</li>
+                                                <li>Mobile: {{customerBilling?.phone}}</li>
+                                                <li>Company: {{customerBilling?.company}}</li>
+                                            </ul>
+                                            <ul class="edit-address">
+                                                <li><a (click)="editCustomerBilling()"><i class="fa fa-pencil-square-o"></i>Edit</a></li>
+                                            </ul>    
+                                        </div> 
+
+                                    </div>   
+                               </div> 
+                           </div> 
+                           <div class="clearfix"></div>
+                           <div class="error" *ngIf="nextError"><span>{{errMsg}}</span></div>
+                           <div *ngIf="customerReadyForPayment" class="btn-row clearfix">
+                              <button (click)="procedCustomerPayment(); expandCartTab('payment-itm', '002')" class="btn-default proced-payment pull-right" type="button">Next</button>
+                           </div> 
+                        </div>        
+                    </div>
+
+
+
+                </div>
+                </li>
+
+                <li id="payment-item-section" [ngClass] ="showPayment ? 'addressSection': ''">
+                    <a class="cart-tab-head" (click)="expandCartTab('payment-itm', '03')">
+                        <div class="heading">
+                            <h2 class="cart-heading">03.  payment</h2>
+                        </div>
+                    </a>
+                    <div>
+                    <div class="cart-tab-body clearfix" id="payment-itm">
+                        <div class="col-md-7">
+                            <div id="payment" class="woocommerce-checkout-payment clearfix">
+                                <ul class="wc_payment_methods payment_methods methods">
+
+                                <!-- <li class="wc_payment_method payment_method_paypal hidePayPal" >
+                                    <input id="payment_method_paypal" type="radio" class="input-radio" name="payment_method" value="paypal" data-order_button_text="Proceed to PayPal">
+
+                                    <label for="payment_method_paypal" class="main_Label" (click)="paypalPayment()">
+                                    paypal
+                                    </label>
+                                    <div class="check"></div>  
+                                </li> -->
+    
+                                <li *ngIf="noPaymentInfoRequired" class="wc_payment_method payment_method_paypal" >
+                                    <input checked="checked" id="payment_method_paypal" type="radio" class="input-radio" name="payment_method" value="">
+                                    <label for="payment_method_paypal" class="main_Label" (click)="disablePayementMethod()">
+                                        No Payment Information Required 
+                                    </label>
+                                    <div class="check"></div>  
+                                </li>
+
+                                <li class="wc_payment_method credit_card_block">
+                                     <input *ngIf="noPaymentInfoRequired" id="payment_method_intuit_qbms" type="radio" class="input-radio" name="payment_method" value="">
+                                     <label *ngIf="noPaymentInfoRequired" for="payment_method_intuit_qbms" class="main_Label" (click)="creditCardPayment()">
+                                     Credit Card 
+                                    </label>
+
+                                    <input *ngIf="!noPaymentInfoRequired" id="payment_method_intuit_qbms" type="radio" class="input-radio" name="payment_method" value="" checked="checked">
+                                    <label *ngIf="!noPaymentInfoRequired" for="payment_method_intuit_qbms" class="main_Label" (click)="creditCardPayment()">
+                                        Credit Card 
+                                   </label>
+
+                                    <div class="check"></div>
+
+                                    <div *ngIf="guestUser" class="payment_box payment_method_intuit_qbms card-holder">
+                                    <!-- div class="payment_box payment_method_intuit_qbms card-holder" -->
+                                    <form #creditCardGuest="ngForm" novalidate (ngSubmit)="guestCreditcardPay(creditCardGuest.value, creditCardGuest.valid)">
+
+                                        <div id="guest-credit-card">
+                                            <div class="form-group">
+                                                <label for="NameOnCard">NAME ON CARD</label>
+                                                <input [disabled]="disablePayment" [(ngModel)]="creditCardGuest.nameoncard" type="text" 
+                                                class="form-control" name="nameoncard" placeholder="Name On Card"  required #nameoncard="ngModel">
+                                                <small class="error-text" [hidden]="  nameoncard.valid || (nameoncard.pristine && !creditCardGuest.submitted)">
+                                                Please enter name on card.
+                                                </small> 
+                                            </div>
+                                            <!-- [(ngModel)]="creditCardGuest.cardnumber" type="text" class="form-control" name="cardnumber" maxlength="19" autocomplete="off" required #cardnumber="ngModel" -->
+                                            <div class="form-group">
+                                                <label for="NameOnCard">CREDIT CARD NUMBER</label>
+                                                <input [disabled]="disablePayment"  [(ngModel)]="creditCardGuest.cardnumber" type="text" class="form-control" 
+                                                name="cardnumber" required minlength="16" maxlength="16" placeholder="Card Number"
+                                                 autocomplete="off"  onPaste="return false" #cardnumber="ngModel">
+                                                <small class="error-text" [hidden]="cardnumber.valid || (cardnumber.pristine && !creditCardGuest.submitted)">
+                                                Please enter credit card number.
+                                                </small> 
+                                            </div>
+
+                                            <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-6 expiry">
+                                                
+                                                        <label for="wc-intuit-qbms-account-number">EXPIRY</label>
+                                                        <div class="clearfix"></div>
+
+                                                        <div class="credit-exp">
+                                                            <input  [(ngModel)]="creditCardGuest.expirymm" [disabled]="disablePayment"
+                                                             type="text" class="form-control col-md-6"
+                                                            placeholder="Expiry Month"  onPaste="return false" name="expirymm" required minlength="2" maxlength="2"  #expirymm="ngModel">
+                                                            <small class="error-text" [hidden]="expirymm.valid || (expirymm.pristine && !creditCardGuest.submitted)">
+                                                            Please enter expiry month.
+                                                            </small> 
+                                                        </div>    
+
+                                                        <div class="credit-exp">
+                                                            <input
+                                                             [(ngModel)]="creditCardGuest.expiryyy" [disabled]="disablePayment"
+                                                             type="text" class="form-control col-md-6"  
+                                                             placeholder="Expiry Year"  onPaste="return false" name="expiryyy" required minlength="4" maxlength="4"  #expiryyy="ngModel">
+                                                            <small class="error-text" [hidden]="expiryyy.valid || (expiryyy.pristine && !creditCardGuest.submitted)">
+                                                            Please enter expiry year.
+                                                            </small> 
+                                                        </div> 
+                                                    
+                                                </div>
+                                                <div class="col-md-6 cvvC">
+                                                    <label for="wc-intuit-qbms-exp-month">cvv </label>
+                                                    <!-- <a class="btn" >Image 1</a> -->
+                                                   
+                                                        <a  rel="popover" data-img="//placehold.it/400x200"><i class="ion-ios-help-outline"></i></a>
+                                                   
+                                                    <input  [(ngModel)]="creditCardGuest.cvv" type="text"  onPaste="return false" [disabled]="disablePayment"
+                                                     class="form-control visa" placeholder="CVV" name="cvv"
+                                                     required minlength="3" maxlength="3" #cvv="ngModel">
+                                                    <small class="error-text" [hidden]="cvv.valid || (cvv.pristine && !creditCardGuest.submitted)">
+                                                            Please enter cvv.
+                                                    </small> 
+                                                </div>
+                                            </div>
+                                            </div>
+
+
+                                            <!--<div class="form-group">
+                                            <div class="save-card-check-box">
+                                                <p>
+                                                    <input type="checkbox" id="save-card" >
+                                                    <label for="save-card" class="checkbox-label">Save this card for future</label>
+                                                </p>
+                                            </div>
+                                            </div>-->
+
+                                            <div class="clear"></div>
+                                        </div>
+                                        <button id="submit-guest-card-details" type="submit" class="hide">submit card details</button>
+                                    </form> 
+                                    </div>
+
+
+
+                                    
+                                    <div *ngIf="!guestUser" id="customer-credit-card" class="card-holder">
+                                        <div *ngIf="noPreviosCustomerCard" class="payment_box payment_method_intuit_qbms">
+                                            <form #creditCardCustomer="ngForm" novalidate (ngSubmit)="customerCreditcardPay(creditCardCustomer.value, creditCardCustomer.valid)">
+
+                                                <div>
+                                                    <div class="form-group">
+                                                        <label for="NameOnCard">NAME ON CARD</label>
+                                                        <input [disabled]="disablePayment" [(ngModel)]="creditCardCustomer.nameoncard" type="text" 
+                                                        class="form-control" name="nameoncard" placeholder="Name On Card" required  #nameoncard="ngModel">
+                                                        <small class="error-text" [hidden]="nameoncard.valid || (nameoncard.pristine && !creditCardCustomer.submitted)">
+                                                        Please enter name on card.
+                                                        </small> 
+                                                    </div>
+                                                    <!--  -->
+                                                    <div class="form-group">
+                                                        <label for="NameOnCard">CREDIT CARD NUMBER</label>
+                                                        <input [disabled]="disablePayment" [(ngModel)]="creditCardCustomer.cardnumber" type="text" class="form-control" 
+                                                        placeholder="Card Number"  onPaste="return false"
+                                                        name="cardnumber" required minlength="16" maxlength="16" autocomplete="off"  #cardnumber="ngModel">
+                                                        <small class="error-text" [hidden]="cardnumber.valid || (cardnumber.pristine && !creditCardCustomer.submitted)">
+                                                        Please enter credit card number.
+                                                        </small> 
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-6 expiry">
+                                                        
+                                                                <label for="wc-intuit-qbms-account-number">EXPIRY</label>
+                                                                <div class="clearfix"></div>
+
+                                                                <div class="credit-exp">
+                                                                    <input [disabled]="disablePayment" [(ngModel)]="creditCardCustomer.expirymm"
+                                                                     type="text" class="form-control col-md-6"  onPaste="return false"
+                                                                      placeholder="Expiry Month" name="expirymm" required minlength="2"  maxlength="2" #expirymm="ngModel">
+                                                                    <small class="error-text" [hidden]="expirymm.valid || (expirymm.pristine && !creditCardCustomer.submitted)">
+                                                                    Please enter expiry month.
+                                                                    </small> 
+                                                                </div>    
+
+                                                                <div class="credit-exp">
+                                                                    <input [disabled]="disablePayment" [(ngModel)]="creditCardCustomer.expiryyy"  onPaste="return false"
+                                                                     type="text" class="form-control col-md-6" placeholder="Expiry Year" name="expiryyy" required minlength="4" maxlength="4" #expiryyy="ngModel">
+                                                                    <small class="error-text" [hidden]="expiryyy.valid || (expiryyy.pristine && !creditCardCustomer.submitted)">
+                                                                    Please enter expiry year.
+                                                                    </small> 
+                                                                </div> 
+                                                                <div class="clearfix"></div>
+                                                            
+                                                        </div>
+                                                        <div class="col-md-6 cvvC">
+                                                            <label for="wc-intuit-qbms-exp-month">cvv </label>
+                                                          
+                                                                <a rel="popover" data-img="//placehold.it/400x200"><i class="ion-ios-help-outline"></i></a>
+                                                           
+                                                            <input [disabled]="disablePayment" [(ngModel)]="creditCardCustomer.cvv" type="text"   onPaste="return false"
+                                                            class="form-control visa" placeholder="CVV" required minlength="3" maxlength="3" name="cvv"  #cvv="ngModel">
+                                                            <small class="error-text" [hidden]="cvv.valid || (cvv.pristine && !creditCardCustomer.submitted)">
+                                                                    Please enter cvv.
+                                                            </small> 
+                                                        </div>
+                                                    </div>
+                                                    </div>
+
+                                                    
+                                                    <!--div class="form-group">
+                                                    <div class="save-card-check-box">
+                                                        <p>
+                                                            <input [(ngModel)]="noSaveCardDetail" name="savecard" type="checkbox" id="save-card" >
+                                                            <label (click)="saveCard()" for="save-card" class="checkbox-label">Save this card for future</label>
+                                                        </p>
+                                                    </div>
+                                                    </div -->
+
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                <button id="submit-customer-card-details" type="submit" class="hide">submit card details</button>
+                                            </form> 
+                                        </div>
+
+
+
+                                        <div *ngIf="!noPreviosCustomerCard">
+                                            <div *ngFor="let card of creditCardByEmail.result.cards.data; let rowIndex = index" class="add-creditcard">
+                                                <div class="card-num">
+                                                    <label class="radio-inline">
+                                                        <input class="selected-card" [checked]="card.defaultCard" type="radio" name="optradio" value="{{rowIndex}}">
+                                                        xxxx xxxx xxxx xxxx {{card.last4}}
+                                                    </label>
+                                                </div>
+                                                <div class="cvv">
+                                                    <input  type="text" name="" class="form-control" placeholder="CVV">
+                                                </div>
+                                                <ul class="edit-card">
+                                                    <li (click)="editCreditCard(rowIndex)"><a><i class="fa fa-pencil-square-o"></i>Edit</a></li>
+                                                    <li (click)="removeCard(card.id)"><a><i class="ion-trash-a"></i>Remove</a></li>
+                                                </ul>
+                                            </div>
+                                            
+                                            <a (click)="customerAddCard()" class="add-new-card" data-toggle="modal"><i class="ion-plus"></i>ADD NEW CARD</a>
+                                            <br>
+                                            <br>
+                                            <div class="clearfix"></div>
+                                        </div>
+
+                                    </div>
+
+
+                                  </li>
+                                <li>
+                                    <div class="clearfix"></div>
+                        
+                                <!--<div class="btn-row clearfix">
+                                    <button (click)="placeOrderGuest()" class="btn-default proced-payment place-oder-btn ">Place Order</button>
+                                </div>-->
+                                </li>
+
+                                </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 pull-right">
+                                <div class="order-review">
+                                <h2>oRDER rEVIEW</h2>
+                                <table>
+                                    <tr class="first-row">
+                                        <td>Subtotal</td>
+                                        <td> {{removeFraction(cartSubtotal)}} &nbsp; AED</td>
+                                    </tr>
+
+                            
+
+                                    <tr class="firsts-row">
+                                        <td>Shipping and Handling</td>
+                                        <td>{{removeFraction(shippingInclTax)}} &nbsp; AED </td>
+                                    </tr>
+
+                                    <tr *ngIf="discountAmount" class="firsts-row">
+                                        <td class="success-text">Discount amount</td>
+                                        <td class="success-text"> {{removeFraction(discountAmount)}} &nbsp; AED </td>
+                                    </tr>
+                                    <tr class="sec-row">
+                                        <td>Grand Total</td>
+                                        <td> {{removeFraction(grandTotal)}} &nbsp; AED </td>
+                                    </tr>
+                                </table>
+
+                                <div class="conform-btn">
+                                        <p  class="error-text qtyMsg" [innerHtml] ="checkOutLog"></p>
+                                      <a *ngIf="!disablePayment" (click)="placeOrder()" class="btn-default">confirm order</a>
+
+                                      <a *ngIf="disablePayment" (click)="placeOrderWithNoInformation()" class="btn-default">confirm order</a>
+                                </div>
+                        
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </li>
+
+        
+            </ul>
+        </div>     
+        </div>
+    </section>
+</div>
+
+<section *ngIf="successOrder" class="container-fluid thank-you-page">
+    <div class="row">
+        <div class="container">
+            <div class="thank-you-page-inner">
+                <h2>thanks for your order</h2>
+                <div class="row">
+                    <div class="col-md-8 col-sm-8">
+                        <div class="thankyou-left">
+                                 <p>You are awesome,<br/>
+
+								You order has been received. Please check your email for your order details. You can visit the My Dashboard page at any time to check the status of your order.</p>
+
+                            <a routerLink="/" class="add-biling-add cont-shopping">Continue shopping</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4"> 
+                        <div class="my-address-book-inner thankyou-right"> 
+                            <div class="shipped-address-border no-border clearfix">
+                                <div class="shipped-address clearfix">
+                                    <h5>oRDER rEVIEW</h5>
+                                    <ul>
+                                        <!--<li><p>ORDER NUMBER: #12345679</p></li>-->
+                                    </ul>
+                                    <h5>SHIPPED TO</h5>
+
+                                    <ul>
+                                        <li><p>{{successOrderDetails?.shippingfirstname}}</p></li>
+                                        <li><p>{{successOrderDetails?.shippinglastname}}</p></li>
+                                        <li><p>{{successOrderDetails?.shippingstreet}} </p></li>
+                                        <li><p>{{successOrderDetails?.shippingcity}}</p></li>
+                                        <!-- <li *ngIf="hasRegion"><p>{{successOrderDetails?.shippingregion.name}}</p></li> -->
+                                        <li><p>{{successOrderDetails?.shippingcountries}}</p></li>
+                                        <!-- <li><p>{{successOrderDetails?.shippingpostcode}}</p></li> -->
+                                        <li><p>{{successOrderDetails?.shippingphone}}</p></li>
+                                    </ul>
+
+                                    <table>
+                                <tr class="first-row">
+                                    <td>Subtotal </td>
+                                    <td>{{removeFraction(cartSubtotal)}} &nbsp; AED </td>
+                                </tr>
+
+                                <tr *ngIf="discountAmount" class="firsts-row">
+                                    <td class="success-text">Discount amount</td>
+                                    <td class="success-text"> {{removeFraction(discountAmount)}} &nbsp; AED </td>
+                                </tr>
+
+                                <tr class="first-row">
+                                    <td>Shipping and Handling </td>
+                                    <td> {{removeFraction(shippingInclTax)}} &nbsp; AED </td>
+                                </tr>
+                                <tr class="sec-row">
+                                    <td>Grand Total </td>
+                                    <td> {{ removeFraction(grandTotal)}} &nbsp; AED </td>
+                                </tr>
+                            </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<div id="shippingEditModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">EDIT SHIPPING DETAILS</h4>
+      </div>
+      <div class="modal-body">
+
+        
+        <form  #editCustomerShippingForm="ngForm" novalidate (ngSubmit)="editCustomerShippingSubmit(editCustomerShippingForm.value, editCustomerShippingForm.valid)">
+            <div class="row">
+                <div class="col-md-6 data-input">
+                    <label for="wc-intuit-qbms-account-number">FIRST NAME</label>
+                    <input id="sf" [(ngModel)]="customerShipping.firstname" type="text"
+                     class="form-control" name="shippingfirstname" placeholder="Please enter your first name" required minlength="3" #shippingfirstname="ngModel">
+                    <small class="error-text" [hidden]="shippingfirstname.valid || (shippingfirstname.pristine && !editCustomerShippingForm.submitted)">
+                    Please enter your first name.
+                    </small>
+                </div>
+
+                <div class="col-md-6 data-input">
+                    <label for="wc-intuit-qbms-account-number">LAST NAME</label>
+                    <input  [(ngModel)]="customerShipping.lastname" type="text" 
+                    class="form-control" name="shippinglastname" placeholder="Please enter your last name" required minlength="3" #shippinglastname="ngModel">
+                    <small class="error-text" [hidden]="shippinglastname.valid || (shippinglastname.pristine && !editCustomerShippingForm.submitted)">
+                    Please enter your last name.
+                    </small>
+                </div>
+
+            
+
+                <div class="col-md-6 data-input">
+                    <label for="wc-intuit-qbms-account-number">COUNTRY</label>
+                    <select  [disabled]="disableCountry" class="form-control" [(ngModel)]="customerShipping.country" name="shippingcountries" (change)="shippingCountrySelected(customerShipping.country)" required #shippingcountries="ngModel">
+                        <option></option>
+                        <option *ngFor="let country of countryList" (change)="getCountryId(country.id)" [ngValue]="country.id">{{country.full_name_english}}</option>
+                    </select>
+                    <!-- <small class="error-text" [hidden]="shippingcountries.valid || (shippingcountries.pristine && !editCustomerShippingForm.submitted)">
+                    Please select country.
+                    </small> -->
+                </div>
+
+                <div class="col-md-6 data-input">
+                        <!-- id="customerPhoneNumberEdit" -->
+                    <label for="wc-intuit-qbms-account-number">MOBILE NUMBER</label>
+                    <input  class="form-control ctryCode" type="text" disabled placeholder="+971" >
+                    <input  [(ngModel)]="customerShipping.phone" type="tel" 
+                    class="form-control inputText" 
+                    name="shippingphone"  
+                    placeholder="XX XXXX XXX"  onPaste="return false" (keypress) ="validateNumber($event)"
+                     required minlength="6" #shippingphone="ngModel"  maxlength="10">
+                    <small class="error-text" [hidden]="shippingphone.valid || (shippingphone.pristine && !editCustomerShippingForm.submitted)">
+                    Please enter your mobile number.
+                    </small>
+                </div>
+
+
+                <div *ngIf="hasRegion" class="col-md-6 data-input region">
+                    <label for="wc-intuit-qbms-account-number">State</label>
+                    <select  class="form-control" name="shippingregion" [(ngModel)]="customerShipping.region.region" required #shippingregion="ngModel">
+                        <option *ngFor="let state of shippingStateList?.available_regions"  [ngValue]="state.name">{{state.name}}</option>
+                    </select>
+                    <small class="error-text" [hidden]="shippingregion.valid || (shippingregion.pristine && !editCustomerShippingForm.submitted)">
+                    Please select region.
+                    </small>
+                </div>
+
+                <div class="col-md-6 data-input">
+                    <label for="wc-intuit-qbms-account-number">CITY</label>
+                    <input  [(ngModel)]="customerShipping.city" type="text" class="form-control" name="shippingcity" placeholder="City" required minlength="3" #shippingcity="ngModel">
+                    <small class="error-text" [hidden]="shippingcity.valid || (shippingcity.pristine && !editCustomerShippingForm.submitted)">
+                    Please enter your city.
+                    </small>
+                </div>
+
+                <div class="col-md-6 data-input">
+                    <label for="wc-intuit-qbms-account-number">ADDRESS LINE 1(Area/Street. Building Name)</label>
+                    <input [(ngModel)]="customerShipping.street1" type="text" class="form-control" name="shippingstreet1"
+                     placeholder="Ex. Al Marsa Street, Marina Plaza" required minlength="3" #shippingstreet1="ngModel">
+                    <small class="error-text" [hidden]="shippingstreet1.valid || (shippingstreet1.pristine && !editCustomerShippingForm.submitted)">
+                    Please enter your delivery address.
+                    </small>
+                </div>
+
+                <div class="col-md-6 data-input">
+                    <label for="wc-intuit-qbms-account-number">ADDRESS LINE 2 (Apartment Number/Villa Number)</label>
+                    <input [(ngModel)]="customerShipping.street2" type="text"
+                     class="form-control" name="shippingstreet2"  placeholder="Ex. Al Marsa Street, Marina Plaza"  minlength="3" #shippingstreet2="ngModel">
+                    <small class="error-text" [hidden]="shippingstreet2.valid || (shippingstreet2.pristine && !editCustomerShippingForm.submitted)">
+                    Please enter your delivery address.
+                    </small>
+                </div>
+
+                <div class="col-md-6 data-input region">
+                    <label for="wc-intuit-qbms-account-number">Postcode</label>
+                    <input  [(ngModel)]="customerShipping.postcode" type="text" class="form-control" name="shippingpostcode" placeholder="Postcode" required minlength="3" #shippingpostcode="ngModel">
+                    <small class="error-text" [hidden]="shippingpostcode.valid || (shippingpostcode.pristine && !editCustomerShippingForm.submitted)">
+                    Please enter postcode.
+                    </small>
+                </div>
+                <div class="col-md-6 data-input">
+                    <label for="wc-intuit-qbms-account-number">COMPANY</label>
+                    <input  [(ngModel)]="customerShipping.company" name="shippingcompany" type="text" #shippingcompany="ngModel" class="form-control" placeholder="Company">
+                </div>
+                </div>
+
+          <button class="btn btn-danger btn-xl" type="button" data-dismiss="modal">Cancel</button>
+          <button class="btn btn-info btn-lg" type="submit">Save</button>
+        </form>    
+
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+<div id="billingEditModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">EDIT BILLING DETAILS</h4>
+      </div>
+      <div class="modal-body">
+
+
+          <form  #editCustomerBillingForm="ngForm" novalidate (ngSubmit)="editCustomerBillingSubmit(editCustomerBillingForm.value, editCustomerBillingForm.valid)">
+            <div class="row">
+                {{editCustomerBillingForm.billingfirstname |json}}
+                <div class="col-md-6 data-input">
+                    <label for="wc-intuit-qbms-account-number">FIRST NAME</label>
+                    <input id="sf" [(ngModel)]="customerBilling.firstname" type="text" class="form-control" name="billingfirstname" placeholder="Firstname" required minlength="3" #billingfirstname="ngModel">
+                    <small class="error-text" [hidden]="billingfirstname.valid || (billingfirstname.pristine && !editCustomerBillingForm.submitted)">
+                    Please enter your first name.
+                    </small>
+                </div>
+
+                <div class="col-md-6 data-input">
+                    <label for="wc-intuit-qbms-account-number">LAST NAME</label>
+                    <input  [(ngModel)]="customerBilling.lastname" type="text" class="form-control" name="billinglastname" placeholder="Lastname" required minlength="3" #billinglastname="ngModel">
+                    <small class="error-text" [hidden]="billinglastname.valid || (billinglastname.pristine && !editCustomerBillingForm.submitted)">
+                    Please enter your last name.
+                    </small>
+                </div>
+
+               
+
+                <div class="col-md-6 data-input">
+                    <label for="wc-intuit-qbms-account-number">COUNTRY</label>
+                    <select  [disabled]="disableCountry" class="form-control" [(ngModel)]="customerBilling.country" name="billingcountries" (change)="billingCountrySelected(customerBilling.country)" required #billingcountries="ngModel">
+                        <option></option>
+                        <option *ngFor="let country of countryList" (change)="getCountryId(country.id)" [ngValue]="country.id">{{country.full_name_english}}</option>
+                    </select>
+                    <!-- <small class="error-text" [hidden]="billingcountries.valid || (billingcountries.pristine && !editCustomerBillingForm.submitted)">
+                    Please select country.
+                    </small> -->
+                </div>
+               
+                <div class="col-md-6 data-input">
+                        <!-- id="customerPhoneNumberBillingEdit" -->
+                    <label for="wc-intuit-qbms-account-number">MOBILE NUMBER</label>
+                    <input  class="form-control ctryCode" type="text" disabled placeholder="+971" >
+                    <input  [(ngModel)]="customerBilling.phone" 
+                     type="tel" class="form-control inputText"   onPaste="return false" (keypress) ="validateNumber($event)"
+                      name="billingphone" placeholder="Phone" required minlength="6" #billingphone="ngModel"  maxlength="10">
+                    <small class="error-text" [hidden]="billingphone.valid || (billingphone.pristine && !editCustomerBillingForm.submitted)">
+                    Please enter your mobile number.
+                    </small>
+                </div>
+
+                <div *ngIf="hasRegion" class="col-md-6 data-input region">
+                    <label for="wc-intuit-qbms-account-number">State</label>
+                    <select  class="form-control" name="billingregion" [(ngModel)]="customerBilling.region.region" required #billingregion="ngModel">
+                        <option *ngFor="let state of billingStateList?.available_regions"  [ngValue]="state.name">{{state.name}}</option>
+                    </select>
+                    <small class="error-text" [hidden]="billingregion.valid || (billingregion.pristine && !editCustomerBillingForm.submitted)">
+                    Please select region.
+                    </small>
+                </div>
+
+                <div class="col-md-6 data-input">
+                    <label for="wc-intuit-qbms-account-number">CITY</label>
+                    <input  [(ngModel)]="customerBilling.city" type="text" class="form-control" name="billingcity" placeholder="City" required minlength="3" #billingcity="ngModel">
+                    <small class="error-text" [hidden]="billingcity.valid || (billingcity.pristine && !editCustomerBillingForm.submitted)">
+                    Please enter your city.
+                    </small>
+                </div>
+
+                <div class="col-md-6 data-input">
+                    <label for="wc-intuit-qbms-account-number">ADDRESS LINE 1 (Area/Street. Building Name)</label>
+                    <input [(ngModel)]="customerBilling.street1" type="text"
+                     class="form-control" name="billingstreet1" placeholder="Ex. Al Marsa Street. Marina Plaza" required minlength="3" #billingstreet1="ngModel">
+                    <small class="error-text" [hidden]="billingstreet1.valid || (billingstreet1.pristine && !editCustomerBillingForm.submitted)">
+                     Please enter your delivery address.
+                    </small>
+                </div>
+
+                <div class="col-md-6 data-input">
+                    <label for="wc-intuit-qbms-account-number">ADDRESS LINE 2 (Apartment Number/Villa Number)</label>
+                    <input [(ngModel)]="customerBilling.street2" type="text" 
+                    class="form-control" name="billingstreet2" placeholder="Ex. Al Marsa Street. Marina Plaza" minlength="3" #billingstreet2="ngModel">
+                    <small class="error-text" [hidden]="billingstreet2.valid || (billingstreet2.pristine && !editCustomerBillingForm.submitted)">
+                            Please enter your delivery address.
+                    </small>
+                </div>
+
+                <div class="col-md-6 data-input region">
+                    <label for="wc-intuit-qbms-account-number">Postcode</label>
+                    <input  [(ngModel)]="customerBilling.postcode" type="text" class="form-control" name="billingpostcode" placeholder="Postcode" required minlength="3" #billingpostcode="ngModel">
+                    <small class="error-text" [hidden]="billingpostcode.valid || (billingpostcode.pristine && !editCustomerBillingForm.submitted)">
+                    Please enter postcode.
+                    </small>
+                </div>
+                <div class="col-md-6 data-input">
+                    <label for="wc-intuit-qbms-account-number">COMPANY</label>
+                    <input  [(ngModel)]="customerBilling.company" name="billingcompany" type="text" #billingcompany="ngModel" class="form-control" placeholder="Company">
+                </div>
+                </div>
+
+          <button class="btn btn-danger btn-xl" type="button" data-dismiss="modal">Cancel</button>
+          <button class="btn btn-info btn-lg" type="submit">Save</button>
+        </form>    
+
+
+
+        <!--<form  #editCustomerBillingForm="ngForm" novalidate (ngSubmit)="editCustomerBillingSubmit(editCustomerBillingForm.value, editCustomerBillingForm.valid)">
+            <div class="row">
+                {{editCustomerBillingForm.shippingfirstname |json}}
+                <div class="col-md-6 data-input">
+                    <label for="wc-intuit-qbms-account-number">Firstname</label>
+                    <input id="sf" [(ngModel)]="customerBilling.firstname" type="text" class="form-control" name="shippingfirstname" placeholder="Firstname" required minlength="3" #shippingfirstname="ngModel">
+                    <small class="error-text" [hidden]="shippingfirstname.valid || (shippingfirstname.pristine && !editCustomerBillingForm.submitted)">
+                    Please enter firstname.
+                    </small>
+                </div>
+
+                <div class="col-md-6 data-input">
+                    <label for="wc-intuit-qbms-account-number">Lastname</label>
+                    <input  [(ngModel)]="customerBilling.lastname" type="text" class="form-control" name="shippinglastname" placeholder="Lastname" required minlength="3" #shippinglastname="ngModel">
+                    <small class="error-text" [hidden]="shippinglastname.valid || (shippinglastname.pristine && !editCustomerBillingForm.submitted)">
+                    Please enter lastname.
+                    </small>
+                </div>
+
+                <div class="col-md-6 data-input">
+                    <label for="wc-intuit-qbms-account-number">Phone</label>
+                    <input  [(ngModel)]="customerBilling.phone" type="text" class="form-control" name="shippingphone" placeholder="Phone" required minlength="6" #shippingphone="ngModel">
+                    <small class="error-text" [hidden]="shippingphone.valid || (shippingphone.pristine && !editCustomerBillingForm.submitted)">
+                    Please enter phone number.
+                    </small>
+                </div>
+
+                <div class="col-md-6 data-input">
+                    <label for="wc-intuit-qbms-account-number">Country</label>
+                    <select  class="form-control" [(ngModel)]="customerBilling.country" name="shippingcountries" (change)="billingCountrySelected(customerBilling.country)" required #shippingcountries="ngModel">
+                        <option></option>
+                        <option *ngFor="let country of countryList" (change)="getCountryId(country.id)" [ngValue]="country.id">{{country.full_name_english}}</option>
+                    </select>
+                    <small class="error-text" [hidden]="shippingcountries.valid || (shippingcountries.pristine && !editCustomerBillingForm.submitted)">
+                    Please select country.
+                    </small>
+                </div>
+
+                <div class="col-md-6 data-input">
+                    <label for="wc-intuit-qbms-account-number">State</label>
+                    <select  class="form-control" name="shippingregion" [(ngModel)]="editCustomerBillingForm.billingregion" (change)="shippingRegionCode(editCustomerBillingForm.billingregion)" required #shippingregion="ngModel">
+                        <option></option>
+                        <option *ngFor="let state of shippingStateList?.available_regions" [ngValue]="state" (change)="getRegionData(state)">{{state.name}}</option>
+                    </select>
+                    <small class="error-text" [hidden]="shippingregion.valid || (shippingregion.pristine && !editCustomerBillingForm.submitted)">
+                    Please select region.
+                    </small>
+                </div>
+
+                <div class="col-md-6 data-input">
+                    <label for="wc-intuit-qbms-account-number">City</label>
+                    <input  [(ngModel)]="customerBilling.city" type="text" class="form-control" name="shippingcity" placeholder="City" required minlength="3" #shippingcity="ngModel">
+                    <small class="error-text" [hidden]="shippingcity.valid || (shippingcity.pristine && !editCustomerBillingForm.submitted)">
+                    Please enter city name.
+                    </small>
+                </div>
+
+                <div class="col-md-6 data-input">
+                    <label for="wc-intuit-qbms-account-number">Street</label>
+                    <input  [(ngModel)]="customerBilling.street1" type="text" class="form-control" name="shippingstreet1" placeholder="Street" required minlength="3" #shippingstreet1="ngModel">
+                    <small class="error-text" [hidden]="shippingstreet1.valid || (shippingstreet1.pristine && !editCustomerShippingForm.submitted)">
+                    Please enter street name.
+                    </small>
+                </div>
+                <div class="col-md-6 data-input">
+                    <label for="wc-intuit-qbms-account-number">Street 2</label>
+                    <input  [(ngModel)]="customerBilling.street2" type="text" class="form-control" name="shippingstreet2" placeholder="Street" minlength="3" #shippingstreet2="ngModel">
+                    <small class="error-text" [hidden]="shippingstreet2.valid || (shippingstreet2.pristine && !editCustomerShippingForm.submitted)">
+                    Please enter street name.
+                    </small>
+                </div>
+
+                <div class="col-md-6 data-input">
+                    <label for="wc-intuit-qbms-account-number">Postcode</label>
+                    <input  [(ngModel)]="customerBilling.postcode" type="text" class="form-control" name="shippingpostcode" placeholder="Postcode" required minlength="3" #shippingpostcode="ngModel">
+                    <small class="error-text" [hidden]="shippingpostcode.valid || (shippingpostcode.pristine && !editCustomerBillingForm.submitted)">
+                    Please enter postcode.
+                    </small>
+                </div>
+                <div class="col-md-6 data-input">
+                    <label for="wc-intuit-qbms-account-number">Company</label>
+                    <input  [(ngModel)]="customerBilling.company" name="shippingcompany" type="text" #shippingcompany="ngModel" class="form-control" placeholder="Company">
+                </div>
+                </div>
+
+          <button class="btn btn-danger btn-xl" type="button" data-dismiss="modal">Cancel</button>
+          <button class="btn btn-info btn-lg" type="submit">Save</button>
+        </form> -->
+
+
+
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+<div *ngIf="noDefaultShipping" id="customer-new-data-address-shipping" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">ADD SHIPPING DETAILS</h4>
+      </div>
+      <div class="modal-body">
+
+        
+
+
+        <form  #customerNewDataAddressShippingForm="ngForm" novalidate (ngSubmit)="customerNewDataAddressShippingSubmit(customerNewDataAddressShippingForm.value, customerNewDataAddressShippingForm.valid)">
+            <div class="row">
+                <div class="col-md-6 data-input">
+                    <label for="wc-intuit-qbms-account-number">FIRST NAME</label>
+                    <input id="sf" [(ngModel)]="customerNewDataAddressShippingForm.firstname"
+                    type="text" class="form-control" name="shippingfirstname" placeholder="Please enter your first name" required minlength="3" #shippingfirstname="ngModel">
+                    <small class="error-text" [hidden]="shippingfirstname.valid || (shippingfirstname.pristine && !customerNewDataAddressShippingForm.submitted)">
+                    Please enter your first name.
+                    </small>
+                </div>
+
+                <div class="col-md-6 data-input">
+                    <label for="wc-intuit-qbms-account-number">LAST NAME</label>
+                    <input  [(ngModel)]="customerNewDataAddressShippingForm.lastname" type="text"
+                     class="form-control" name="shippinglastname" placeholder=" Please enter your last name" required minlength="3" #shippinglastname="ngModel">
+                    <small class="error-text" [hidden]="shippinglastname.valid || (shippinglastname.pristine && !customerNewDataAddressShippingForm.submitted)">
+                    Please enter your last name.
+                    </small>
+                </div>
+
+
+                <div class="col-md-6 data-input">
+                    <label for="wc-intuit-qbms-account-number">COUNTRY</label>
+                    <select  [disabled]="disableCountry" class="form-control" [(ngModel)]="setCustomerDfaultCountry" name="shippingcountries" (change)="shippingCountrySelected(setCustomerDfaultCountry)" required #shippingcountries="ngModel">
+                       
+                        <option *ngFor="let country of countryList" (change)="getCountryId(country.id)" [ngValue]="country.id">{{country.full_name_english}}</option>
+                    </select>
+                    <!-- <small class="error-text" [hidden]="shippingcountries.valid || (shippingcountries.pristine && !customerNewDataAddressShippingForm.submitted)">
+                    Please select country.
+                    </small> -->
+                </div>
+
+
+                <div class="col-md-6 data-input">
+                        <!-- id="customerPhoneNumberOriginal" -->
+                    <label for="wc-intuit-qbms-account-number">MOBILE NUMBER</label>
+                    <input  class="form-control ctryCode" type="text" disabled placeholder="+971" >
+                    <input  [(ngModel)]="customerNewDataAddressShippingForm.phone"
+                    
+                    
+                    type="tel" class="form-control inputText" name="shippingphone" placeholder="XX XXXX XXX" required minlength="6"
+                    onPaste="return false" (keypress) ="validateNumber($event)"  #shippingphone="ngModel"  maxlength="10">
+                    <small class="error-text" [hidden]="shippingphone.valid || (shippingphone.pristine && !customerNewDataAddressShippingForm.submitted)">
+                    Please enter your mobile number.
+                    </small>
+                </div>
+
+                <!-- <div *ngIf="hasRegion" class="col-md-6 data-input region">
+                    <label for="wc-intuit-qbms-account-number">State</label>
+                    {{customerShipping.region.region}}
+                    <select  class="form-control" name="shippingregion" [(ngModel)]="customerNewDataAddressShippingForm.region" required #shippingregion="ngModel">
+                        <option *ngFor="let state of shippingStateList?.available_regions"  [ngValue]="state.name">{{state.name}}</option>
+                    </select>
+                    <small class="error-text" [hidden]="shippingregion.valid || (shippingregion.pristine && !customerNewDataAddressShippingForm.submitted)">
+                    Please select region.
+                    </small>
+                </div> -->
+
+                <div class="col-md-6 data-input">
+                    <label for="wc-intuit-qbms-account-number">CITY</label>
+                    <input  [(ngModel)]="customerNewDataAddressShippingForm.city" type="text" 
+                    class="form-control" name="shippingcity" placeholder="Please enter your city" required minlength="3" #shippingcity="ngModel">
+                    <small class="error-text" [hidden]="shippingcity.valid || (shippingcity.pristine && !customerNewDataAddressShippingForm.submitted)">
+                    Please enter your city name.
+                    </small>
+                </div>
+
+                <div class="col-md-6 data-input">
+                    <label for="wc-intuit-qbms-account-number">ADDRESS LINE 1 (Area/Street. Building Name)</label>
+                    <input [(ngModel)]="customerNewDataAddressShippingForm.street1" type="text" class="form-control" 
+                    name="shippingstreet1" placeholder="Ex. Al Marsa Street. Marina Plaza." required minlength="3" #shippingstreet1="ngModel">
+                    <small class="error-text" [hidden]="shippingstreet1.valid || (shippingstreet1.pristine && !customerNewDataAddressShippingForm.submitted)">
+                    Please enter your delivery address.
+                    </small>
+                </div>
+
+                <div class="col-md-6 data-input">
+                    <label for="wc-intuit-qbms-account-number">ADDRESS LINE 2 (Apartment No/Villa No)</label>
+                    <input [(ngModel)]="customerNewDataAddressShippingForm.street2" type="text"
+                     class="form-control" name="shippingstreet2" placeholder="Ex. Al Marsa Street. Marina Plaza." minlength="3" #shippingstreet2="ngModel">
+                    <small class="error-text" [hidden]="shippingstreet2.valid || (shippingstreet2.pristine && !customerNewDataAddressShippingForm.submitted)">
+                            Please enter your delivery address.
+                    </small>
+                </div>
+
+                <!-- <div class="col-md-6 data-input region">
+                    <label for="wc-intuit-qbms-account-number">Postcode</label>
+                    <input  [(ngModel)]="customerNewDataAddressShippingForm.postcode" type="text" class="form-control" name="shippingpostcode" placeholder="Postcode" required minlength="3" #shippingpostcode="ngModel">
+                    <small class="error-text" [hidden]="shippingpostcode.valid || (shippingpostcode.pristine && !customerNewDataAddressShippingForm.submitted)">
+                    Please enter postcode.
+                    </small>
+                </div> -->
+                <div class="col-md-6 data-input">
+                    <label for="wc-intuit-qbms-account-number">COMPANY</label>
+                    <input  [(ngModel)]="customerNewDataAddressShippingForm.company" name="shippingcompany" type="text" #shippingcompany="ngModel" class="form-control" placeholder="Company">
+                </div>
+                </div>
+
+          <button class="btn btn-danger btn-xl" type="button" data-dismiss="modal">Cancel</button>
+          <button class="btn btn-info btn-lg" type="submit">Save</button>
+        </form>    
+
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+<div *ngIf="noDefaultBilling" id="customer-new-data-address-billing" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">ADD BILLING DETAILS</h4>
+      </div>
+      <div class="modal-body">
+
+
+        <form  #customerNewDataAddressBillingForm="ngForm" novalidate (ngSubmit)="customerNewDataAddressBillingSubmit(customerNewDataAddressBillingForm.value, customerNewDataAddressBillingForm.valid)">
+            <div class="row">
+                <div class="col-md-6 data-input">
+                    <label for="wc-intuit-qbms-account-number">FIRST NAME</label>
+                    <input id="sf" [(ngModel)]="customerNewDataAddressBillingForm.firstname"
+                     type="text" class="form-control" name="billingfirstname" placeholder="Please enter your first name" required minlength="3" #billingfirstname="ngModel">
+                    <small class="error-text" [hidden]="billingfirstname.valid || (billingfirstname.pristine && !customerNewDataAddressBillingForm.submitted)">
+                     Please enter your first name.
+                    </small>
+                </div>
+
+                <div class="col-md-6 data-input">
+                    <label for="wc-intuit-qbms-account-number">LAST NAME</label>
+                    <input  [(ngModel)]="customerNewDataAddressBillingForm.lastname" 
+                    type="text" class="form-control" name="billinglastname" placeholder="Please enter your last name" required minlength="3" #billinglastname="ngModel">
+                    <small class="error-text" [hidden]="billinglastname.valid || (billinglastname.pristine && !customerNewDataAddressBillingForm.submitted)">
+                    Please enter your last name.
+                    </small>
+                </div>
+
+              
+
+                <div class="col-md-6 data-input">
+                    <label for="wc-intuit-qbms-account-number">COUNTRY</label>
+                    <select  [disabled]="disableCountry"  class="form-control" [(ngModel)]="setCustomerDfaultCountryBilling" name="billingcountries" (change)="billingCountrySelected(setCustomerDfaultCountryBilling)" required #billingcountries="ngModel">
+                        <option></option>
+                        <option *ngFor="let country of countryList" (change)="getCountryId(country.id)" [ngValue]="country.id">{{country.full_name_english}}</option>
+                    </select>
+                    <!-- <small class="error-text" [hidden]="billingcountries.valid || (billingcountries.pristine && !customerNewDataAddressBillingForm.submitted)">
+                    Please select country.
+                    </small> -->
+                </div>
+
+                <div class="col-md-6 data-input">
+                    <label for="wc-intuit-qbms-account-number">MOBILE NUMBER</label>
+                    <!-- id="customerPhoneNumberBilling" -->
+                    <input  class="form-control ctryCode" type="text" disabled placeholder="+971" >
+                    <input  [(ngModel)]="customerNewDataAddressBillingForm.phone" 
+                    type="tel" class="form-control inputText" name="billingphone" 
+                     placeholder="XX XXXX XXX"   onPaste="return false" (keypress) ="validateNumber($event)"
+                     required minlength="6" #billingphone="ngModel"  maxlength="10">
+                    <small class="error-text" [hidden]="billingphone.valid || (billingphone.pristine && !customerNewDataAddressBillingForm.submitted)">
+                     Please enter your mobile number.
+                    </small>
+                </div>
+
+                <!-- <div *ngIf="hasRegion" class="col-md-6 data-input region">
+                    <label for="wc-intuit-qbms-account-number">State</label>
+                    <select  class="form-control" name="billingregion" [(ngModel)]="customerNewDataAddressBillingForm.region" required #billingregion="ngModel">
+                        <option *ngFor="let state of billingStateList?.available_regions"  [ngValue]="state.name">{{state.name}}</option>
+                    </select>
+                    <small class="error-text" [hidden]="billingregion.valid || (billingregion.pristine && !customerNewDataAddressBillingForm.submitted)">
+                    Please select region.
+                    </small>
+                </div> -->
+
+                <div class="col-md-6 data-input">
+                    <label for="wc-intuit-qbms-account-number">CITY</label>
+                    <input  [(ngModel)]="customerNewDataAddressBillingForm.city" type="text" class="form-control"
+                     name="billingcity" placeholder="Please enter your city" required minlength="3" #billingcity="ngModel">
+                    <small class="error-text" [hidden]="billingcity.valid || (billingcity.pristine && !customerNewDataAddressBillingForm.submitted)">
+                    Please enter your city name.
+                    </small>
+                </div>
+
+                <div class="col-md-6 data-input">
+                    <label for="wc-intuit-qbms-account-number">ADDRESS LINE 1 (Area/Street. Building Name)</label>
+                    <input [(ngModel)]="customerNewDataAddressBillingForm.street1" type="text" 
+                    class="form-control" name="billingstreet1" placeholder="Ex. Al Marsa Street. Marina Plaza" required minlength="3" #billingstreet1="ngModel">
+                    <small class="error-text" [hidden]="billingstreet1.valid || (billingstreet1.pristine && !customerNewDataAddressBillingForm.submitted)">
+                            Please enter your delivery address.
+                    </small>
+                </div>
+
+                <div class="col-md-6 data-input">
+                    <label for="wc-intuit-qbms-account-number">ADDRESS LINE 2 (Apartment Number/Villa Number)</label>
+                    <input [(ngModel)]="customerNewDataAddressBillingForm.street2" 
+                    type="text" class="form-control" name="billingstreet2" placeholder="Ex. Al Marsa Street. Marina Plaza" minlength="3" #billingstreet2="ngModel">
+                    <small class="error-text" [hidden]="billingstreet2.valid || (billingstreet2.pristine && !customerNewDataAddressBillingForm.submitted)">
+                            Please enter your delivery address.
+                    </small>
+                </div>
+<!--     
+                <div class="col-md-6 data-input region">
+                    <label for="wc-intuit-qbms-account-number">Postcode</label>
+                    <input  [(ngModel)]="customerNewDataAddressBillingForm.postcode" type="text" class="form-control" name="billingpostcode" placeholder="Postcode" required minlength="3" #billingpostcode="ngModel">
+                    <small class="error-text" [hidden]="billingpostcode.valid || (billingpostcode.pristine && !customerNewDataAddressBillingForm.submitted)">
+                    Please enter postcode.
+                    </small>
+                </div> -->
+                <div class="col-md-6 data-input">
+                    <label for="wc-intuit-qbms-account-number">COMPANY</label>
+                    <input  [(ngModel)]="customerNewDataAddressBillingForm.company" name="billingcompany" type="text" #billingcompany="ngModel" class="form-control" placeholder="Company">
+                    <small class="error-text" [hidden]="billingcompany.valid || (billingcompany.pristine && !customerNewDataAddressBillingForm.submitted)">
+                            Please enter company name.
+                    </small>
+                </div>
+                </div>
+
+          <button class="btn btn-danger btn-xl" type="button" data-dismiss="modal">Cancel</button>
+          <button class="btn btn-info btn-lg" type="submit">Save</button>
+        </form>    
+
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+<div id="customer-new-data-address-shipping-owerwrite" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">ADD SHIPPING DETAILS</h4>
+      </div>
+      <div class="modal-body">
+
+        <form  #customerNewDataAddressShippingFormOwerwrite="ngForm" novalidate (ngSubmit)="customerNewDataAddressShippingOwerwriteSubmit(customerNewDataAddressShippingFormOwerwrite.value, customerNewDataAddressShippingFormOwerwrite.valid)">
+            <div class="row">
+                <div class="col-md-6 data-input">
+                    <label for="wc-intuit-qbms-account-number">FIRST NAME</label>
+                    <input id="sf" [(ngModel)]="customerNewDataAddressShippingFormOwerwrite.firstname"
+                     type="text" class="form-control" name="shippingfirstnameover" placeholder="Please enter your first name" required minlength="3" #shippingfirstnameover="ngModel">
+                    <small class="error-text" [hidden]="shippingfirstnameover.valid || (shippingfirstnameover.pristine && !customerNewDataAddressShippingFormOwerwrite.submitted)">
+                    Please enter your first name.
+                    </small>
+                </div>
+
+                <div class="col-md-6 data-input">
+                    <label for="wc-intuit-qbms-account-number">LAST NAME</label>
+                    <input  [(ngModel)]="customerNewDataAddressShippingFormOwerwrite.lastname"
+                     type="text" class="form-control" name="shippinglastnameover" placeholder="Please enter your last name" required minlength="3" #shippinglastnameover="ngModel">
+                    <small class="error-text" [hidden]="shippinglastnameover.valid || (shippinglastnameover.pristine && !customerNewDataAddressShippingFormOwerwrite.submitted)">
+                    Please enter your last name.
+                    </small>
+                </div>
+
+                <div class="col-md-6 data-input">
+                    <label for="wc-intuit-qbms-account-number">COUNTRY</label>
+                    <select  [disabled]="disableCountry" class="form-control" [(ngModel)]="setCustomerDfaultCountry" name="shippingcountriesover" (change)="shippingCountrySelected(setCustomerDfaultCountry)" required #shippingcountriesover="ngModel">
+                        <option></option>
+                        <option *ngFor="let country of countryList" (change)="getCountryId(country.id)" [ngValue]="country.id">{{country.full_name_english}}</option>
+                    </select>
+                    <!-- <small class="error-text" [hidden]="shippingcountriesover.valid || (shippingcountriesover.pristine && !customerNewDataAddressShippingFormOwerwrite.submitted)">
+                    Please select country.
+                    </small> -->
+                </div>
+
+                <div class="col-md-6 data-input">
+                        <!-- id="customerPhoneNumberSecond" -->
+                    <label for="wc-intuit-qbms-account-number">MOBILE NUMBER</label>
+                    <input  class="form-control ctryCode" type="text" disabled placeholder="+971" >
+                    <input  [(ngModel)]="customerNewDataAddressShippingFormOwerwrite.phone" type="tel"
+                     class="form-control inputText"  name="shippingphoneover"
+                      placeholder="XX XXXX XXX" required minlength="6"  onPaste="return false" (keypress) ="validateNumber($event)"
+                       #shippingphoneover="ngModel"  maxlength="10">
+                    <small class="error-text" [hidden]="shippingphoneover.valid || (shippingphoneover.pristine && !customerNewDataAddressShippingFormOwerwrite.submitted)">
+                    Please enter your mobile number.
+                    </small>
+                </div>
+
+               
+
+                <!-- <div *ngIf="hasRegion" class="col-md-6 data-input region">
+                    <label for="wc-intuit-qbms-account-number">State</label>
+                    <select  class="form-control" name="shippingregionover" [(ngModel)]="customerNewDataAddressShippingFormOwerwrite.region" required #shippingregionover="ngModel">
+                        <option *ngFor="let state of shippingStateList?.available_regions"  [ngValue]="state.name">{{state.name}}</option>
+                    </select>
+                    <small class="error-text" [hidden]="shippingregionover.valid || (shippingregionover.pristine && !customerNewDataAddressShippingFormOwerwrite.submitted)">
+                    Please select region.
+                    </small>
+                </div> -->
+
+                <div class="col-md-6 data-input">
+                    <label for="wc-intuit-qbms-account-number">CITY</label>
+                    <input  [(ngModel)]="customerNewDataAddressShippingFormOwerwrite.city" type="text"
+                     class="form-control" name="shippingcityover" placeholder="Please enter your city" required minlength="3" #shippingcityover="ngModel">
+                    <small class="error-text" [hidden]="shippingcityover.valid || (shippingcityover.pristine && !customerNewDataAddressShippingFormOwerwrite.submitted)">
+                    Please enter your city name.
+                    </small>
+                </div>
+
+                <div class="col-md-6 data-input">
+                    <label for="wc-intuit-qbms-account-number">ADDRESS LINE 1 (Area/ Street/ Building Name)</label>
+                    <input [(ngModel)]="customerNewDataAddressShippingFormOwerwrite.street1"
+                     type="text" class="form-control" name="shippingstreet1over" placeholder="Ex. Al Marsa Street. Marina Plaza" required minlength="3" #shippingstreet1over="ngModel">
+                    <small class="error-text" [hidden]="shippingstreet1over.valid || (shippingstreet1over.pristine && !customerNewDataAddressShippingFormOwerwrite.submitted)">
+                    Please enter your delivery address.
+                    </small>
+                </div>
+
+                <div class="col-md-6 data-input">
+                    <label for="wc-intuit-qbms-account-number">ADDRESS LINE 2 (Apartment No/ Villa No)</label>
+                    <input [(ngModel)]="customerNewDataAddressShippingFormOwerwrite.street2" type="text" class="form-control"
+                     name="shippingstreet2over" placeholder="Ex. Al Marsa Street. Marina Plaza" minlength="3" #shippingstreet2over="ngModel">
+                    <small class="error-text" [hidden]="shippingstreet2over.valid || (shippingstreet2over.pristine && !customerNewDataAddressShippingFormOwerwrite.submitted)">
+                            Please enter your delivery address.
+                    </small>
+                </div>
+
+                <!-- <div class="col-md-6 data-input region">
+                    <label for="wc-intuit-qbms-account-number">Postcode</label>
+                    <input  [(ngModel)]="customerNewDataAddressShippingFormOwerwrite.postcode" type="text" class="form-control" name="shippingpostcodeover" placeholder="Postcode" required minlength="3" #shippingpostcodeover="ngModel">
+                    <small class="error-text" [hidden]="shippingpostcodeover.valid || (shippingpostcodeover.pristine && !customerNewDataAddressShippingFormOwerwrite.submitted)">
+                    Please enter postcode.
+                    </small>
+                </div> -->
+                <div class="col-md-6 data-input">
+                    <label for="wc-intuit-qbms-account-number">COMPANY</label>
+                    <input  [(ngModel)]="customerNewDataAddressShippingFormOwerwrite.company" name="shippingcompanyover" type="text" #shippingcompanyover="ngModel" class="form-control" placeholder="Company">
+                </div>
+                </div>
+
+          <button class="btn btn-danger btn-xl" type="button" data-dismiss="modal">Cancel</button>
+          <button class="btn btn-info btn-lg" type="submit">Save</button>
+        </form>    
+
+
+      </div>
+    </div>
+
+  </div> 
+</div>
+
+
+
+
+
+<div id="customer-add-card" class="modal fade modal-card" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add New Card</h4>
+            </div>
+            <div class="modal-body">
+                <div class="card-holder">
+                    <div class="payment_box payment_method_intuit_qbms">
+                        <form #customerNewCreditCard="ngForm" novalidate (ngSubmit)="addNewCustomerCreditCard(customerNewCreditCard.value, customerNewCreditCard.valid)">
+
+                            <div>
+                                <div class="form-group">
+                                    <label for="NameOnCard">NAME ON CARD</label>
+                                    <input [(ngModel)]="customerNewCreditCard.nameoncard" [attr.disabled]="creditNumber" type="text" class="form-control" name="nameoncard" placeholder="Menamall Beta Tester"  #nameoncard="ngModel">
+                                    <small class="error-text" [hidden]="nameoncard.valid || (nameoncard.pristine && !customerNewCreditCard.submitted)">
+                                    Please enter name on card.
+                                    </small> 
+                                </div>
+
+                                <!-- [(ngModel)]="customerNewCreditCard.cardnumber" type="text" class="form-control" name="cardnumber" maxlength="19" autocomplete="off" required #cardnumber="ngModel" -->
+                                <div class="form-group">
+                                    <label for="NameOnCard">CREDIT CARD NUMBER</label>
+                                    <input [(ngModel)]="customerNewCreditCard.cardnumber" type="text" class="form-control" onPaste="return false" 
+                                     name="cardnumber" placeholder="Card Number" required minlength="16" maxlength="16" autocomplete="off"  #cardnumber="ngModel" >
+                                    <small class="error-text" [hidden]="cardnumber.valid || (cardnumber.pristine && !customerNewCreditCard.submitted)">
+                                    Please enter credit card number.
+                                    </small> 
+                                </div>
+
+                                <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                    
+                                            <label for="wc-intuit-qbms-account-number">EXPIRY</label>
+                                            <div class="clearfix"></div>
+
+                                            <div class="credit-exp">
+                                                <input
+                                                 [(ngModel)]="customerNewCreditCard.expirymm" type="text" onPaste="return false"
+                                                 class="form-control col-md-6" placeholder="Expiry Month" name="expirymm" 
+                                                  required minlength="2" maxlength="2"
+                                                  #expirymm="ngModel" required>
+                                                <small class="error-text" [hidden]="expirymm.valid || (expirymm.pristine && !customerNewCreditCard.submitted)">
+                                                Please enter expiry month.
+                                                </small> 
+                                            </div>    
+
+                                            <div class="credit-exp">
+                                                <input [(ngModel)]="customerNewCreditCard.expiryyy"  onPaste="return false"
+                                                 type="text" class="form-control col-md-6" 
+                                                 name="expiryyy" minlength="4" maxlength="4" placeholder="Expiry Year"
+                                                 required #expiryyy="ngModel">
+                                                <small class="error-text" [hidden]="expiryyy.valid || (expiryyy.pristine && !customerNewCreditCard.submitted)">
+                                                Please enter expiry year.
+                                                </small> 
+                                            </div> 
+                                            <div class="clearfix"></div>
+                                        
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="wc-intuit-qbms-exp-month">cvv </label>
+    
+                                            <a  rel="popover" data-img="//placehold.it/400x200"><i class="ion-ios-help-outline"></i></a>
+                                      
+                                        <input  [(ngModel)]="customerNewCreditCard.cvv" 
+                                         type="text" class="form-control visa"  onPaste="return false"
+                                         name="cvv"  #cvv="ngModel" required maxlength="3" placeholder="CVV">
+                                        <small class="error-text" [hidden]="cvv.valid || (cvv.pristine && !customerNewCreditCard.submitted)">
+                                                Please enter cvv.
+                                        </small> 
+                                    </div>
+                                </div>
+                                </div>
+
+
+                                <!--<div class="form-group">
+                                    <div class="save-card-check-box">
+                                        <p>
+                                            <input [(ngModel)]="noSaveCardDetail" name="savecard" type="checkbox" id="save-card" >
+                                            <label (click)="saveCard()" for="save-card" class="checkbox-label">Save this card for future</label>
+                                        </p>
+                                    </div>
+                                </div>-->
+
+                                <div class="clearfix"></div>
+                            </div>
+                            <button class="btn-default submit" type="submit">Add card</button>
+                        </form> 
+                    </div>
+                </div>
+            </div>   
+        </div> 
+   </div>         
+</div>    
+
+
+
+<div id="customer-edit-card" class="modal fade modal-card" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Edit Card</h4>
+            </div>
+            <div class="modal-body">
+                <div class="card-holder">
+                    <div class="payment_box payment_method_intuit_qbms">
+                        {{editCardDefault}}
+                        <form #customerEditCreditCard="ngForm" novalidate (ngSubmit)="editCustomerCreditCardSubmit(customerEditCreditCard.value, customerEditCreditCard.valid)">
+
+                            <div>
+                                <div class="form-group">
+                                    <label for="NameOnCard">NAME ON CARD</label>
+                                    <input [(ngModel)]="nameCardEdit" type="text" class="form-control" name="nameoncard" placeholder="Name On Card" required  #nameoncard="ngModel">
+                                    <small class="error-text" [hidden]="nameoncard.valid || (nameoncard.pristine && !customerEditCreditCard.submitted)">
+                                     Please enter name on card.
+                                    </small> 
+                                </div>
+
+                                <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="wc-intuit-qbms-account-number">EXPIRY</label>
+                                        <div class="clearfix"></div>
+
+                                        <div class="credit-exp">
+                                            <input [attr.disabled]="creditNumber" [(ngModel)]="expiryMMCardEdit" type="text" class="form-control col-md-6" value="06" name="expirymm" minlength="1"  #expirymm="ngModel">
+                                            <small class="error-text" [hidden]="expirymm.valid || (expirymm.pristine && !customerEditCreditCard.submitted)">
+                                            Please enter expiry month.
+                                            </small> 
+                                        </div>    
+
+                                        <div class="credit-exp">
+                                            <input [attr.disabled]="creditNumber" [(ngModel)]="expiryYYCardEdit" type="text" class="form-control col-md-6" value="2018" name="expiryyy" minlength="4"  #expiryyy="ngModel">
+                                            <small class="error-text" [hidden]="expiryyy.valid || (expiryyy.pristine && !customerEditCreditCard.submitted)">
+                                            Please enter expiry year.
+                                            </small> 
+                                        </div> 
+                                        <div class="clearfix"></div>
+                                    </div>
+
+                                    <div class="col-md-6">
+
+                                        <div class="form-group">
+                                            <label for="wc-intuit-qbms-account-number">&nbsp;</label>
+                                            <div class="clearfix"></div>
+
+                                            <div class="save-card-check-box">
+                                                <p>
+                                                    <input [(ngModel)]="editCardDefault" name="savecard" type="checkbox" id="save-card" >
+                                                    <label (click)="setDefaultCard(cardNum)" for="save-card" class="checkbox-label">default card</label>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+
+                                </div>
+                                </div>
+
+                                <div class="clearfix"></div>
+                            </div>
+                            <button class="btn-default submit" type="submit">Edit card</button>
+                        </form> 
+
+                    </div>
+                </div>
+            </div>   
+        </div> 
+   </div>         
+</div>
+<div id="paypalModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+     
+        <iframe [src]="paypalGuest | safe" width="500" height="600" type='application/paypal'></iframe>
+      
+    </div>
+
+  </div>
+</div> 
+<div id="wishModalCheckout" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+       
+        <div class="modal-body">
+          <h3 class="text-center">{{wishNotif}}</h3>
+        </div>
+       
+      </div>
+  
+    </div>
+  </div>
+
+  <div id="wishModalCheckOut" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+       
+        <div class="modal-body">
+          <h3 class="text-center" style="color: red;">{{message}}</h3>
+        </div>
+       
+      </div>
+  
+    </div>
+  </div>
+
+  <div id="wishModalCheckOutQty" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+       
+        <div class="modal-body">
+          <h3 class="text-center" style="color: black;">{{message}}</h3>
+        </div>
+       
+      </div>
+  
+    </div>
+  </div>
+  
+  <app-global-title-injector [titleInput] = "titleName"></app-global-title-injector>
+  
+
+
+

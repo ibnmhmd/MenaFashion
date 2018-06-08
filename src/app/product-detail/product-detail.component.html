@@ -1,0 +1,292 @@
+<section class="container-fluid">
+	<div class="row">
+		<div class="container">
+			<ol class="breadcram" *ngIf="sale_flag !== 'sale'">
+				<li><a (click)="setGlobalFlag()" [routerLink]="['/']">HOME</a></li>
+				<li *ngIf="categoryLevel.length != 0 && categoryLevel[0] != undefined"><a (click)="setGlobalFlag()" [routerLink]="['/'+rootPathName+'/',replaceSpaces(categoryLevel[0])]">{{categoryLevel[0]|uppercase}}</a></li>
+				<li *ngIf="categoryLevel.length != 0 && categoryLevel[1] != undefined"><a (click)="setGlobalFlag()" *ngIf="categoryLevel.length > 1" [routerLink]="['/'+rootPathName+'/',replaceSpaces(categoryLevel[0]),replaceSpaces(categoryLevel[1])]">{{categoryLevel[1]|uppercase}}</a>
+					<a *ngIf="categoryLevel.length == 1"  href="javascript:void(0)">{{categoryLevel[1]|uppercase}}</a>
+				</li>
+				<li *ngIf="categoryLevel.length != 0 && categoryLevel[2] != undefined"><a (click)="setGlobalFlag()" [routerLink]="['/'+rootPathName+'/',replaceSpaces(categoryLevel[0]), replaceSpaces(categoryLevel[1]),replaceSpaces(categoryLevel[2])]">{{categoryLevel[2]|uppercase}}</a></li>
+				<li *ngIf="categoryLevel.length != 0 && categoryLevel[3] != undefined"><a (click)="setGlobalFlag()"  [routerLink]="['/'+rootPathName+'/',replaceSpaces(categoryLevel[0]),replaceSpaces(categoryLevel[1]),replaceSpaces(categoryLevel[2]),replaceSpaces(categoryLevel[3])]">{{categoryLevel[3]|uppercase}}</a></li>
+				<li><a class="active">{{productName}}</a></li>
+			</ol>
+
+			<ol class="breadcram" *ngIf="sale_flag === 'sale'">
+				<li><a (click)="setGlobalFlag()" [routerLink]="['/']">HOME</a></li>
+				<li *ngIf="categoryLevel.length != 0 && categoryLevel[0] != undefined"><a (click)="setGlobalFlag()" routerLink="/shop/sale">{{categoryLevel[0]|uppercase}}</a></li>
+				<li *ngIf="categoryLevel.length != 0 && categoryLevel[1] != undefined"><a (click)="setGlobalFlag()" *ngIf="categoryLevel.length > 1" [routerLink]="['/',replaceSpaces(categoryLevel[0]),replaceSpaces(categoryLevel[1])]">{{categoryLevel[1]|uppercase}}</a>
+					<a *ngIf="categoryLevel.length == 1"  href="javascript:void(0)">{{categoryLevel[1]|uppercase}}</a>
+				</li>
+				<li *ngIf="categoryLevel.length != 0 && categoryLevel[2] != undefined"><a (click)="setGlobalFlag()" [routerLink]="['/',replaceSpaces(categoryLevel[0]), replaceSpaces(categoryLevel[1]),replaceSpaces(categoryLevel[2])]">{{categoryLevel[2]|uppercase}}</a></li>
+				<li *ngIf="categoryLevel.length != 0 && categoryLevel[3] != undefined"><a (click)="setGlobalFlag()"  [routerLink]="['/',replaceSpaces(categoryLevel[0]),replaceSpaces(categoryLevel[1]),replaceSpaces(categoryLevel[2]),replaceSpaces(categoryLevel[3])]">{{categoryLevel[3]|uppercase}}</a></li>
+				<li><a class="active">{{productName}}</a></li>
+			</ol>
+		</div>
+	</div>
+</section>
+
+<section  class=" product_wrap" >
+	<div class="row">
+		<div class="container " id="productDetailLoader"> 
+			<div class="col-lg-6 col-md-6 col-sm-12  clearfix">
+			<div class="pro-slide">
+			<div class="right">
+					<div class="slider-for main-product-img sliders">
+						<div id="divSwapperDetail">
+							<a  href="javascript:void(0)" class="open-slider">
+							<img id="prod-img-big" src=""  alt="" class="img-responsive ">
+							</a>
+						</div>
+					</div>
+
+					</div>
+					<div class="leftin ">
+						 <perfect-scrollbar>
+						<div class="slider-nav prod-thumbs sliders" id="gallery_01">
+							<div *ngFor="let prodImg of variantImages">
+							   <img (mouseenter)="changeImg(prodImg)" src="{{prodImg}}" height="134" width="95" alt="" class="img-responsive" >
+						     </div>
+						</div>
+					</perfect-scrollbar>
+						<div class="slider-nav prod-thumbs slider1" id="gallery_01">
+							<div *ngFor="let prodImg of variantImages">
+								<img src="{{prodImg}}" height="134" width="95" alt="" class="img-responsive" >
+							</div>
+						</div> 
+					</div> 
+			</div>         
+			</div>
+			<div class="col-lg-6 col-md-6" *ngIf="showPage" >
+				<div class="main-prod-desc">
+					<h4 class="main-prod-title">{{productName}}</h4>
+					<!-- <h4 [innerHTML]="productData?.description | slice:0:50"></h4> -->
+					<!-- *ngIf="productData?.special_price"
+					*ngIf="!productData?.special_price" -->
+					<h3  class="prod-price">{{removeFractionForPrice(productSpecialPrice,productPrice) }} &nbsp;AED</h3>
+					<div class="prod-price-available"> 
+						 <ul>
+							<li *ngIf="productSpecialPrice > 0  && productSpecialPrice*1<productPrice*1"><h6 class="linethrough">{{removeFraction(productPrice)}} &nbsp;AED</h6></li>
+							<li *ngIf="productSpecialPrice > 0  && productSpecialPrice*1<productPrice*1" class="orange">
+								<h6>{{productDiscountVal}}% OFF</h6>
+							</li>
+						</ul> 
+						<ul>
+						
+							<li><p><span>Product Code:</span>{{dummySku |uppercase}}</p></li>
+							<li><p>
+								<span>Availability :</span>
+								<span *ngIf="productStock"> In stock</span>
+								<span *ngIf="!productStock" class="outOfStock">Out of stock</span>
+								</p>
+							</li>
+						</ul>
+
+					</div>
+					<div  class="select-sc">
+					<div class="size-selection shop-color" *ngIf ="productFlag==='color_variant' || productFlag==='color_size_variant'">
+						<p *ngIf="colorNotSelected" class="error-text .sizeError">Please select color *</p>
+						<label>Select Color<span>*</span></label>	
+						<!-- <ul>
+							<li *ngFor="let color of productColor">
+								<input type="radio" value="{{color.value_index}}" name="color" id="{{color.value_index}}" >
+								<label (click)="selectColor(color.value_index)" id="color-{{color.value_index}}" class="label-c" data-id="slider1" [style.background-color]="color.swatch_value">{{color.label}}
+								</label>
+							</li>
+						</ul> -->
+
+						<span >
+							<select [(ngModel)] = "defaultSelectedColor" class="form-control colorSelectOption" (change)="handleSelectedValueFromDropDown($event)">												
+								<option *ngFor="let color of productColor" value= {{color.value}}>{{color.label | uppercase}}</option>
+							</select>
+					  </span>
+					</div>
+					
+					<div class="size-selection colorHeight-2" *ngIf="productFlag ==='size_variant' || productFlag==='color_size_variant'">
+						<p *ngIf="sizeNotSelected" class="error-text sizeError">Please select size *</p>
+						<label>Size <span>*</span></label>
+
+						<select  [(ngModel)] = "defaultSelectedSize" class="form-control colorSelectOption" (change)="handleSelectedValueFromDropDownSize($event)">
+								<option value= "0">Select Size</option>													
+								<option *ngFor="let size of productSize"  value= {{size.value}}>
+								{{size.label| uppercase}}
+								</option>
+						</select>
+					</div>
+					</div>
+					
+					<p *ngIf="qtyMessage" class="error-text qtyMsg"> Available Quantity Exceeded</p>
+					<p *ngIf="cartMessage" class="error-text qtyMsg"> {{loggerMessage}}</p>
+				  					
+					<div class="product-detail pad prDetails">
+						<div class="quntity">
+							<div class="input-number-wrap">
+							<span class="fa fa-minus" (click)="decreaseQty()"></span>
+							<input [disabled]="inputState" [(ngModel)]="productQty" type="text" name="qty" id="prod-qty" class="quantity">
+							<span class="fa fa-plus" (click)="increaseQty()"></span>
+						</div>
+						</div>
+						<div class="wish-list" *ngIf="notWishList">
+							<a (click)="addToWishlist(productID)"><span class="ion-android-favorite-outline"></span>wish list</a>
+						</div>
+						<div class="add-cart-btn" *ngIf="productStock && !addingToCart" >
+							<a [ngClass] ="cartButtonState ? 'disableBtnCart' : '' " (click)="addToCart()" class="btn-default wish-cart-2"><i class="ion ion-bag"></i>  add to cart</a>
+						</div>
+
+						<div  *ngIf="productStock && addingToCart" class="add-cart-btn">
+								<a  class="btn-default wish-cart-2 disableBtnCartWait"><i class="ion ion-bag"></i> please wait</a>
+							</div>
+					</div>
+
+					<!-- description and size section -->
+					<ngb-tabset>
+							<ngb-tab  class="detailProduct" title="Description">
+							  <ng-template ngbTabContent >
+									<perfect-scrollbar class="product-detail product-description-detailed" [config]="config">
+
+										<div [innerHTML]="productDescription" class="content">
+
+										</div>
+									</perfect-scrollbar>
+							     	
+							  </ng-template>
+							</ngb-tab>
+
+							<ngb-tab class="detailProduct" title="Size Chart">
+									<ng-template ngbTabContent>
+										  <perfect-scrollbar class="product-detail product-description-detailed">
+												<p>Size chart not availabe for now, please check back later. <br>
+													   <b>Thank you.</b>
+												</p>
+										  </perfect-scrollbar>
+										   
+									</ng-template>
+								  </ngb-tab>
+						
+						  </ngb-tabset>
+					<div class="product-share">
+						<h6>Share :</h6>
+						<share-container
+							direction="horizontal"
+							addedText="Share"
+							[expandable]="false"
+							[textEnabled]="false"
+							[platforms]="['facebook','twitter','linkedin','googlePlus']">
+						</share-container>
+					</div>
+								  
+				</div>
+		</div>
+		</div>
+	</div>
+</section>
+
+
+
+<section class="container-fluid">
+	<div class="row">
+		<div class="container">
+			<div id="tabbed-nav" data-role='z-tabs' >
+					<!-- <ul>
+					<li><a>Product Description </a></li>
+					<li><a>additional information</a></li>
+					<li><a>size guide</a></li>                           
+					</ul>
+					<div>
+					
+					<div [innerHTML]="">
+						
+					</div>
+
+					<div>
+						<p>Coupling a blended linen construction with tailored style, the River Island HR Jasper Blazer will imprint a touch of dapper charm into your after-dark wardrobe. Our modelwearing a size medium blazer, and usually takes a size medium/38L shirt. He is 6’2 1/2” (189cm) tall with a 38” (96 cm) chest and a 31” (78 cm) waist.</p>
+						<ul class="material">
+							<li>Length: 74cm</li>
+							<li>Regular fit</li>
+							<li>Notched lapels</li>
+							<li>Twin button front fastening</li>
+							<li>Front patch pockets; chest pocket</li>
+							<li>Internal pockets</li>
+							<li>Centre-back vent</li>
+							<li>Please refer to the garment for care instructions.</li>
+							<li>Length: 74cm</li>
+							<li>Material: Outer: 50% Linen & 50% Polyamide; Body Lining: 100% Cotton; Lining: 100% Acetate</li>
+						</ul>
+					</div>
+					<div>
+						<p>Coupling a blended linen construction with tailored style, the River Island HR Jasper Blazer will imprint a touch of dapper charm into your after-dark wardrobe. Our modelwearing a size medium blazer, and usually takes a size medium/38L shirt. He is 6’2 1/2” (189cm) tall with a 38” (96 cm) chest and a 31” (78 cm) waist.</p>
+						<ul class="material">
+							<li>Length: 74cm</li>
+							<li>Regular fit</li>
+							<li>Notched lapels</li>
+							<li>Twin button front fastening</li>
+							<li>Front patch pockets; chest pocket</li>
+							<li>Internal pockets</li>
+							<li>Centre-back vent</li>
+							<li>Please refer to the garment for care instructions.</li>
+							<li>Length: 74cm</li>
+							<li>Material: Outer: 50% Linen & 50% Polyamide; Body Lining: 100% Cotton; Lining: 100% Acetate</li>
+						</ul>
+					</div>      
+					</div>-->  
+				</div>
+		</div>
+	</div>
+</section>
+
+
+<app-recently-viewed-slider></app-recently-viewed-slider>    
+
+
+<div id="cartModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+     
+      <div class="modal-body">
+        <h3 class="text-center">Product added to cart.</h3>
+      </div>
+    </div>
+
+  </div>
+</div><!-- cart-modal -->
+
+ <div id="chartModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="fa fa-close"></span></button>
+		<h2>Size chart</h2>
+		
+		</div>
+	</div>
+</div> <!--club-modal -->
+
+<div id="wishModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+     
+      <div class="modal-body">
+        <h3 class="text-center">{{productName}} added to wishlist.</h3>
+      </div>
+    </div>
+
+  </div>
+</div><!-- wish-modal -->
+
+<div id="wishModalDetail" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+	  <!-- Modal content-->
+	  <div class="modal-content">
+	   
+		<div class="modal-body">
+		  <h3 class="text-center" style="color: red;">{{wishNotif}}</h3>
+		</div>
+	   
+	  </div>
+  
+	</div>
+  </div>
+
+  <!-- <app-global-title-injector [titleInput] = "titleName"></app-global-title-injector> -->
+

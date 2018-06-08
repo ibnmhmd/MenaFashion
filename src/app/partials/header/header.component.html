@@ -1,0 +1,246 @@
+
+<header id="header" class="container-fluid" >
+		<div class="row">
+			<div class="container-fluid clearfix" >
+			 <!--scroll top menu-->
+				<div class="header_main_row wsdownmenu m-top-10" id="primary-nav" >
+				<section class="sectionClass">
+						<div class="container-fluid " style="background-color:#000;">
+							<div class="row headerRow">
+							<div class="container-fluid">
+									<div class="black-header">
+										<span>Free </span> shipping for orders above 350AED!
+									</div>
+							</div>
+							</div>
+						</div>
+					</section>
+					
+					<div class="container">
+					<div class="row">
+					<div class="mainNav col-lg-12 col-md-12 col-sm-12 clearfix">
+	
+					 <div id="logo2" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 nopadding" > 
+						<a class="nopadding block_element col-lg-12 col-md-12 col-xs-12 col-sm-12" routerLink="/"> 
+							<img  src="../../assets/img/logo-small.png" width="" class="img-responsive imgHeader logoSmall" alt="logo">
+							<img  src="../../assets/img/logo.png" width="" class="img-responsive imgHeade logoBig" alt="logo" style="margin-top: 10px;"> </a>
+					</div>
+					
+					<div class="main col-lg-9 col-md-9 col-sm-9 col-xs-9 leftPaddingMenu" id="NavWrap" >
+
+						<!-- tab and iPad side menu -->
+						<nav id="main" class="nav navbar-nav">
+								<div id="page" [hidden]="hide">							
+												   <div id="menu">
+															<ul>
+																	<!-- first level category -->
+																	<ng-container *ngFor="let menu of navigationLinks">
+																	<li *ngIf="menu.name !== 'Home' && menu.name !=='Rejected Items' 
+																	   && menu.name !=='Unisex' && menu.name !=='' && menu.name !=='Events' && menu.name !== null">
+																						<span>
+																								<a [ngClass]="menu.name === 'Sale' ? 'bold':'' " href="#/">{{menu.name |uppercase}} </a>
+																						</span>
+	
+																						 <!-- black friday inner children -->
+																						 <ul *ngIf = "menu.name === 'Sale'">																		
+																								  <!-- second level category -->
+																									   <ng-container *ngFor = "let sub of navigationLinks">
+																											  <li *ngIf ="sub.name === 'Men' || sub.name === 'Women'"><span><a (click)='closeTabSecond(sub.children_data.length)' routerLink = "/sale/{{replaceSpaces(sub.name)|lowercase}}">{{sub.name|uppercase}}</a></span>
+																											
+																											<!-- third level category -->																
+																												<ul *ngIf="sub.children_data.length != 0">
+																														<ng-container *ngFor = "let innerSub of sub.children_data">
+																															   <li *ngIf="!innerSub.hidden"><span><a routerLink="/sale/{{replaceSpaces(sub.name)|lowercase}}/{{replaceSpaces(innerSub.name)|lowercase}}">{{innerSub.name|uppercase}}</a></span>													
+																																	<ul>
+																																			<ng-container *ngFor = "let innerSub2 of innerSub.children_data">
+																																					<li *ngIf="!innerSub2.hidden"><span><a (click)='closeTab()' routerLink="/sale/{{replaceSpaces(sub.name)|lowercase}}/{{replaceSpaces(innerSub.name)|lowercase}}/{{replaceSpaces(innerSub2.name)|lowercase}}">{{innerSub2.name|uppercase}}</a></span>
+																																			</ng-container>
+																																	</ul>														
+																															  </li>
+																													 </ng-container>
+	
+																													 <li class="account" (click) ="loginMenu()">
+																															<span><a>MY ACCOUNT</a></span>
+																														
+																															<ul *ngIf="showLogout">
+																																	<li *ngIf="showLogout"  (click)='closeTab()'><a  (click)='closeTab()' routerLink="/dashboard">MY DASHBOARD</a></li>
+																																	<li *ngIf="showLogout"  (click)='closeTab()'><a  (click)='closeTab()' routerLink="/orders">MY ORDER</a></li>
+																															</ul>
+																														
+																														</li>
+																														<li *ngIf="showLogout"  (click)="logOut()" class="toggle"><a routerLink='/'>LOGOUT</a></li>
+																												</ul>																		
+																											</li>
+	
+																										 </ng-container>																								
+																										 <li class="account" (click) ="loginMenu()">
+																												<span><a>MY ACCOUNT</a></span>
+																											
+																												<ul *ngIf="showLogout">
+																														<li *ngIf="showLogout"  (click)='closeTab()'><a   (click)='closeTab()' routerLink="/dashboard">MY DASHBOARD</a></li>
+																														<li *ngIf="showLogout"  (click)='closeTab()'><a  (click)='closeTab()' class="toggle" routerLink="/orders">MY ORDER</a></li>
+																												</ul>
+																											
+																											</li>
+																											<li *ngIf="showLogout"  (click)="logOut()" class="toggle"><a routerLink='/'>LOGOUT</a></li>
+																							  </ul>
+																				   <!-- inner children ends -->
+																		 <ul *ngIf = "menu.name !== 'Sale'">																		
+																			<!-- second level category -->
+																			 <ng-container *ngFor = "let sub of menu.children_data">
+																				<li *ngIf ="!sub.hidden"><span><a (click)='closeTabSecond(sub.children_data.length)' routerLink = "/shop/{{replaceSpaces(menu.name)|lowercase}}/{{replaceSpaces(sub.name)|lowercase}}">{{sub.name|uppercase}}</a></span>																			
+																				<!-- third level category -->																	
+																					<ul *ngIf="sub.children_data.length != 0">
+																							<ng-container *ngFor = "let innerSub of sub.children_data">
+																						<li *ngIf="!innerSub.hidden"><span><a (click)='closeTab()' routerLink="/shop/{{replaceSpaces(menu.name)|lowercase}}/{{replaceSpaces(sub.name)|lowercase}}/{{replaceSpaces(innerSub.name)|lowercase}}">{{innerSub.name|uppercase}}</a></span></li>
+																					</ng-container>
+																					</ul>																		
+																				</li>
+																			 </ng-container>
+																			 <li class="account" (click) ="loginMenu()">
+																					<span><a>MY ACCOUNT</a></span>																			
+																					<ul *ngIf="showLogout">
+																							<li *ngIf="showLogout" class="toggle"  (click)='closeTab()'><a  (click)='closeTab()' routerLink="/dashboard">MY DASHBOARD</a></li>
+																							<li *ngIf="showLogout" class="toggle"  (click)='closeTab()'><a  (click)='closeTab()' routerLink="/orders">MY ORDER</a></li>
+																					</ul>																		
+																				</li>
+																				<li *ngIf="showLogout"  (click)="logOut()" class="toggle"><a routerLink='/'>LOGOUT</a></li>
+																		</ul>																															
+																</li>
+															</ng-container>
+															<li class="account" (click) ="loginMenu()">
+																	<span><a>MY ACCOUNT</a></span>														
+																	<ul *ngIf="showLogout">
+																			<li *ngIf="showLogout"  (click)='closeTab()'><a  routerLink="/dashboard">MY DASHBOARD</a></li>
+																			<li *ngIf="showLogout"  (click)='closeTab()'><a class="toggle" routerLink="/orders">MY ORDER</a></li>
+																	</ul>														
+																</li>
+																<li *ngIf="showLogout"  (click)="logOut()" class="toggle"><a routerLink='/'>LOGOUT</a></li>
+													 </ul>												
+												</div>
+											</div>
+							</nav>
+						<!-- side menu ends -->
+
+					<nav id="main" class="nav navbar-nav col-lg-9 col-md-9 col-sm-9 col-xs-9">
+									<ul class="wsdown-mobile wsdownmenu-list">  
+											<ng-container  *ngFor="let item of navigationLinks">          
+										<li *ngIf="item.name !== 'Home' && item.name !== 'Electronics' && item.name !== 'Unisex' && item.name !== '' && item.name !== null " [ngClass]="{'dropdown.mega-dropdown1': item.children_data.length > 0}" class="dropdown.mega-dropdown1 listMain-{{item.id}} activeList">
+											<a *ngIf="item.is_active" routerLinkActive="active" routerLink="/shop/{{replaceSpaces(item.name)| lowercase}}"  [ngClass]="{'dropdown-toggle1': item.children_data.length > 0}" (click) ="removeHoverPopUpMain(item.id)" (mouseenter)="listHoverMain(item.id)" (mouseout)="listHoverOutMain(item.id)" style="font-weight: bold;">{{item.name}}</a>
+											
+											<div *ngIf="item.children_data.length > 0" class="megamenu clearfix" (mouseout)="listHoverOutMain(item.id); removeHeart()">
+												<div class="first-tabMain clearfix">
+													<ul class="col-md-3 nav-stacked">
+														<li *ngFor="let subitem of item.children_data" [ngClass]="{'active': subitem.position == 1}" class="sub-item-elMain" 
+														
+															 id="subitemMain{{item.name.split(' ').join('')}}{{subitem.name.split(' ').join('')}}{{subitem.position}}" >
+															 
+															<a (mouseenter)="showItemsMain(item.name.split(' ').join(''), subitem.name.split(' ').join(''), subitem.position)"
+															 *ngIf="subitem.is_active" routerLinkActive="active" routerLink="/shop/{{replaceSpaces(item.name)|lowercase}}/{{replaceSpaces(subitem.name)|lowercase}}" (click) ="removeHoverPopUpMain(subitem.id)">{{subitem.name}}</a>
+														</li>
+													</ul>
+	
+													<div class="tab-contentMain col-md-9">
+														<div *ngFor="let subitem of item.children_data" [ngClass]="{'active': subitem.position == 1}" class="tab-paneMain" 
+														id="tabMain{{item.name.split(' ').join('')}}{{subitem.name.split(' ').join('')}}{{subitem.position}}">
+															<div *ngIf="subitem.children_data.length > 0" class="col-md-6 col-xs-8">
+																<div class="sublink">
+																	<ul class="menu-list">
+																		<li *ngFor="let subitem2 of subitem.children_data">
+																			<a *ngIf="subitem2.is_active" routerLinkActive="active" routerLink="/shop/{{replaceSpaces(item.name)|lowercase}}/{{replaceSpaces(subitem.name)|lowercase}}/{{replaceSpaces(subitem2.name)|lowercase}}" (click) ="removeHoverPopUpMain(subitem2.id)">{{subitem2.name}}</a>
+																		</li>
+																	</ul>
+																</div>
+															</div>
+															
+														</div>
+													</div>
+													
+												</div>
+											</div>
+										</li>
+									</ng-container>
+									</ul>
+								</nav>
+		
+		<!--icon-->
+		<button class="wishlist-update hide" (click)="updateWishList()"></button>
+		 <ul class="right-top-icons col-lg-4 col-md-4 col-sm-4 col-xs-4">
+			<div class=" top_icons_row">
+							<ul>
+											<li><a id="subscribe" data-toggle="popover"><i class="ion ion-ios-search-strong"></i></a></li>
+											<li>
+												<a (click)="wishList(); removeJump()"><i class="ion ion-android-favorite-outline"></i></a>
+												<span (click)="wishList()" *ngIf ="wishListCount >0" class="wishListCount">{{wishListCount}}</span>               
+												<div class="wishlist-dropdownMain">
+													<p style="color: black;">NO ITEMS ADDED TO WISH LIST.</p>
+												</div>
+											</li>
+											<li (click)="loginMenuMain()" class="user"><a (click)="loginMenuMain()"><i class="fa fa-user-o"></i></a>
+												
+												<div *ngIf="showLogout" class="user-information">
+													<div>
+														<p class="close2"><a (click)="closeDropdown()">X</a></p>
+														<ul>
+															<li *ngIf="showLogout"><a routerLink="/dashboard" (click)= "closeDropdown()"><span class="fa fa-cog"></span>my dashboard</a></li>
+															<li *ngIf="showLogout"><a routerLink="/orders" (click)= "closeDropdown()"><span class="fa fa-file-text-o"></span>my order</a></li>
+															<li *ngIf="showLogout" id="sign-out-btn" (click)="logOut()"><a  href="javascript:;"><span class="fa fa-sign-out"></span>logout</a></li>
+														</ul>
+														
+													</div>
+												</div>
+												<ul class="hide"><li><a id="mm"><span class="fa fa-sign-out"></span>LOGIN</a></li></ul>
+				
+											</li>
+											<li class="user1" ><a><i class="ion ion-bag"></i></a>
+												<app-mini-cart></app-mini-cart>
+											</li>
+	
+											<li  >
+												<span class="tabMenus" id="menuStripSmall">
+														<a   class="fa fa-bars" href="#menu"></a>
+												</span>
+											</li>
+	
+										</ul>
+			</div>
+		</ul>
+			
+					</div>
+	
+				</div>
+			</div>
+		</div>
+	
+				</div>
+				
+				<!--end:normal menu--> 
+				
+			</div>
+		</div>
+	</header>
+	
+			<div id="logOutModal" class="modal fade" role="dialog">
+				<div class="modal-dialog">
+					<!-- Modal content-->
+					<div class="modal-content">
+					 
+					<div class="modal-body">
+						<h3 class="text-center">Logout Successful !</h3>
+					</div>
+					 
+					</div>
+				
+				</div>
+				</div>
+				
+					 <!-- pop over html-->
+					 <div id="popover-form" class="hide">
+							 <form id="myform" class="form-inline" role="form">
+								<div class="form-group">
+								<input type="text" 
+								id="email"				
+								placeholder="How can we help you ?" class="form-control suggestionBox tags" />
+							</div>
+						 </form>
+						</div>

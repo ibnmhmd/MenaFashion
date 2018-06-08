@@ -1,0 +1,167 @@
+<div class="modal fade" [id]="modalId" data-backdrop="true" id="addressModal">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+
+        <div class="modal-header" style="padding-bottom:30px;">
+            <h3 class="modal-title">ADDRESS INFORMATION</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+      <form [formGroup]="addressForm"  (ngSubmit)="submitForm(addressForm.value, addressForm.valid)">
+        <div class="modal-body">
+          <div>
+
+              <div class="form-group col-md-6 col-sm-6">
+                  <label class="pass-label">FIRST NAME</label>
+                  <input type="text" class="form-control"
+                  name="firstname" formControlName="firstname"
+                   placeholder="Please enter your first name" 
+                   value="{{currentAddress.firstname}}" required (keypress) ="fadeOutMessage('name')">
+
+                     <small class="error-text" *ngIf="nameValid">
+                      Please enter your firstname.
+                     </small>
+
+                </div>
+
+
+                <div class="form-group col-md-6 col-sm-6">
+                    <label class="pass-label">LAST NAME</label>
+                    <input placeholder="Please enter your last name" 
+                    type="text" class="form-control" name="lastname"
+                     formControlName="lastname" value="{{currentAddress.lastname}}" required (keypress) ="fadeOutMessage('lname')">
+
+                     <small class="error-text" *ngIf="lastNameValid">
+                        Please enter your lastname.
+                    </small>
+                  </div>
+
+                  <div class="form-group col-md-6 col-sm-6">
+                      <label class="control-label">COUNTRY</label>
+                      <!-- <label for="country-dropdown" class="sr-only">Country</label> -->
+                      <select [disabled]="disableCountry" id="country-dropdown"  class="form-control"  (change)="setRegion($event.target.value)">                 
+                          <option *ngFor="let country of countryList" 
+                           value ="{{country.id}}" [selected] ="country.id==='AE'" >{{country.full_name_english}}</option>
+                       </select>
+                </div>
+
+                <div class="form-group col-md-6 col-sm-6">
+                    <label class="pass-label">CITY</label>
+                    <input placeholder="Please enter your city" type="text" class="form-control" name="city"
+                     formControlName="city" value="{{currentAddress.city}}" required (keypress) ="fadeOutMessage('city')">
+
+                     <small class="error-text" *ngIf="cityValid">
+                        Please enter your city.
+                    </small>
+               </div>
+
+
+               <div class="form-group col-md-6 col-sm-6">
+                  <label class="pass-label">ADDRESS LINE 1 <span>(Area/Street. Building Name)</span></label>
+                  <input placeholder="Ex. Al Mena Street. Mall Tower"
+                   type="text" class="form-control" name="streetline1" 
+                    formControlName="streetline1" value="{{currentAddress.street[0]}}" required (keypress) ="fadeOutMessage('address1')">
+                    <small class="error-text" *ngIf="address1Valid">
+                        Please enter your delivery city.
+                    </small>
+                 
+               </div>
+
+                <div class="form-group col-md-6 col-sm-6">
+                    <label class="pass-label">ADDRESS LINE 2 <span>(Apartment Number/Villa Number)</span></label>
+                    
+                    <input placeholder="Ex. Al Mena Street. Mall Tower" type="text"
+                     class="form-control" name="streetline2"  
+                     formControlName="streetline2" value="{{currentAddress.street[1]}}" required (keypress) ="fadeOutMessage('address2')">
+                     <small class="error-text" *ngIf="address2Valid">
+                        Please enter your delivery city.
+                    </small>
+                </div>
+
+            <!-- <div class="form-group col-md-6 col-sm-6">
+              <label class="pass-label">Company Name</label>
+              <input type="text" class="form-control" name="company" formControlName="company" value="{{currentAddress.company}}">
+             
+            </div> -->
+  <!-- id="dashboardPhone" -->
+            <div class="form-group col-md-6 col-sm-6">
+              <label class="pass-label">MOBILE NUMBER</label>
+             
+              <input  class="form-control ctryCode" type="text" disabled placeholder="+971" >
+              <input placeholder="XX XXXX XXX" type="tel"
+               class="form-control inputText" name="telephone" formControlName="telephone"
+             
+               pattern="[0-9.]+" onPaste="return false" 
+                value="{{currentAddress.telephone}}" required (keypress) ="fadeOutMessage('phone'); validateNumber($event)">
+
+                <small class="error-text" *ngIf="phoneValid">
+                    Please enter your phone number.
+                </small>
+            </div>
+           
+           
+            <!-- value="{{currentAddress.specialNotes}}"   formControlName="specialNotes"-->
+            <div class="form-group col-md-6 col-sm-6">
+                <label class="pass-label">SPECIAL NOTES (optional)</label>
+                <textarea placeholder="Ex. Please call my mobile number when you arrive" type="text"
+                 class="form-control"  name="special_notes" 
+                  (keypress) ="fadeOutMessage('..')"
+                  ></textarea>
+
+            </div>
+
+            <!-- <div class="form-group col-md-6 col-sm-6 region">
+              <label class="pass-label">Postal code</label>
+              <input type="text" class="form-control" name="postcode" formControlName="postcode" value="{{currentAddress.postcode}}">
+            </div> -->
+           
+            <!-- <div *ngIf="regions.length" class="form-group col-md-6 col-sm-6 region">
+              <label class="control-label">Region</label>
+              <label for="country-dropdown" class="sr-only">Region</label>
+              <select id="country-dropdown" class="form-control" formControlName="region" (change)="setRegion($event.target.value)">
+                  <option value="0" disabled>Select Region</option>
+                  <option *ngFor="let reg of regions ; let i = index" value="{{i}}" >{{reg.region}}</option>
+              </select>
+             
+            </div> -->
+            <!-- <div *ngIf="!regions.length" class="form-group col-md-6 col-sm-6 region">
+              <label class="control-label">Region</label>
+              <label for="country-dropdown" class="sr-only">Region</label>
+              <select id="country-dropdown" class="form-control" disabled>
+                  <option value="0" disabled>Select Region</option>
+              </select>
+            </div> -->
+            <div class="col-md-6 col-sm-6">
+              <div class="">
+               
+                  <input type="checkbox" id="make-default-billing" name="checkboxed" [checked]="setDefaultBilling" (change)="changeDefaultBilling($event)">
+                  <label for="make-default-billing" class="checkbox-label" >MAKE THIS MY DEFAULT BILLING ADDRESS</label>
+               
+    
+              </div>            
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+                <div class="">
+                 
+                 
+                    <input type="checkbox" (change)="changeDefaultShipping($event)" id="make-default-shipping" [checked]="setDefaultBilling">
+                    <label for="make-default-shipping" class="checkbox-label" >MAKE THIS MY DEFAULT SHIPPING ADDRESS</label>
+                 
+                </div>            
+              </div>
+
+          </div>
+        </div>   
+        <div class="modal-footer">
+          <button class="btn btn-danger btn-xl" type="button" data-dismiss="modal">Cancel</button>
+          <button class="btn btn-info btn-lg btn-save" type="submit" >Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<app-global-title-injector [titleInput] = "titleName"></app-global-title-injector>

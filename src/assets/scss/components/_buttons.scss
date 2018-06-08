@@ -1,0 +1,55 @@
+.btn{
+	display: inline-block;
+	padding:$btn-padding-v $btn-padding-x;
+	font-size: $btn-font-size;
+	font-family: $font-family-primary;
+	font-weight: 700;
+	text-transform: capitalize;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 1;
+	white-space: nowrap;
+	text-decoration: none;
+	background-image: none;
+	cursor:pointer;
+	border-color: transparent;
+	border-style: solid;
+	border-width: 1px;
+	@include transition(all 0.5s ease);
+	@include prefix(user-select, none, moz ms webkit);
+	@include prefix(touch-action, manipulation, ms);
+	//@include border-radius(2px);
+	&:hover,
+	&:focus{
+		text-decoration: none;
+	}
+	&.btn-default{
+		background-color: $theme-color;
+		color: #fff;
+		border-color: $theme-color;
+		&:hover, &:focus{
+			background-color: darken($theme-color, 12%);
+			color: #fff;
+			border-color: darken($theme-color, 12%);
+		}
+	}
+	
+
+
+	&.btn-block{
+		display: block;
+		width: 100%;
+	}
+}
+
+
+.btn.btn-white{
+	background-color:#fff;  
+	color:$theme-color;
+	border-color:$theme-color;
+	&:hover, &:focus{
+			background-color:$theme-color;
+			color: #fff;
+		}
+}
+

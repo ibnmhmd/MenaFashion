@@ -1,0 +1,83 @@
+
+
+<section class="container-fluid">
+  <div class="row">
+    <div class="container">
+      <ol class="breadcram">
+            <li><a routerLink ="/">HOME</a></li>
+            <li><a routerLink ="/profile">MY ACCOUNT</a></li>
+            
+            <li class="active">MY CARD</li>
+          </ol>
+    </div>
+  </div>
+</section>
+
+<section class="product-listing-wrap container-fluid content-wrap">
+	<div class="row">
+		<div class="container">
+				
+				<div class="category-inner">
+					<div class="row">
+            
+						<app-dashboard-nav></app-dashboard-nav>
+
+						<div class="col-sm-9"> 
+							<div class="main-category-tab-content"> 
+							    	<div class="tab-content-text myprofile-tab-content">
+								    		<h4 class="tab-content-head">MY CARD</h4>
+								    		<p class="currently-no-add">You have no saved cards.</p>
+								    		<div class="my-address-book-inner new-card no-border"> 
+												<a  href="#myModal3" class="btn btn-default  btn-info btn-lg" data-toggle="modal" >ADD NEW CARD</a>
+												<div class="row">
+													<div class="shipped-address-border no-border clearfix">
+														<div class="col-md-6">
+															<div class="shipped-address clearfix">
+																<h6>EMIRATES NBD (Default)</h6>
+																<ul>
+																	<li><p>Shyju kuyiloor kavil</p></li>
+																	<li><p>7894 5897 2568 7885</p></li>
+																	
+																</ul>
+																<ul class="edit-address">
+																	<li><a  href="#"><i class="fa fa-pencil-square-o"></i>Edit</a></li>
+																	<li><a  href="#"><i class="fa fa-trash"></i>Remove</a></li>
+																	<li>
+																		<div class="save-card-check-box make-default-checkbox">
+																			<p>
+																		    	<input type="checkbox" id="make-default5" >
+																		    	<label for="make-default5" class="checkbox-label">MAKE DEFAULT</label>
+																		  	</p>
+																		  </div>
+
+																	</li>
+																</ul>
+
+															</div>
+															
+															
+														</div>
+														<div class="col-md-6">
+															<a  href="#myModal3" class="add-biling-add btn-info btn-lg" data-toggle="modal">Add New Card</a>
+														</div>
+													
+													</div>
+												</div>
+											</div>
+								    	</div>		
+								    							    
+							    	</div>
+							</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+</section>
+<app-global-title-injector [titleInput] = "titleName"></app-global-title-injector>
+
+
+
+
+
+

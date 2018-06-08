@@ -1,0 +1,137 @@
+.shop-color input[type=radio] + div {
+    cursor: pointer;
+    max-width: 50px;
+    height: 64px;
+    font-weight: 400;
+    border: 1px solid #d7d8d8;
+    font-size: 1.1428em;
+    text-indent: -9999px;
+    color: #000000;
+    text-align: center;
+    font-weight: 400;
+    line-height: 30px;
+    margin-right: 5px;
+    width: 49px;
+}
+.error-text {
+    color: #ff0000 !important;
+}
+.label-c.selected {
+    border: 1px solid #000000;
+}
+
+.outOfStock
+{
+    color: red !important;
+}
+
+.colorSelectOption
+{
+    width: 53%;
+    margin-bottom: 15px;
+    height: 30px !important;
+    border-radius: 2px;
+    padding-left: 0px;
+}
+
+.pad
+{
+  
+}
+
+.sizeLabelHover:hover
+{
+    border-color: #ff9400 !important;
+    color: #ff9400;
+}
+
+.colorSelectOption:hover
+{
+    border-color: #ff9400;
+    cursor: pointer;
+}
+
+.colorHeight-2 input[type=radio]:checked + label {
+    border-color: #ff9400;
+    color: #ff9400; }
+
+    .colorHeight-2 label:clicked {
+        border-color: #ff9400;
+        color: #ff9400; }
+
+        .detailProduct
+        {
+          font-size: 1em;
+          color: black;
+          font-weight: bold;
+          text-transform: uppercase;
+          letter-spacing: 0.025em;
+          margin-top: 15px;
+          margin-bottom: 0px !important;
+        }
+        .qtyMsg
+        {
+            margin-left: 0%;
+            position: relative !important;
+            font-weight: bold;
+
+        }
+
+        .disableBtnCartWait {
+            color:#ff9400 !important;
+            cursor: not-allowed !important;
+            pointer-events: none;
+            font-weight: bold !important;
+        }
+        
+        .prDetails
+        {
+            margin-top: 15px !important; 
+        }
+
+        .disableBtnCart {
+            color:gray !important;
+            cursor: not-allowed !important;
+            pointer-events: none;
+            font-weight: bold !important;
+        }
+
+        .disableBtnCart:hover {
+            color: gray !important;
+            cursor: not-allowed !important;
+            pointer-events: none;
+            font-weight: bold !important;
+        }
+
+        .sizeError
+        {
+            margin-left: 160px;
+            margin-top: 0px;
+            font-weight: bold;
+        }
+
+
+        #divSwapperDetail
+        {
+            background-image: url('loader.gif');
+            height: 500px;
+            background-repeat: no-repeat;
+            background-position-x: center;
+            background-position-y: center
+        }
+
+        .hideImage
+        {
+            display: none;
+        }
+
+        .product_wrap
+        {
+            overflow-x: hidden;
+        }
+        /* perfect-scrollbar
+        {
+            max-height: 600px !important;
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }  */

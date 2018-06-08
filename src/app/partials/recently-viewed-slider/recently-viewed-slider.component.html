@@ -1,0 +1,76 @@
+<section *ngIf="displayItems" class="container-fluid recently">
+			<div class="row">
+				<div class="container">
+					<h2 class="tittle-wrap">RECENTLY VIEWED</h2>
+
+					<div class="product-slider owl-carousel home-pro-size"> 
+						<div *ngFor="let item of recentlyViewed" class="item col-md-12">
+						<div class="singlerating">
+							<div class="singlerating-inner">
+								<a (click)="addToWishlist(item.product_id)"><span class="ion ion-android-favorite-outline"></span></a>
+								<div class="img-wrap">
+							     <a routerLink="/detail/{{replaceSpaces(item.product_name) |lowercase}}/{{item.product_sku |lowercase}}"><img src="{{item.product_image}}" height="357" width="267" alt="{{item.product_name}}" class="img-responsive"></a>
+						     	</div>
+						     <div class="size-selection show-size">
+								<ul>
+									<li>
+										<input type="radio" value="xs" name="size" id="xs" >
+										<label for="xs">xs</label>
+									</li>
+									<li>
+										<input type="radio" value="xxs" name="size" id="xxs" >
+										<label for="xxs">xxs</label>
+									</li>
+									<li>
+										<input type="radio" value="90" name="size" id="90" >
+										<label for="90">90</label>
+									</li>
+									<li>
+										<input type="radio" value="s" name="size" id="s" >
+										<label for="s">s</label>
+									</li>
+									<li>
+										<input type="radio" value="m" name="size" id="m" >
+										<label for="m">m</label>
+									</li>
+									<li>
+										<input type="radio" value="19" name="size" id="19" >
+										<label for="19">19</label>
+									</li>
+								</ul>
+							</div>
+						 </div>
+						<div class="rating-wrap">
+							<h5>{{item.product_name}}</h5>
+						    <h6 class="ellipsis" [innerHTML]="item.product_description | slice:0:25"></h6>
+
+							<div *ngIf="!item.special_price" class="rate">
+								<p>${{item.product_price | number : '1.0-0'}}</p>
+							</div>
+
+							<div *ngIf="item.special_price" class="rate">
+								<p>${{item.special_price | number : '1.0-0'}}<span>${{item?.product_price | number : '1.0-0'}}</span></p>
+							</div>
+
+
+							<div class="add-card">
+							 <div class="add">
+								<ul class="clearfix">
+									<li><a href="#tour-expand2" class="tours-expand"><span class="fa fa-eye"></span></a></li>
+									<li><a href="javascript:;" class="quick_Add"><span class="ion ion-bag"></span></a></li>
+								</ul>
+							 </div>
+							</div>
+							</div>
+
+					   </div>
+					  </div>
+		
+					</div>
+
+								
+								
+								
+				</div>
+			</div>
+		</section>

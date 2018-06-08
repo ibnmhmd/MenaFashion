@@ -1,0 +1,58 @@
+<div id="wrapper"> 
+<app-header></app-header>
+<router-outlet></router-outlet>
+</div>
+<app-footer></app-footer>
+
+<div class="loading33"></div>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal Content (The Image) -->
+    <div class="modal-content" id="img01">
+                <span id="captionText" (click) ="goToStore()"> Take Me To The Store</span>
+   </div>
+  <!-- Modal Caption (Image Text) -->
+   <div id="caption">
+  </div>
+</div>
+
+   
+<!-- The Modal -->
+<div id="loading" class="modal-1">             
+                  <!-- Modal Content (The Image) -->
+                  <img  src="assets/img/loader.gif" id="imageR">
+                  <!-- Modal Caption (Image Text) -->
+                   <div id="caption">
+                  </div>
+</div>
+
+<!-- The Modal -->
+<div id="loadingSearch" class="modal-2">             
+        <!-- Modal Content (The Image) -->
+        <img  src="assets/img/loader.gif" id="imageR">
+        <!-- Modal Caption (Image Text) -->
+         <div id="caption">
+        </div>
+</div>
+
+<div id="loadingCategory" class="modal-2">             
+        <!-- Modal Content (The Image) -->
+        <img  src="assets/img/loader.gif" id="imageR">
+        <!-- Modal Caption (Image Text) -->
+         <div id="caption">
+        </div>
+</div>
+
+<app-global-title-injector [titleInput] = "titleName"></app-global-title-injector>
+<!-- <div class="modal hide" id="pleaseWaitDialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-body">
+                <div id="ajax_loader">
+                        <img src={{_image}} style="display: block; margin-left: auto; margin-right: auto;">
+                </div>
+        </div>
+</div> -->
+
+
+

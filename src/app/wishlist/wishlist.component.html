@@ -1,0 +1,212 @@
+
+
+<section class="container-fluid">
+  <div class="row">
+    <div class="container">
+      <ol class="breadcram">
+            <li><a [routerLink] ="['/']">HOME</a></li>
+            <!-- <li><a href="javascript:;">MY ACCOUNT</a></li> -->
+            <li class="active">My WISH LIST</li>
+          </ol>
+    </div>
+  </div>
+</section>
+
+<section class="product-listing-wrap container-fluid content-wrap">
+   <div class="row">
+      <div class="container">
+         <div class="category-inner">
+            <div class="row">
+
+               <app-dashboard-nav></app-dashboard-nav>
+
+               <div class="col-sm-9">
+                  <div class="main-category-tab-content">
+                     <div class="tab-content-text myprofile-tab-content">
+                        <h4 class="tab-content-head">MY WISH LIST</h4>
+                        <div>
+                           <p *ngIf="!wishlistHasProducts">There are no items in your Wishlist</p>
+                           <div *ngIf="wishlistHasProducts"  class="shop_table cart single-row1 tab-content-cart">
+                              <div class="header-row">
+                                 <div class="product-name">product name</div>
+                                 <div class="product-price">PRICE</div>
+                                 <div class="product-quantity text-center">QUANTITY</div>
+                                 <div class="product-subtotal text-center">TOTAL</div>
+                                 <div class="product-subtotal text-center"></div>
+                              </div>
+
+                              <div *ngFor="let item of wishlistItems" class="content-row cart_item">
+                                 <div class="product-name">
+                                    <div class="media">
+                                       <div class="media-left">
+
+                                                          
+                                          <a routerLink="/detail/{{replaceSpaces(item?.product.name)}}/{{item.wishlist_item_id}}/wishList/{{item?.product.sku}}">
+                                          <img class="media-object" src="{{item.product_image}}" height="133" width="100" alt="...">
+                                          </a>
+                                       </div>
+                                       <div class="media-body media-middle">
+                                          <h5  class="media-heading"><b><a routerLink="/detail/{{replaceSpaces(item?.product.name)}}/{{item.wishlist_item_id}}/wishList/{{item?.product.sku}}">{{item?.product.name}}</a></b> 
+                                          </h5>
+                                          <h6 class="product-code">Product Code: {{item?.product.sku}}</h6>
+                                          <!--<p><span class="fa fa-angle-right"></span>  Color : <span>White</span></p>-->
+                                          <!--<p><span class="fa fa-angle-right"></span>  Size : (click)="wishlistAddToCart(item?.product.sku, item.wishlist_item_id)" <span>XL</span></p>-->  
+                                          <div class="wish-list-edit">
+                                             <ul>
+                                                <li><a (click)="removeItem(item.wishlist_item_id)"><i class="fa fa-trash"></i>Remove</a></li>
+                                             </ul>
+                                             <a  class="wish-list-add-cart" routerLink="/detail/{{replaceSpaces(item?.product.name)}}/{{item.wishlist_item_id}}/wishList/{{item?.product.sku}}"><i class="fa fa-plus" ></i>Add to Cart</a>  
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="product-price">
+                                    <span class="amount"> {{removeFraction(item?.product.price*exchangeRateWishList)}} &nbsp; AED</span>
+                                 </div>
+                                 <div class="product-quantity text-center">
+                                    <div class="quantity buttons_added">
+                                       <input [disabled]="disable" type="text" min="1" name="cart" [(ngModel)]="item.qty" title="Qty" class="form-control" maxlegth="2">
+                                    </div>
+                                 </div>
+                                 <div class="product-subtotal text-center">
+                                    <span class="amount">{{removeFraction(item?.product.price * exchangeRateWishList)}} &nbsp; AED</span>
+                                 </div>
+                              </div>
+
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div> 
+</section>
+
+<div id="product-detail-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        
+        <section class="container-fluid product_wrap" >
+			<div class="row">
+				<div class="container">
+					<div class="col-lg-6 col-md-6 col-sm-12  clearfix">
+                   <div class="pro-slide">
+                   	<div id="large-img-section" class="right">
+                            <div class="slider-for main-product-img sliders">
+                                <div>
+                                	<a  href="#" class="open-slider">
+                                    <img id="prod-img-big" src="{{productImage && productImage[0]}}" height="601" width="453" alt="" class="img-responsive ">
+                                    </a>
+                                </div>                           
+                            </div>
+                            </div>
+                            <div class="leftin ">
+                                <div class="slider-nav prod-thumbs sliders" id="gallery_01">
+                                <div *ngFor="let prodImg of productImage">
+                                    <img (mouseenter)="changeImg(prodImg)" src="{{prodImg}}" height="134" width="95" alt="" class="img-responsive" >
+                                </div>
+                            </div>
+                        </div>
+                   </div>         
+                 </div>
+                 <div class="col-lg-6 col-md-6">
+						<div class="main-prod-desc">
+							<h4 class="main-prod-title">{{productData?.name}}</h4>
+							<h4 [innerHTML]="productData?.description | slice:0:50"></h4>
+							<h3 *ngIf="productData?.special_price" class="prod-price">${{productData?.special_price | number : '1.0-0'}}</h3>
+							<h3 *ngIf="!productData?.special_price" class="prod-price">${{productData?.price | number : '1.0-0'}}</h3>
+							<div class="prod-price-available"> 
+								<ul>
+									<li *ngIf="productData?.special_price"><h6 class="linethrough">${{productData?.price| number : '1.0-0'}}</h6></li>
+									<li *ngIf="productData?.special_price" class="orange">
+										<h6>{{productDiscountVal}}% OFF</h6>
+									</li>
+								</ul>
+								<ul>
+									<li><p><span>Product Code:</span>{{productData?.sku}}</p></li>
+									<li><p>
+										<span>Availability :</span>
+										<ng-container *ngIf="productData?.is_in_stock">In stock</ng-container>
+										<ng-container *ngIf="!productData?.is_in_stock">Out of stock</ng-container>
+										</p>
+									</li>
+								</ul>
+
+							</div>
+							<div *ngIf="productData?.configurable_product_options" class="select-sc">
+							<div class="size-selection shop-color">
+								<p *ngIf="colorNotSelected" class="error-text">Please select color *</p>
+								<label>Select Color<span>*</span></label>	
+								<ul>
+									<li *ngFor="let color of productColor">
+										<input type="radio" value="{{color.value_index}}" name="color" id="{{color.value_index}}" >
+										<label (click)="selectColor(color.value_index)" id="color-{{color.value_index}}" class="label-c" data-id="slider1" [style.background-color]="color.swatch_value">{{color.label}}
+										</label>
+									</li>
+								</ul>
+							</div>
+							<div class="size-selection">
+								<p *ngIf="sizeNotSelected" class="error-text">Please select size *</p>
+								<label>Size <span>*</span></label>
+								<ul>	
+									<li *ngFor="let size of productSize">
+										<input type="radio" value="{{size.value_index}}" name="size" id="{{size.value_index}}" >
+										<label (click)="selectSize(size.value_index)" for="{{size.value_index}}">{{size.label}}</label>
+									</li>
+								</ul>
+		
+								<a   href="#" target="_blank" class="size-chart">Size Chart</a>
+							</div>
+							</div>
+							<div class="product-detail">
+								<div class="quntity">
+									<div class="input-number-wrap">
+									<span class="fa fa-minus" (click)="decreaseQty()"></span>
+									<input [(ngModel)]="productQty" type="text" name="qty" id="prod-qty" class="quantity">
+									<span class="fa fa-plus" (click)="increaseQty()"></span>
+								</div>
+								</div>
+								<div class="add-cart-btn">
+									<a (click)="addToCart()" class="btn-default"><i class="ion ion-bag"></i>  add to cart</a>
+								</div>
+							</div>
+						</div>
+				</div>
+				</div>
+			</div>
+		</section> <!-- end product detail -->
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="cartModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+     
+      <div class="modal-body">
+        <h3 class="text-center">Product added to cart.</h3>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary pull-right" data-dismiss="modal">Continue shopping</button>
+        <button type="button" class="btn btn-default pull-left" (click)="goToCheckout()">Checkout</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<app-global-title-injector [titleInput] = "titleName"></app-global-title-injector>
+
+
+

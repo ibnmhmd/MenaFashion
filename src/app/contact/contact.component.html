@@ -1,0 +1,82 @@
+<section class="container-fluid">
+		<div class="row" style="max-height: none !important;">
+			<div class="container">
+				<ol class="breadcram">
+					<li><a [routerLink]="['/']">HOME</a></li>
+					<li class="active">CUSTOMER SERVICE</li>   
+				</ol>
+			</div>
+		</div>
+	</section>
+<section class="container-fluid contactus-wrap">
+			<div class="row" style="max-height: none !important;">
+				<div class="container">
+					<h2 class="tittle-wrap">CUSTOMER SERVICE</h2>
+
+					<div class="address-contact clearfix"> 
+				  			<div class="col-md-4 col-sm-4">
+								<div class="contact-inner ">
+									<span class="ion ion-iphone"></span>
+									<h5>Phone</h5>
+									<p> <a  href="tel:045214800">04&nbsp; 521&nbsp;4800</a></p>
+							
+								</div>
+							</div> 
+							<div class="col-md-4 col-sm-4">
+								<div class="contact-inner border">
+									<span class="ion ion-ios-location-outline"></span>
+									<h5>Address</h5>
+									<p>#3502, &nbsp; Al Marsa Street.</p>
+									<p>Marina Plaza, &nbsp;Dubai&nbsp;UAE</p>
+								</div>
+							</div>
+							<div class="col-md-4 col-sm-4">
+								<div class="contact-inner">
+									<span class="ion ion-ios-email-outline"></span>
+									<h5>Email</h5>
+									<p><a  href="mailto:support@menamall.com">support@menamall.com</a></p> 
+								 
+								</div>
+							</div>
+					</div>
+					<div class="contactwrap-inner">
+						<h4>Alternatively, send us a message using the form below:</h4>
+						<form #contactForm="ngForm" novalidate (ngSubmit)="contactUs(contactForm.value, contactForm.valid)">
+
+							<div class="form-group">
+                                <input type="email" [(ngModel)]="contactForm.email" class="form-control" name="email" placeholder="Email" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" #email="ngModel">
+                                <small class="error-text" [hidden]="email.valid || (email.pristine && !contactForm.submitted)">
+                                    Valid email address is required.
+                                </small>
+                            </div>
+
+							<div class="form-group">
+								<input [(ngModel)]="contactForm.subject" type="text" class="form-control" name="subject" placeholder="Subject" required minlength="2" #subject="ngModel">
+									<small class="error-text" [hidden]="subject.valid || (subject.pristine && !contactForm.submitted)">
+									Subject is required.
+									</small> 
+							</div>
+
+							
+
+							<div class="form-group">
+								<textarea [(ngModel)]="contactForm.message" type="text" class="form-control" name="message" placeholder="Message" required minlength="2" #message="ngModel"></textarea>
+									<small class="error-text" [hidden]="message.valid || (message.pristine && !contactForm.submitted)">
+									Message is required.
+									</small> 
+							</div>
+
+							<button type="submit" class="btn btn-default">send message</button>
+							<div class="alert alert-success contact-message">
+								<strong>Success!</strong> Message sent.
+							</div>
+
+							<div class="alert alert-success error-message">
+									<strong>OOOOPS!</strong> Error sending message.
+								</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
+		<app-global-title-injector [titleInput] = "titleName"></app-global-title-injector>

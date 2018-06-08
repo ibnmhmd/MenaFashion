@@ -1,0 +1,169 @@
+<section class="container-fluid">
+  <div class="row">
+    <div class="container">
+      <ol class="breadcram">
+        <li><a routerLink ="/">HOME</a></li>
+
+        <li class="active">MY DASHBOARD</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="product-listing-wrap container-fluid content-wrap">
+  <div class="row">
+    <div class="container">
+
+      <div class="category-inner">
+        <div class="row">
+
+          <app-dashboard-nav></app-dashboard-nav>
+
+          <div class="col-sm-9">
+            <div class="main-category-tab-content">
+              <div class="tab-content-text myprofile-tab-content">
+                <h4 class="tab-content-head">MY DASHBOARD</h4>
+                <div class="my-address-book-inner">
+                  <div class="dashboard-head clearfix">
+                    <p class="currently-no-add uppercase">HELLO {{customerData.firstname}} {{customerData.lastname}},</p>
+                    <p class="currently-no-add">Welcome back! Quickly navigate to the page you’re looking for with these quick links.</p>
+                  </div>
+
+                  <div class="row">
+                    <div class="shipped-address-border clearfix">
+                      <div class="col-md-6">
+                        <div class="shipped-address clearfix">
+													<h5>BILLING ADDRESS</h5>
+                          <p  *ngIf="!defaultBilling.id">You have not set a default billing address.</p>
+                          <h6 *ngIf="defaultBilling.id">{{defaultBilling.company}}</h6>
+                          <ul *ngIf="defaultBilling.id">
+                            <li>Address:</li>
+                            <li *ngFor="let line of defaultBilling.street">
+                              <p>{{line}}</p>
+                            </li>
+                            <li>
+                                <!-- - {{defaultBilling.postcode}} -->
+                              <p>City: {{defaultBilling.city}}</p>  
+                            </li>
+                             <li>
+                              <!-- <p>Region: {{defaultBilling.region.region}}</p> -->
+                            </li>
+                            <li>
+                              <p>Mobile: {{defaultBilling.telephone}}</p>
+                            </li>
+                          </ul>
+                          <ul class="edit-address">
+                            <li *ngIf="defaultBilling.id"><a [attr.data-target]=" '#' + addressDetail.modalId" data-toggle="modal" (click)="addressDetail.configureForm(defaultBilling)"><i class="fa fa-pencil-square-o"></i>Edit</a></li>
+                            <li *ngIf="!defaultBilling.id"><a [attr.data-target]=" '#' + addressDetail.modalId" data-toggle="modal" (click)="addressDetail.freshForm()"><i class="fa fa-pencil-square-o"></i>Add</a></li>
+                          </ul>
+                        </div>
+                      </div>
+											<div class="col-md-6">
+                        <div class="shipped-address clearfix">
+													<h5>SHIPPING ADDRESS</h5>
+                          <p  *ngIf="!defaultShipping.id">You have not set a default shipping address.</p>
+                          <h6 *ngIf="defaultShipping.id">{{defaultShipping.company}}(Default)</h6>
+                          <ul *ngIf="defaultShipping.id">
+                            <li>Address:</li>
+                            <li *ngFor="let line of defaultShipping.street">
+                              <p>{{line}}</p>
+                            </li>
+                            <li>
+                              <p>City: {{defaultShipping.city}} - {{defaultShipping.postcode}}</p>
+                            </li>
+                           <li>
+                              <!-- <p>Region: {{defaultShipping.region.region}}</p> -->
+                            </li> 
+                            <li>
+                              <p>Mobile: {{defaultShipping.telephone}}</p>
+                            </li>
+                          </ul>
+                          <ul class="edit-address">
+                            <li *ngIf="defaultShipping.id"><a [attr.data-target]=" '#' + addressDetail.modalId" data-toggle="modal" (click)="addressDetail.configureForm(defaultShipping)"><i class="fa fa-pencil-square-o"></i>Edit</a></li>
+                            <li *ngIf="!defaultShipping.id"><a [attr.data-target]=" '#' + addressDetail.modalId" data-toggle="modal" (click)="addressDetail.freshForm()"><i class="fa fa-pencil-square-o"></i>Add</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <div *ngIf="clientOrders.length" class="tab-content-text myprofile-tab-content tab-cart-sub-page">
+                <h4 class="tab-content-head">RECENT ORDERS</h4>
+                <ul class="accordion clearfix">
+                  <li *ngFor="let order of clientOrders">
+                    <a  href="javascript:;">
+                      <div class="heading">
+                        <h2 class="cart-heading">Order Number: #{{order.order_number}}</h2>
+                      </div>
+                    </a>
+                    <div>
+                      <div class="process-steps">
+                        <div class="shop_table cart single-row1 tab-content-cart">
+                          <div class="header-row">
+                            <div class="product-name">product name</div>
+                            <div class="product-price">PRICE</div>
+                            <div class="product-quantity text-center">QUANTITY</div>
+                            <div class="product-subtotal text-center">TOTAL</div>
+                            <div class="product-subtotal text-center"></div>
+                          </div>
+
+                          <div *ngFor="let product of order.product_details" class="content-row cart_item">
+
+                            <div class="product-name">
+                              <div class="media">
+                                <div class="media-left">
+                                  <a  href="#">
+														      <img class="media-object" src="{{product.image}}" height="133" width="100" alt="...">
+														    </a>
+                                </div>
+                                <div class="media-body media-middle">
+                                  <h5 class="media-heading"><b>{{product.name}}</b></h5>
+                                  <h6 class="product-code">Product Code: #{{product.sku}}</h6>
+                                  <!--<p><span class="fa fa-angle-right"></span> Color : <span>White</span></p>
+                                  <p><span class="fa fa-angle-right"></span> Size : <span>XL</span></p>-->
+                                </div>
+                              </div>
+                            </div>
+                            <div class="product-price">
+                              <span class="amount">{{removeFraction(product.price)}}&nbsp; AED</span>
+                            </div>
+                            <div class="product-quantity text-center">
+                              <div class="quantity buttons_added">
+                                <input type="text" min="1" name="cart" value="{{removeFractionSpecial(product.qty)}}" title="Qty" class="form-control" maxlegth="2" disabled>
+                              </div>
+                            </div>
+                            <div class="product-subtotal text-center">
+                              <span class="amount"> {{removeFraction(product.total_price)}}&nbsp; AED</span>
+                            </div>
+
+
+                          </div>
+                        </div>
+                        <div class="progress-bar">
+                          <div class="steps"></div>
+                        </div>
+                      </div>
+                      <h5>Ordered On {{order.created_at}}</h5>
+                      <div class="cart-total-price clearfix">
+                        <p>SUB TOTAL &nbsp;: {{removeFraction(order.subtotal)}}&nbsp; AED</p>
+                        <p>DISCOUNT AMOUNT &nbsp;: {{removeFraction(order.discount_amount)}}&nbsp; AED &nbsp; - &nbsp; COUPON CODE&nbsp;:<i> {{order.coupon_code}}</i></p>
+                        <p>SHIPPING AMOUNT &nbsp;: {{removeFraction(order.shipping_amount)}}&nbsp; AED</p>
+                        <p>TOTAL ORDER &nbsp;: {{removeFraction(order.grand_total)}}&nbsp; AED</p>
+                     
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+<address-detail [component] = 2 [clientAddresses]="clientAddresses" [customerData]="customerData" #addressDetail></address-detail>
+<app-global-title-injector [titleInput] = "titleName"></app-global-title-injector>

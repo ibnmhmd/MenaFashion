@@ -1,0 +1,14 @@
+.dob-dropdown {
+    max-height: 200px;
+    overflow-y: scroll;
+}
+.dob-dropdown a { cursor:pointer; }
+.profile-msg {
+    margin-right: 15px;
+    color: #5cb85c;
+}
+
+.emailClass
+{
+    background: #eee !important;
+}

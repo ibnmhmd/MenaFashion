@@ -1,0 +1,10 @@
+.error-text {
+    font-size:14px;
+}
+.contact-message { display: none; color: green;}
+
+.error-message
+{
+    display: none;
+    color: red;
+}

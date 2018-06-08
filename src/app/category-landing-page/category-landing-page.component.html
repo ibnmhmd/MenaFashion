@@ -1,0 +1,60 @@
+
+
+<app-breadcrumbs></app-breadcrumbs>
+
+<section class="product-listing-wrap container-fluid content-wrap">
+	<div class="row">
+			<div class="container">
+				
+				<div class="category-inner">
+					<div class="row">
+						<div class="col-sm-3" *ngIf="searchedItem !== 'sale'">
+							<h4 class="categori-head">{{excludeSpecialCharacter(searchedItem)| uppercase}}</h4>
+							<!-- non events categories -->
+					 	<aside *ngIf="subcategories?.children_data && searchedItem !== undefined && searchedItem !== 'events'"  class="categories">
+						
+							<div *ngFor="let subcat of subcategories.children_data; let i = index;"  class="single-cat shop-cat">
+								<h4 *ngIf="subcat.hidden !== true " class="category-head"><a (click)="checkChildrenDataAndRedirect(subcat.children_data, searchedItem, subcat.name)"
+									 role="button" data-toggle="collapse" href="#collapse{{subcat.position}}" aria-expanded="false" [ngClass]="selectedCategoryTag === subcat.name? '' : 'collapsed' ">{{subcat.name}}</a></h4>
+								<ng-container *ngIf="subcat?.children_data">
+								<div *ngIf="subcat.hidden !== true " [ngClass]="selectedCategoryTag === subcat.name? 'collapse in' : 'collapse' " id="collapse{{subcat.position}}">
+									<ul *ngFor="let subcat2 of subcat.children_data">
+										<li *ngIf="subcat2.hidden !== true "><a routerLink="/shop/{{searchedItem|lowercase}}/{{replaceSpaces(subcat.name)|lowercase}}/{{replaceSpaces(subcat2.name)|lowercase}}">{{subcat2.name}}</a></li>
+									</ul>
+								</div>
+								</ng-container>
+							</div>						
+						</aside>
+
+							<!-- events categories  -->
+							<aside *ngIf="subcategories?.children_data && searchedItem !== undefined && searchedItem === 'events'"  class="categories">								
+									<div *ngFor="let subcat of subcategories.children_data; let i = index;"  class="single-cat shop-cat">
+										<h4 *ngIf="subcat.hidden !== true " class="category-head"><a (click)="checkChildrenDataAndRedirect(subcat.children_data, searchedItem, subcat.name)"
+											 role="button" data-toggle="collapse" href="#collapse{{subcat.position}}" 
+											  aria-expanded="false" id="eventsParent{{i}}"
+											 [ngClass]="selectedCategoryTag === subcat.name? 'collapsed' : 'collapsed' ">{{subcat.name}}</a></h4>
+										<ng-container *ngIf="subcat?.children_data">
+										<div *ngIf="subcat.hidden !== true " class="subParent{{i}}" [ngClass]="selectedCategoryTag === subcat.name? 'collapse' : 'collapse' " id="collapse{{subcat.position}}">
+											<ul *ngFor="let subcat2 of subcat.children_data">
+												<li  *ngIf="subcat2.hidden !== true "><a routerLink="/shop/{{replaceSpaces(searchedItem)|lowercase}}/{{replaceSpaces(subcat.name)|lowercase}}/{{replaceSpaces(subcat2.name)|lowercase}}" (click)="collapseParent(i)">{{subcat2.name}}</a></li>
+											</ul>
+										</div>
+										</ng-container>
+									</div>									
+						</aside>
+				 	 </div>
+					<div *ngIf="searchedItem !== 'sale'" class="col-sm-9 landingHolder">
+				
+			     	</div>
+			
+					 <!-- sale landing page -->
+					 <div *ngIf="searchedItem === 'sale'" class="col-xl-12 col-lg-12 col-sm-12 col-xs-12 landingSaleHolder">
+						
+					 </div>
+					 <!-- sale landing page ends -->
+				</div>
+			</div>
+    </div>
+  </div>
+</section>
+

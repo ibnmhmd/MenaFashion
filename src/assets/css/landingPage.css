@@ -1,0 +1,1698 @@
+
+
+/** landing page stuff **/
+
+.landingPage
+{
+
+}
+
+.landingPage p
+{
+  font-family:Oswald;
+  color:#111111!important;
+
+}
+
+.landingPage h3
+{
+  font-family:Oswald;
+  color:#111111;
+  font-weight:400;
+  text-transform: uppercase;
+}
+
+.landingPage a
+{
+  max-height:39px;
+  max-width: 184px;
+  background-color: #111111;
+  color: white;
+  font-family:'Montserrat';
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.landingPage a:hover
+{
+  background-color: #ff9400;
+}
+
+
+
+
+
+
+/* MEN SPECIFIC **/
+.landingPage .men .banner1
+{
+  min-height:340px;
+  background-size: cover!important;
+}
+
+.landingPage .men .banner1 h3
+{
+  font-size:4.9em;
+  margin-bottom: 0px;
+  margin-top:102px;
+  margin-left:51px;
+}
+
+.landingPage .men .banner1 p
+{
+  font-size: 24px;
+  margin-top: -5px;
+  margin-left: 38px;
+  margin-bottom:0px;
+}
+
+.landingPage .men .banner1 a
+{
+  margin-left:210px;
+  margin-top:21px;
+}
+
+
+
+.landingPage .men .banner2
+{
+  min-height:407px;
+  width:100%;
+  background-size: cover!important;
+}
+
+
+.landingPage .men .outerbanner2
+{
+padding-left:0px;
+  padding-right:15px;
+}
+
+.landingPage .men .banner2 h3
+{
+  font-size:2.5em;
+  margin-bottom: 0px;
+  padding-top:98px;
+  margin-top:0px;
+  margin-left:39px;
+  text-align: center;
+  float:left;
+}
+
+.landingPage .men .banner2 p
+{
+  font-size: 20px;
+  margin-top: 5px;
+  text-align: left;
+  margin-bottom:0px;
+  float:left;
+  margin-left:20px;
+}
+
+.landingPage .men .banner2 a
+{
+  margin-left:20px;
+  float:left;
+  margin-right: auto;
+  margin-top:8px;
+}
+
+.landingPage .men .banner2 span
+{
+  height: 2px;
+  border-bottom-style: solid;
+  margin-left: 90px;
+  margin-right: 90px;
+  border-bottom-width:0.19em;
+}
+
+
+
+.landingPage .men .banner3
+{
+  min-height:407px;
+  width:100%;
+  background-size: cover!important;
+}
+
+
+
+.landingPage .men .outerbanner3
+{
+padding-left:15px;
+  padding-right:0px;
+
+}
+
+.landingPage .men .banner3 h3
+{
+  font-size: 3.9em;
+  margin-bottom: 0px;
+  padding-top: 159px;
+  margin-top: 0px;
+  margin-left: 9px;
+  text-align: center;
+  float: left;
+  color: white;
+  line-height: 57px;
+}
+
+.landingPage .men .banner3 p
+{
+  font-size: 20px;
+  margin-top: 8px;
+  text-align: left;
+  margin-bottom:0px;
+  color:white!important;
+  float:left;
+  margin-left:18px;
+}
+
+.landingPage .men .banner3 a
+{
+  margin-left:27px;
+  float:left;
+  margin-right: auto;
+  margin-top:8px;
+}
+
+
+
+
+.landingPage .men .banner4
+{
+  min-height:345px;
+  width:100%;
+  background-size: cover!important;
+}
+
+
+
+.landingPage .men .outerbanner4
+{
+  padding-left:15px;
+  padding-right:0px;
+
+}
+
+.landingPage .men .banner4 h3
+{
+  font-size: 3.5em;
+  margin-bottom: 0px;
+  padding-top: 16px;
+  margin-top: 0px;
+  margin-left: 0px;
+  margin-right:90px;
+  text-align: center;
+  float: right;
+  color:BLACK;
+  line-height: 57px;
+}
+
+.landingPage .men .banner4 p
+{
+  font-size: 20px;
+  margin-top: 8px;
+  text-align: left;
+  margin-bottom:0px;
+  color:white!important;
+  float:left;
+  margin-left:18px;
+}
+
+.landingPage .men .banner4 a
+{
+  margin-left:0px;
+  float:right;
+  margin-right:107px;
+  margin-top:8px;
+}
+
+
+/* WOMEN SPECIFIC **/
+.landingPage .women .banner1
+{
+  min-height:502px;
+  width:100%;
+  background-position-x: left!important;
+  -webkit-background-size: cover!important;
+  background-size: cover!important;
+}
+
+.landingPage .women .outerbanner1
+{
+  padding-left:0px;
+  padding-right:15px;
+}
+
+.landingPage .women .banner1 h3
+{
+  font-size: 4.9em;
+  margin-bottom: 0px;
+  padding-top: 113px;
+  margin-top:0px;
+  padding-left: 183px;
+  color: white;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+  text-align: center;
+  line-height: 71px;
+}
+
+.landingPage .women .banner1 p
+{
+  font-size: 24px;
+  margin-top: -5px;
+  margin-left: 14px;
+  margin-bottom:0px;
+}
+
+.landingPage .women .banner1 a
+{
+  margin-left: 202px;
+  margin-top: 15px
+}
+
+
+
+
+
+
+
+.landingPage .women .banner2
+{
+  min-height:502px;
+  width:100%;
+  background-position-x: right!important;
+  -webkit-background-size: cover!important;
+  background-size: cover!important;
+}
+
+.landingPage .women .outerbanner2
+{
+  padding-left:15px;
+  padding-right:0px;
+}
+
+.landingPage .women .banner2 h3
+{
+  font-size: 2.7em;
+  margin-bottom: 0px;
+  padding-top: 48px;
+  padding-left: 167px;
+  margin-top:0px;
+  text-align: center;
+}
+
+.landingPage .women .banner2 p
+{
+  font-size: 19px;
+  margin-top: -1px;
+  margin-left: 231px;
+  margin-bottom: 0px;
+}
+
+.landingPage .women .banner2 a
+{
+  margin-left:210px;
+  margin-top:17px;
+}
+
+
+
+
+.landingPage .women .banner3
+{
+  min-height:502px;
+  width:100%;
+  background-position-x: left!important;
+  background-position-y:top!important;
+  -webkit-background-size: cover!important;
+  background-size: cover!important;
+}
+
+.landingPage .women .outerbanner3
+{
+  padding-left:0px;
+  padding-right:15px;
+
+}
+
+.landingPage .women .banner3 h3
+{
+  font-size: 2.7em;
+  margin-bottom: 0px;
+  padding-top: 267px;
+  padding-left: 105px;
+  margin-left: 0px;
+  margin-top: 0px;
+}
+
+.landingPage .women .banner3 p
+{
+  font-size: 1.5em;
+  margin-top: 5px;
+  margin-left: 0;
+  padding-left: 102px;
+  margin-bottom: 0px;
+  line-height: 27px;
+}
+
+.landingPage .women .banner3 a
+{
+  margin-left: 94px;
+  margin-top: 26px;
+
+}
+
+
+
+
+
+
+
+
+.landingPage .women .banner4
+{
+  min-height:502px;
+  width:100%;
+  background-position-x: right!important;
+  background-position-y:top!important;
+
+  -webkit-background-size: cover!important;
+  background-size: cover!important;
+}
+
+.landingPage .women .outerbanner4
+{
+  padding-left:15px;
+  padding-right:0px
+}
+
+.landingPage .women .banner4 h3
+{
+  font-size: 2.7em;
+  margin-bottom: 0px;
+  padding-top: 68px;
+  margin-top:0px;
+  margin-left: 13px;
+  color: white;
+}
+
+.landingPage .women .banner4 p
+{
+  font-size: 1.5em;
+  margin-top: 0px;
+  margin-left: 14px;
+  margin-bottom:0px;
+  color:white!important;
+}
+
+.landingPage .women .banner4 a
+{
+  margin-left: 15px;
+  margin-top: 18px;
+}
+
+
+
+
+
+
+/* beauty page stuff */
+
+.landingPage .beauty .banner1
+{
+  min-height:395px;
+  background-position-x: right!important;
+  background-position-y:top!important;
+  background-size: cover!important;
+}
+
+.landingPage .beauty .outerbanner1
+{
+  padding-left:0px;
+  padding-right:0px;
+}
+
+.landingPage .beauty .banner1 h3
+{
+  font-size: 4.2em;
+  margin-bottom: 0px;
+  padding-top: 17px;
+  margin-top:0px;
+  margin-left: 13px;
+  color: black;
+}
+
+.landingPage .beauty .banner1 p#first
+{
+  font-size: 1.5em;
+  margin-top: -5px;
+  margin-left: 26px;
+  margin-bottom: 0px;
+  color: black;
+  text-align: left;
+}
+
+.landingPage .beauty .banner1 p
+{
+  font-size: 1.7em;
+  margin-top: 182px;
+  margin-left: 26px;
+  margin-bottom: 0px;
+  color: black;
+  text-align: center;
+}
+
+.landingPage .beauty .banner1 a
+{
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 7px;
+}
+
+
+
+.landingPage .beauty .banner2
+{
+  min-height:402px;
+  width:100%;
+  background-position-x: 5px!important;
+  background-position-y:top!important;
+  -webkit-background-size: cover;
+  background-size: cover;
+}
+
+.landingPage .beauty .outerbanner2
+{
+  padding-left:0px;
+  padding-right:15px;
+}
+
+.landingPage .beauty .banner2 h3
+{
+  font-size: 2.7em;
+  margin-bottom: 0px;
+  padding-top:250px;
+  margin-top:0px;
+  text-align: center;
+  color: white;
+}
+
+.landingPage .beauty .banner2 p
+{
+  font-size: 1.5em;
+  margin-top: 7px;
+  margin-bottom:0px;
+  text-align: center;
+  color:white!important;
+}
+
+.landingPage .beauty .banner2 a
+{
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 8px;
+}
+
+
+.landingPage .beauty .banner3
+{
+  min-height:402px;
+  width:100%;
+  background-position-x: right!important;
+  background-position-y:top!important;
+  -webkit-background-size: cover;
+  background-size: cover;
+}
+
+.landingPage .beauty .outerbanner3
+{
+  padding-left:15px;
+  padding-right:0px;
+}
+
+.landingPage .beauty .banner3 h3
+{
+  font-size: 2.7em;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  padding-top:56px;
+  color: black;
+  margin-left: 33px;
+  margin-right: 0px;
+  text-align: left;
+}
+
+.landingPage .beauty .banner3 p
+{
+  font-size: 1.5em;
+  margin-top: 115px;
+  margin-bottom: 0px;
+  text-align: left;
+  color: black;
+  margin-left: 33px;
+}
+
+.landingPage .beauty .banner3 a
+{
+
+  margin-top: 11px;
+  margin-left: 33px;
+}
+
+
+
+
+
+
+/* grooming page stuff */
+
+.landingPage .grooming .banner1
+{
+  min-height:395px;
+  background-position-x: center!important;
+  background-position-y:top!important;
+  background-size: cover!important;
+
+}
+
+.landingPage .grooming .banner1 h3
+{
+  font-size: 2.7em;
+  margin-bottom: 0px;
+  margin-top: 97px;
+  color: black;
+  text-align: center;
+  float: right;
+  margin-right: 16px;
+}
+
+
+.landingPage .grooming .banner1 a
+{
+ float: right;
+  margin-top:11px;
+  margin-right:41px;
+}
+
+
+
+.landingPage .grooming .banner2
+{
+  width:100%;
+  min-height: 352px;
+
+  background-position-y:top!important;
+  -webkit-background-size: cover!important;
+  background-size: cover!important;
+}
+
+.landingPage .grooming .outerbanner2
+{
+  margin:0px;
+  padding:0px;
+  padding-right:30px;
+}
+
+.landingPage .grooming .banner2 h3
+{
+  font-size: 2.7em;
+  margin-top:0px;
+  padding-top:116px;
+  text-align: right;
+  color: #181818;
+  float:right;
+  margin-right: 57px;
+  margin-bottom:0px;
+}
+
+.landingPage .grooming .banner2 p
+{
+  font-size: 1.5em;
+  margin-top: 1px;
+  margin-bottom:0px;
+  margin-right: 46px;
+  text-align: right;
+  color:#4a4a4a!important;
+}
+
+.landingPage .grooming .banner2 a
+{
+  margin-top: 13px;
+  margin-right: 69px;
+  float:right;
+}
+
+
+
+.landingPage .grooming .banner3
+{
+  width:100%;
+  min-height: 352px;
+  background-position-x: right!important;
+  background-position-y:top!important;
+  -webkit-background-size: cover;
+  background-size: cover;
+}
+
+
+.landingPage .grooming .outerbanner3
+{
+margin:0px;
+  padding:0px;
+
+}
+
+.landingPage .grooming .banner3 h3
+{
+  font-size: 2.5em;
+  margin-top: 0px;
+  color: black;
+  margin-right: 0px;
+  text-align: center;
+  padding-top:226px;
+  margin-bottom:0px;
+}
+
+.landingPage .grooming .banner3 p
+{
+  font-size: 1.5em;
+  margin-top: 1px;
+  margin-bottom: 0px;
+  text-align: center;
+  color: black;
+
+}
+
+.landingPage .grooming .banner3 a
+{
+
+  margin-top: 4px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+
+
+/** KIDS STUFF */
+
+.landingPage .kids .banner1
+{
+  min-height:360px;
+  width:100%;
+  background-position-x: left!important;
+}
+
+.landingPage .kids .outerbanner1
+{
+padding-left:0px;
+  padding-right:15px;
+}
+
+.landingPage .kids .banner1 h3
+{
+  font-size: 3.3em;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  margin-left: 0px;
+  color: white;
+  text-align: center;
+  line-height: 61px;
+  padding-top: 58px;
+  float: left;
+  margin-left: 13px;
+}
+
+.landingPage .kids .banner1 p
+{
+  font-size: 24px;
+  margin-top: -5px;
+  margin-left: 14px;
+  margin-bottom:0px;
+}
+
+.landingPage .kids .banner1 a
+{
+  float: left;
+  margin-left: 35px;
+  margin-top: 7px;
+}
+
+
+
+
+.landingPage .kids .banner2
+{
+  min-height:360px;
+  width:100%;
+  background-position-x: left!important;
+}
+
+.landingPage .kids .outerbanner2
+{
+padding-right:0px;
+  padding-left:15px;
+}
+
+.landingPage .kids .banner2 h3
+{
+  font-size: 2.8EM;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  margin-left: 0px;
+  color: #050915;
+  text-align: center;
+  line-height: 51px;
+  padding-top: 48px;
+  float: left;
+  margin-left: 19px;
+}
+
+.landingPage .kids .banner2 p
+{
+  font-size: 24px;
+margin-top:0px;
+  margin-left: 14px;
+  margin-bottom:0px;
+}
+
+.landingPage .kids .banner2 a
+{
+  margin-left: 29px;
+  margin-top: 9px;
+  float: left;
+}
+
+
+
+.landingPage .kids .banner3
+{
+  min-height:360px;
+  width:100%;
+  background-position-x: left!important;
+}
+
+.landingPage .kids .outerbanner3
+{
+padding-right:15px;
+  padding-left:0px;
+}
+
+.landingPage .kids .banner3 h3
+{
+  font-size: 2.9em;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  margin-left: 0px;
+  padding-top: 23px;
+  padding-left: 23px;
+  color: white;
+  text-align: LEFT;
+  line-height: 47px;
+}
+
+.landingPage .kids .banner3 p
+{
+  font-size: 24px;
+  margin-top: 0px;
+  margin-left: 14px;
+  margin-bottom:0px;
+}
+
+.landingPage .kids .banner3 a
+{
+  margin-left: 23px;
+  margin-top: 15px;
+}
+
+
+.landingPage .kids .banner4
+{
+  min-height:360px;
+  width:100%;
+  background-position-x: left!important;
+}
+
+.landingPage .kids .outerbanner4
+{
+padding-right:0px;
+  padding-left:15px;
+}
+
+.landingPage .kids .banner4 h3
+{
+  font-size: 2.9em;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  margin-left: 0px;
+  padding-top: 73px;
+  padding-left: 178px;
+  color: white;
+  text-align: LEFT;
+  line-height: 47px;
+}
+
+.landingPage .kids .banner4 p
+{
+  font-size: 24px;
+  margin-top: 0px;
+  margin-left: 14px;
+  margin-bottom:0px;
+}
+
+.landingPage .kids .banner4 a
+{
+  margin-left: 202px;
+  margin-top: 15px
+}
+
+
+
+
+
+
+/**HOME STUFF */
+
+
+.landingPage .home .outerbanner6
+{
+  padding-left:12px;
+  padding-right: 0px;
+}
+
+.landingPage .home .banner1
+{
+  min-height:605px;
+  width:100%;
+}
+
+
+
+.landingPage .home .banner1.visible-sm.visible-xs
+{
+  min-height:1219px;
+  width:100%;
+  padding-left: 126px;
+
+  padding-right: 126px;
+
+  padding-top: 434px;
+}
+
+
+@media (max-device-width:614px )
+{
+  .landingPage .home .banner1.visible-sm.visible-xs
+  {
+    padding-left:10px;
+    padding-right:10px;
+  }
+}
+
+@media (max-device-width:366px )
+{
+  .landingPage .home .banner1 a
+  {
+    font-size:15px!important;
+  }
+}
+
+.landingPage .home .outerbanner1
+{
+  padding-left:0px;
+  padding-right:0px;
+}
+
+
+.landingPage a.bigLink
+{
+  font-family:Oswald;
+  color:#111111!important;
+  background-color: transparent;
+  text-decoration: none;
+  font-size: 2.2em;
+  max-width: 900px;
+  max-height: 900px;
+}
+
+.landingPage a.bigLink:hover
+{
+  color:#ff9400!important;
+}
+
+.landingPage .home .banner1 h3
+{
+  font-size: 55px;
+  margin-bottom: 24px;
+  margin-top: 0px;
+  color: black;
+  text-align: left;
+  line-height: 68px;
+  padding-top: 116px;
+  float: left;
+  margin-left: 111px;
+  font-weight: normal!important;
+
+
+}
+
+.landingPage .home .banner1 p
+{
+  font-size: 24px;
+  margin-top: -5px;
+  margin-left: 14px;
+  margin-bottom:0px;
+}
+
+.landingPage .home .banner1.mob
+{
+  padding-top:492px;
+}
+
+.landingPage .home .banner1 a
+{
+  float: left;
+  margin-left: 111px;
+  margin-top: 7px;
+  font-family:'Montserrat'!important;
+  font-size: 26px;
+  border-bottom-style: solid;
+  line-height:27px;
+  margin-top:14px;
+
+}
+
+.landingPage .home .banner1.visible-sm.visible-xs a
+{
+float:none;
+  margin-left:auto;
+  margin-right:auto;
+  max-width:none;
+  max-height:none;
+  font-weight:200;
+  margin-top:42px;
+}
+
+/*
+@media (min-width: 992px)
+{
+  .landingPage .home .banner1 a {
+  margin-top:375px;
+  margin-right:176px;
+  }
+}
+
+@media (min-width: 1200px)
+{
+  .landingPage .home .banner1 a {
+    margin-top: 391px;
+    margin-right: 221px;
+  }
+}
+
+.landingPage .home .banner1.mob a
+{
+  margin-left: auto;
+  margin-right: auto;
+  float:none;
+  margin-top:0px;
+
+}
+*/
+.landingPage .home .banner2
+{
+  min-height:875px;
+  width:100%;
+}
+
+.landingPage .home .outerbanner2
+{
+  padding-left:0px;
+  padding-right:12px;
+
+}
+
+.landingPage .home .banner2 h3
+{
+  font-size: 4.2em;
+  margin-bottom: 0px;
+  padding-top: 32px;
+  margin-top:0px;
+  float:right;
+  text-align: right;
+  margin-right: 27px;
+  line-height:67px;
+}
+
+.landingPage .home .banner2 p
+{
+  font-size: 22px;
+  margin-top: 0px;
+  float: right;
+  margin-bottom: 0px;
+  margin-right: 34px;
+}
+
+.landingPage .home .banner2 a
+{
+  float: right;
+  margin-right: 31px;
+  margin-top: 15px;
+}
+
+
+
+.landingPage .home .banner3
+{
+  min-height:426px;
+  width:100%;
+}
+
+.landingPage .home .outerbanner3
+{
+  padding-left:0px;
+  padding-right:0px;
+  padding-bottom:12px;
+
+}
+
+.landingPage .home .banner3 h3
+{
+  font-size: 4.2em;
+  margin-bottom: 0px;
+  padding-top: 68px;
+  margin-top:0px;
+  margin-left: 13px;
+  color: white;
+}
+
+.landingPage .home .banner3 p
+{
+  font-size: 1.5em;
+  margin-top: 0px;
+  margin-left: 14px;
+  margin-bottom:0px;
+  color:white!important;
+}
+
+.landingPage .home .banner3 a
+{
+  margin-left: 15px;
+  margin-top: 18px;
+}
+
+
+
+
+.landingPage .home .banner4
+{
+  min-height:426px;
+  width:100%;
+}
+
+.landingPage .home .outerbanner4
+{
+  padding-left:0px;
+  padding-right:0px;
+  padding-top:12px;
+}
+
+.landingPage .home .banner4 h3
+{
+  font-size: 3.9em;
+  margin-bottom: 0px;
+  padding-top: 117px;
+  margin-top: 0px;
+  margin-left: 23px;
+  text-align: center;
+  float: left;
+  color: white;
+  line-height: 65px;
+}
+
+.landingPage .home .banner4 p
+{
+  font-size: 20px;
+  margin-top: 8px;
+  text-align: left;
+  margin-bottom:0px;
+  color:white!important;
+  float:left;
+  margin-left:38px;
+}
+
+.landingPage .home .banner4 a
+{
+  margin-left:38px;
+  float:left;
+  margin-right: auto;
+  margin-top:18px;
+}
+
+
+
+
+
+
+.landingPage .home .banner5
+{
+  min-height:431px;
+  width:100%;
+}
+
+.landingPage .home .outerbanner5
+{
+  padding-left:0px;
+  padding-right:0px;
+  padding-top:24px;
+}
+
+.landingPage .home .banner5 h3
+{
+  font-size:4.9em;
+  margin-bottom: 0px;
+  padding-top:131px;
+  margin-top:0px;
+  margin-left:110px;
+}
+
+.landingPage .home .banner5 p
+{
+  font-size: 24px;
+  margin-top: 0px;
+  margin-left: 93px;
+  margin-bottom:0px;
+}
+
+.landingPage .home .banner5 a
+{
+  margin-left:261px;
+  margin-top:21px;
+}
+
+.landingPage .home
+{
+  padding-left:15px;
+  padding-right:15px;
+  padding-bottom:20px;
+}
+
+
+
+
+/** SALE STUFF **/
+
+.landingPage .sale .banner1
+{
+  min-height:810px;
+  max-height: 810px;
+  width:100%;
+  padding-top:547px;
+}
+
+.landingPage .sale .banner1.visible-xs
+{
+  padding-top:38px;
+  min-height:1110px;
+  max-height: 1110px;
+}
+
+.landingPage .sale .outerbanner1
+{
+  padding-left:0px;
+  padding-right:0px;
+  padding-top:0px;
+}
+
+.landingPage .sale  .banner1 .leftLinks h3
+{
+  font-size:2.2em;
+  margin-bottom: 0px;
+  padding-left:11px;
+  padding-right:11px;
+  margin-top:0px;
+  margin-left:0px;
+  padding-bottom: 2px;
+  padding-top:2px;
+  float: left;
+  background-color: black;
+  text-align: center;
+  color:#f7941d;
+  font-weight: 600!important;
+  font-family: 'Montserrat'!important;
+}
+
+.landingPage .sale  .banner1.visible-xs .rightLinks
+{
+padding-top:460px!important;
+  padding-left:0px;
+  padding-right:0px;
+}
+
+.landingPage .sale  .banner1 .rightLinks h3
+{
+  font-size:2.2em;
+  margin-bottom: 0px;
+  padding-left:11px;
+  padding-right:11px;
+  margin-top:0px;
+  margin-left:0px;
+  padding-bottom: 2px;
+  padding-top:2px;
+  float: right;
+  background-color: black;
+  text-align: center;
+  color:#f7941d;
+  font-weight: 600!important;
+  font-family: 'Montserrat'!important;
+}
+
+.landingPage .sale .banner1 p
+{
+  font-size:2.2em;
+  margin-top: 0px;
+  margin-left: 93px;
+  margin-bottom:0px;
+
+
+}
+
+.landingPage .sale  .banner1 .leftLinks a
+{
+  font-size:2.2em;
+  margin-left:auto;
+  margin-right:auto;
+  margin-top:12px;
+  padding-bottom: 5px;
+  padding-top:5px;
+  float: left;
+  clear: left;
+  padding-left:11px;
+  max-width: none;
+  max-height:none;
+  text-align: left;
+  font-weight: 600!important;
+  font-family: 'Montserrat'!important;
+}
+
+.landingPage .sale  .banner1 .rightLinks a
+{
+  font-size:2.2em;
+  margin-left:auto;
+  margin-right:auto;
+  margin-top:12px;
+  padding-bottom: 5px;
+  padding-top:5px;
+  float: right;
+  clear: right;
+  padding-right:11px;
+  max-width: none;
+  max-height:none;
+  text-align: right;
+  font-weight: 600!important;
+  font-family: 'Montserrat'!important;
+}
+
+.landingPage .home
+{
+  padding-left:15px;
+  padding-right:15px;
+  padding-bottom:20px;
+}
+
+
+
+.landingPage .sale .banner2
+{
+  min-height:1371px;
+  width:100%;
+}
+
+.landingPage .sale .outerbanner2
+{
+  padding-left:15px;
+  padding-right:0px;
+  padding-top:0px;
+}
+
+.landingPage .sale .banner2 h3
+{
+  font-size:4.9em;
+  margin-bottom: 0px;
+  padding-top:599px;
+  margin-top:0px;
+  margin-left:0px;
+  text-align: center;
+}
+
+.landingPage .sale .banner2 p
+{
+  font-size: 24px;
+  margin-top: 0px;
+  margin-left: 93px;
+  margin-bottom:0px;
+}
+
+.landingPage .sale .banner2 a
+{
+  margin-left:auto;
+  margin-right:auto;
+  margin-top:30px;
+}
+
+
+
+
+/** image declarations men **/
+.landingPage .men  div.landingpic1
+{
+  background-image: url("../img/men/1.gif");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position-x: center;
+  background-position-y:center;
+}
+
+.landingPage .men  div.landingpic2
+{
+
+  background-image: url("../img/men/2.jpg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position-x: center;
+  background-position-y:center;
+}
+
+.landingPage .men  div.landingpic3
+{
+
+  background-image: url("../img/men/3.jpg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position-x: center;
+  background-position-y:center;
+}
+
+.landingPage .men  div.landingpic4
+{
+  background-image: url("../img/men/4.jpg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position-x: center;
+  background-position-y:center;
+}
+
+
+
+
+/** image declarations women **/
+.landingPage .women  div.landingpic1
+{
+  background-image: url("../img/women/1.jpg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position-x: center;
+  background-position-y:center;
+}
+
+.landingPage .women  div.landingpic2
+{
+
+  background-image: url("../img/women/2.jpg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position-x: center;
+  background-position-y:center;
+}
+
+.landingPage .women  div.landingpic3
+{
+
+  background-image: url("../img/women/3.jpg");
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y:center;
+}
+
+.landingPage .women  div.landingpic4
+{
+  background-image: url("../img/women/4.jpg");
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y:center;
+}
+
+
+
+
+/** image declarations beauty **/
+.landingPage .beauty  div.landingpic1
+{
+  background-image: url("../img/beauty/1.jpg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position-x: center;
+  background-position-y:center;
+}
+
+.landingPage .beauty  div.landingpic2
+{
+
+  background-image: url("../img/beauty/2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-x: center;
+  background-position-y:center;
+}
+
+.landingPage .beauty  div.landingpic3
+{
+
+  background-image: url("../img/beauty/3.jpg");
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y:center;
+}
+
+.landingPage .beauty  div.landingpic4
+{
+  background-image: url("../img/beauty/4.jpg");
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y:center;
+}
+
+
+
+/** image declarations GROOMING **/
+.landingPage .grooming  div.landingpic1
+{
+  background-image: url("../img/grooming/1.jpg");
+  background-repeat: no-repeat;
+
+  background-position-x: center;
+  background-position-y:center;
+}
+
+.landingPage .grooming  div.landingpic2
+{
+
+  background-image: url("../img/grooming/2.jpg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position-x: center;
+  background-position-y:center;
+}
+
+.landingPage .grooming  div.landingpic3
+{
+
+  background-image: url("../img/grooming/3.jpg");
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y:center;
+}
+
+
+
+/** image declarations KIDS **/
+.landingPage .kids  div.landingpic1
+{
+  background-image: url("../img/kids/1.jpg");
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y:center;
+  background-size: cover;
+}
+
+.landingPage .kids  div.landingpic2
+{
+
+  background-image: url("../img/kids/4.jpg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position-x: center;
+  background-position-y:center;
+  background-size: cover;
+}
+
+.landingPage .kids  div.landingpic3
+{
+
+  background-image: url("../img/kids/3.jpg");
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y:center;
+  background-size: cover;
+}
+
+.landingPage .kids  div.landingpic4
+{
+
+  background-image: url("../img/kids/2.jpg");
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y:center;
+  background-size: cover;
+}
+
+
+
+
+/** image declarations home **/
+
+
+.landingPage .home  div.landingpic1
+{
+  background-image: url("../img/index/1.jpg");
+  /* background-image: url("../img/index/sale.jpg"); */
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y:center;
+  background-size: contain;
+}
+
+.landingPage .home  div.landingpic1.visible-xs.visible-sm{
+
+  background-image: url("../img/index/1_mob.jpg");
+  background-size: cover;
+}
+
+.landingPage .home  div.landingpic2
+{
+
+  background-image: url("../img/index/2.jpg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position-x: center;
+  background-position-y:center;
+  background-size: cover;
+}
+
+.landingPage .home  div.landingpic3
+{
+
+  background-image: url("../img/index/3.jpg");
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y:center;
+  background-size: cover;
+}
+
+.landingPage .home  div.landingpic4
+{
+
+  background-image: url("../img/index/4.jpg");
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y:center;
+  background-size: cover;
+}
+
+.landingPage .home  div.landingpic5
+{
+
+  background-image: url("../img/index/5.gif");
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y:center;
+  background-size: cover;
+}
+
+
+/** sale css **/
+.landingPage .sale  div.landingpic1
+{
+
+  background-image: url("../img/sale/1.jpg");
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y:center;
+  background-size: cover;
+}
+
+.landingPage .sale  div.landingpic1.visible-xs
+{
+  background-image: url("../img/sale/1_mob.jpg");
+}
+
+
+
+.landingPage .sale  div.landingpic2
+{
+
+
+  background-image: url("../img/sale/men.jpg");
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y:center;
+  background-size: cover;
+}
+
+/*
+@media (max-width: 768px)
+{
+  .landingPage .sale  div.landingpic1
+  {
+    background-image: url("../img/sale/women-mob.jpg")!important;
+  }
+  .sale .row
+  {
+    padding-left:0px!important;
+    padding-right:0px!important;
+    padding-bottom:13px!important;
+  }
+  .landingPage .sale  div.landingpic2
+  {
+    background-image: url("../img/sale/men-mob.jpg")!important;
+  }
+  .sale .outerbanner2
+  {
+    padding-left:0px!important;
+    padding-top:5px!important;
+  }
+
+  .sale .outerbanner1
+  {
+    padding-right: 0px!important;
+  }
+
+  .sale .banner1, .sale .banner2
+  {
+    padding-right:0px!important;
+    min-height:1097px!important;
+  }
+  .landingPage .sale .banner1 h3, .landingPage .sale .banner2 h3
+  {
+    padding-top: 516px!important;
+  }
+}
+*/
+
+.banner2,.banner3,.banner4,.banner5,.banner6,.banner7 {
+
+  cursor: pointer!important;
+}

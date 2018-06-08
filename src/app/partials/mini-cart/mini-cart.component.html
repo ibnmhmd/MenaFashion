@@ -1,0 +1,88 @@
+<span (click)="navigateToCheckOut()"  *ngIf="totalCartItemsMini > 0" class="cart-product cart-product-bag">{{totalCartItemsMini}}</span>
+  <button class="minicart-update hide" (click)="updateMinicart()"></button>
+  <div class="user-information1">
+    <p class="no-products" *ngIf="totalCartItemsMini == 0">No products added to the cart.</p>
+    <div (click) ="hideMini()" *ngIf="totalCartItemsMini > 0" id="mini">
+      <div  class="shop_table cart single-row1 home-cart-view minicart-holder newClass">
+        
+      <div class="content-row cart_item clearfix" *ngFor="let item of cartItemsMini">
+        
+        <div class="product-name">
+          <div class="media">
+            <div class="media-left">
+              <a class="closeMini" routerLink="/detail/{{replaceSpaces(item?.name) |lowercase}}/cartEdit-{{item.item_id}}-{{item?.qty}}/{{item?.sku |lowercase}}">
+                <img class="media-object" src="{{item.product_image}}" height="61" width="46" alt="image">
+              </a>
+            </div>
+            <div class="media-body media-middle">
+              <h5 routerLink="/detail/{{replaceSpaces(item?.name) |lowercase}}/cartEdit-{{item.item_id}}-{{item?.qty}}/{{item?.sku |lowercase}}" class="media-heading closeMini"><a>{{item?.name}}</a></h5>
+              <div class="product-quantity text-center">
+              <div class="quantity buttons_added">
+                <h6>QTY</h6>
+                
+                <input (change)="updateItemCart(item?.item_id, item?.sku, item?.entity_id, item?.name, item?.qty)" type="text" id="itemMini{{item?.sku}}" name="cart" value="{{item?.qty}}"  title="Qty" class="form-control up{{item?.item_id}}" >
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+        
+        
+        <div class="product-subtotal text-center">
+          <span class="amount"> {{removeFraction(item?.price)}} &nbsp; AED</span>
+        </div>
+
+        <div class="product-delete">
+          <a (click)="removeFromCartMini(item.item_id)"><span class="ion ion-close"></span></a>
+          <a class="closeMini" routerLink="/detail/{{replaceSpaces(item?.name) |lowercase}}/cartEdit-{{item.item_id}}-{{item?.qty}}/{{item?.sku |lowercase}}"><span class="ion ion-edit"></span></a>
+        </div>            
+      </div>
+
+      <div class="clear"></div>
+       
+    </div>
+
+    <div class="cart-preview">
+      <div class="cart-sub-total clearfix">
+        <p class="sub-total">Sub Total</p>
+        <p class="sub-price"> {{removeFraction(cartSubtotalMini)}} &nbsp; AED</p>
+      </div>
+      <div class="conform-btn clearfix">
+        <span *ngIf="notValid" style="color: red; font-weight: bold;">Invalid Input !</span>
+        <a routerLink="/cart/checkout" class="btn btn-default closeMini"><span style="color: white">view cart</span></a>
+        <a routerLink="/cart/checkout" class="btn btn-default closeMini"><span style="color: white">check out</span></a>
+      </div>
+    </div>
+
+    </div>
+  </div>
+
+  <div id="wishModalCart" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+       
+        <div class="modal-body">
+          <h3 class="text-center" style="color: red;">{{message}}</h3>
+        </div>
+       
+      </div>
+  
+    </div>
+  </div>
+
+  <div id="wishModalCartQty" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+       
+        <div class="modal-body">
+          <h3 class="text-center" style="color: black;">{{message}}</h3>
+        </div>
+       
+      </div>
+  
+    </div>
+  </div>
+  
+  

@@ -1,0 +1,110 @@
+<section class="container-fluid">
+  <div class="row">
+    <div class="container">
+      <ol class="breadcram">
+        <li><a routerLink="/">HOME</a></li>
+        <li><a routerLink="/profile">MY ACCOUNT</a></li>
+        <li class="active">MY ADDRESS BOOK</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="product-listing-wrap container-fluid content-wrap">
+  <div class="row">
+    <div class="container">
+
+      <div class="category-inner">
+        <div class="row">
+
+          <app-dashboard-nav></app-dashboard-nav>
+
+          <div class="col-sm-9">
+            <div class="main-category-tab-content">
+              <div class="tab-content-text myprofile-tab-content">
+                <div class="row tab-content-head">
+                  <div class="col-sm-6">
+                    <h4>MY ADDRESS BOOK</h4>
+                  </div>
+                  <div class="col-sm-6">
+                    <a  href="#myModal" [attr.data-target]=" '#' + addressDetail.modalId" data-toggle="modal" (click)="addressDetail.freshForm()"
+                      class="add-biling-add btn-info btn-lg pull-right">ADD NEW ADDRESS</a>
+                  </div>
+                </div>
+                <p *ngIf="(defaultClientAddresses.length == 0)" class="currently-no-add">You currently have no address details saved. You can add or delete an address at any time.</p>
+                <br>
+                <div class="my-address-book-inner ">
+                  <!--<a href="#myModal2" class="add-biling-add btn-info btn-lg" data-toggle="modal">Add Billing Address</a>-->
+                  <div class="row row-1">
+                    <div class="shipped-address-border clearfix">
+                      <div class="col-md-6">
+                        <div class="shipped-address clearfix">
+                          <h5>DEFAULT ADDRESSE(S)</h5>
+                          <div *ngFor="let address of defaultClientAddresses " class="col-md-12">
+                            <div class="shipped-address clearfix">
+                              <h6 *ngIf="address.default_billing">{{address.company}} (DEFAULT BILLING)</h6>
+                              <h6 *ngIf="address.default_shipping">{{address.company}} (DEFAULT SHIPPING)</h6>
+                              <h6 *ngIf="!address.default_billing && !address.default_shipping">{{address.company}} </h6>
+                              <ul>
+                                <li>Address:</li>
+                                <li *ngFor="let line of address.street">
+                                  <p>{{line}}</p>
+                                </li>
+                                <li>
+                                  <p>City: {{address?.city}} </p>
+                                  <!-- - {{address?.postcode}} -->
+                                </li>
+                                <li>
+                                  <!-- <p>Region: {{address.region?.region}}</p> -->
+                                </li>
+                                <li>
+                                  <p>Mobile: {{address?.telephone}}</p>
+                                </li>
+                              </ul>
+                              <ul class="edit-address">
+                                <li><a [attr.data-target]=" '#' + addressDetail.modalId" data-toggle="modal" (click)="addressDetail.configureForm(address)"><i class="fa fa-pencil-square-o"></i>Edit</a></li>
+                                <li><a (click)="removeAddress(address)"><i class="fa fa-trash"></i>Remove</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="shipped-address clearfix">
+                          <h5>ADDITIONAL ADDRESSES</h5>
+                          <div *ngFor="let address of additionlClientAddresses " class="col-md-12">
+                            <div class="shipped-address clearfix">
+                              <h6>{{address?.company}} </h6>
+                              <ul>
+                                <li *ngFor="let line of address.street">
+                                  <p>{{line}}</p>
+                                </li>
+                                <li>
+                                  <!-- <p>{{address?.city}}, {{address.region?.region}}, {{address?.postcode}}</p> -->
+                                </li>
+                                <li>
+                                  <p>T: {{address?.telephone}}</p>
+                                </li>
+                              </ul>
+                              <ul class="edit-address">
+                                <li><a [attr.data-target]=" '#' + addressDetail.modalId" data-toggle="modal" (click)="addressDetail.configureForm(address)"><i class="fa fa-pencil-square-o"></i>Edit</a></li>
+                                <li><a (click)="removeAddress(address)"><i class="fa fa-trash"></i>Remove</a></li>
+                                
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<address-detail  [component] = 1 [clientAddresses]="clientAddresses" [customerData]="customerData" #addressDetail></address-detail>
+<app-global-title-injector [titleInput] = "titleName"></app-global-title-injector>

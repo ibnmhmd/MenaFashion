@@ -1,0 +1,382 @@
+
+
+<section class="container-fluid">
+	<div class="row" style="max-height: none !important;">
+		<div class="container">
+			<ol class="breadcram">
+				<li><a [routerLink]="['/']">HOME</a></li>
+				<li class="active">{{title}}</li>   
+			</ol>
+		</div>
+	</div>
+</section>
+
+<section class="container-fluid terms-and-condition">
+
+
+
+
+	<div  class="row" style="max-height: none !important;">
+		<div class="container" >
+			<div class="terms-and-condition-inner">
+				<h2><u>{{title}}</u></h2>
+				<!-- about us page starts here . . . .. -->
+				<div *ngIf ="page == 'about-us'">
+				
+					<p style="font-size: 13px;">
+							<b>Have you ever fancied a 
+							pair of sneakers or a tank top from
+							 your favourite brand, only to be disappointed 
+							 to find that it’s not available anywhere near 
+							 you? We know the feeling.</b>
+				  </p>	 
+
+				  <p style="font-size: 13px;">
+							 The fact is that most 
+							 fashion brands offer different catalogues in
+							  different parts of the world. And while 
+							  we appreciate a tailored fashion offering,
+							   we also appreciate variety. Or sometimes 
+							   we just want to follow what our global 
+							   fashion icons are rocking.
+				</p>
+				
+				<p style="font-size: 13px;">
+							   menamall allows
+								you to shop online from curated global 
+								catalogues of over 1,000 ultra popular brands like Tommy Hilfiger,
+								 Michael Kors and Steve Madden as well as breakthrough limited brands Rick Owens, REDValentino and y-3 Yohji Yamamoto.
+						</p>		 
+						
+						<p style="font-size: 13px;">
+						 Sourced directly from the manufacturers or authorised distributors, all products listed on our website are guaranteed to be genuine, 
+							offering you peace of mind as part of our commitment to authenticity.
+							
+				    	</p>
+					
+				</div>
+				<!-- about us page ends here . . . .. -->
+
+				<!-- faq page starts here . . . .. -->
+				<div *ngIf="page == 'faq'">
+					<span><h3>How can I place an order?</h3></span>
+					<p style="font-size: 13px;">
+						Shopping on menamall.com is as easy as 1,2,3:
+						</p>
+
+					<ul>
+						<li>1.Browse through our catalogue of products and add the items you’d like to buy to your shopping cart.</li>
+						<li>2.	When ready to checkout, click the cart icon and then ‘proceed to checkout’.</li>
+						<li>3.Make sure all fields are filled on the checkout page and click ‘place order now’.</li>
+					
+					</ul>
+
+					<span><h3>What should I know before placing a new order?</h3></span>
+					<p style="font-size: 13px;">
+						Before you place your order please make sure of the size, colour and the item you would like to request as there is no cancellation once your order is processed.
+
+					</p>
+					<span><h3>What payment methods do you accept?</h3></span>
+					<p style="font-size: 13px;">
+						You can pay with any Visa or MasterCard credit/debit card on our secure online checkout portal.
+					</p>
+
+					<span><h3>How do I cancel my order?</h3></span>
+					<p style="font-size: 13px;">
+						You may cancel your order at any time before it is processed.  Once the order is confirmed from the customer's side the process begins to dispatch the products from our partners overseas in order to ensure that we deliver it to you as fast as possible. Since the flow of the order at menamall.com is completely automated, further modifications cannot be made. We recommend that you make sure of the items you want to purchase along with the sizes before confirming your order.
+					</p>
+
+					<span><h3>What is our return policy?</h3></span>
+					<p style="font-size: 13px;">
+						Faulty or wrong items will be fully refunded. You can either request a full refund to the same card used to make the purchase or request store credit and use the amount much quicker than the typical 14-21 days that your bank takes to process your refund.
+					</p>
+					<p style="font-size: 13px;">
+					Returned items should be in its original box, unworn with all the tags and labels.
+				</p>
+					<span><h3>How can I return an item?</h3></span>
+					<p style="font-size: 13px;">
+						You can request your defected item to be returned by sending us a picture with the defect to our email: support@menamall.com. We will internally review the damage and then arrange for a pickup. You may also call us if you would need any further assistance. 
+					</p>
+
+					<span><h3>Where do you deliver?</h3></span>
+					<p style="font-size: 13px;">
+						We offer delivery across all of the United Arab Emirates.
+					</p>
+
+					<span><h3>How long do you take to deliver?</h3></span>
+					<p style="font-size: 13px;">
+						Because we curate items from all over the world, typical delivery times for your order is between 7-10 days.
+
+					</p>
+
+					<span><h3>How can I track my order?</h3></span>
+					<p style="font-size: 13px;">
+						You can track your order on our website through the “My Orders” tab on your profile.
+					</p>
+					<span><h3>What if my order is missing an item?</h3></span>
+					<p style="font-size: 13px;">
+						Please contact our Customer Support team @ 04-521-4800 or support@menamall.com and we will ensure that the situation is handled accordingly. 					</p>
+					
+
+				</div>
+
+						<!-- terms and conditions page starts here . . . .. -->
+						<div *ngIf="page == 'tou'">
+								
+								
+							  <span><h3 >MENAMALL- GENERAL TERMS AND CONDITIONS</h3></span>
+		<p style="font-size: 13px;">
+		Welcome to the menamall.com website (the "Site"). We strive to ensure our customers receive an effortless shopping experience and we hope that you enjoy all our Site has to offer. These terms and conditions apply to the Site, KSK General Trading LLC, its divisions, subsidiaries, and affiliates and operated Internet sites which reference these Terms and Conditions. </p>
+		
+		
+		
+		<span><h3 >1- Your Acceptance:</h3></span>
+		<p style="font-size: 13px;">
+		A. Welcome to menamall.com, the General Terms and Conditions mentioned hereunder shall be applicable to all businesses on this website, our assignees and affiliates. By using or visiting the Site or using any of menamall.com products, software, data feeds, and services provided to you on, from, or through the Site (collectively the "Service") you signify your agreement to:<br/>
+		a) These terms and conditions (the "Terms of Service"),<br/>
+		b) The Privacy Policy, found and incorporated herein by reference, and If you do not agree to any of these terms, the Privacy Policy, or the Community Guidelines, you are not permitted to use the Service.<br/>
+		B. Although we may attempt to notify you when major changes are made to these Terms of Service, you should periodically review the most up-to-date version. We reserve the right to update or modify the Terms & Conditions at any time without prior notice.  If you do not agree to these terms, please do not use the Site. Nothing in these Terms of Service shall be deemed to confer any third-party rights or benefits.</p>
+		
+		
+		<span><h3 >2- Your Account and registration obligations:</h3></span>
+		<p style="font-size: 13px;">
+		In order to take advantage of the features and services of this Site, you will have to create a User Account. Use of another person’s account is prohibited. You must provide complete and accurate information when creating your account. You are solely responsible for the activity that occurs on your account, and it is your responsibility to keep your account password secure. The membership of the Site is not available to persons under the age of 18 years. You represent that you are 18 years or above so that you can lawfully:
+		
+				(i) make payment through one of our accepted tender types; <br/>
+				(ii) agree to these Terms; and <br/>
+				(iii) enter into binding Orders with us. <br/>
+				
+		 menamall.com reserves the right to limit or withdraw access to the Site or the membership of any person if menamall.com believes that person is under the age of 18 years.
+		</p>
+		
+		
+		<span><h3>3- Intellectual Property and Content: </h3></span><p style="font-size: 13px;">
+		The information and content on the site is provided by KSK General Trading L.L.C and all the content included on the Site, including but not limited to text, graphics, logos, images, audio clips, video, data, music, software, and other material (collectively "Content") is owned or licensed property of menamall.com (KSK General Trading L.L.C) and are subject to the full protection of copyright and other intellectual property rights under the applicable national and international laws.  Whilst we endeavor to keep accurate descriptions of products on the Site, menamall.com does not warrant the complete, reliable, current or error-free information.  Images of products on this site are for illustrative purposes only. Your goods may vary slightly from the image shown on the site and will not include any of the pictured accessories, unless stated in the specification of the goods. If a product offered on menamall.com is not as described, your sole remedy is to return the item, as specified in the Return Policy. Any infringement or illegal usage of the Intellectual Property posted on this site whether registered or unregistered is strictly prohibited and illegal. The contents posted by us or made available on our website or other webpages are protected under the applicable copyright laws and international conventions. We reserve all our rights and remedies in case we suspect a breach.</p>
+		
+		
+		<span><h3 >4- Pricing and Payments</h3></span><p style="font-size: 13px;">
+		a) menamall.com accepts payment by Visa or MasterCard debit and credit cards in AED for its products and services along with other currencies, as accepted by our acquiring bank. <br/>
+		b) The details you are asked to submit while making the payments will be provided directly to our payment provider via a secured connection. By placing an order, you are authorizing us or our third-party payment processer to process your credit card details for the transaction. <br/>
+		In order to authorize credit card payments, we may need to create an account for you, with our third party payment processors, including accepting their standard terms and conditions and submitting your details to them on your behalf. You hereby authorize us to do so and we shall not be liable for any damage or loss you may incur as a result.<br/>
+		c) Whilst we endeavour to ensure the prices on our site are as accurate as possible, we reserve the right to change a price in exceptional circumstances. Any dispute or claim arising out of or in connection with this site shall be governed and construed in accordance with the laws of UAE with the exclusive jurisdiction of the competent Courts of the Emirate of Dubai.<br/>
+		d) If a price is corrected due to exceptional circumstances, customers will be informed<br/>
+		of the change before payment is processed and offered the opportunity to amend/cancel the order.<br/>
+		e) All refunds will be made as per our refund policy.</p>
+		
+		
+		
+		
+		
+		<span><h3>5- Orders</h3></span><p style="font-size: 13px;">
+		When you place an Order with us, you agree to comply with any and all the guidelines, notices, operating rules and policies and instructions pertaining to the purchase of Products through the Site, as well as any amendments to the aforementioned, issued by menamall.com (whether as part of use of the Platform or in relation to the purchase of Products, on behalf of Seller), from time to time.  Each item in your order is sold either by us or the local or international partner, however all transactions are governed by the present Terms and Conditions. Orders are subject to our acceptance, which we may withhold in our sole discretion including but not limited to reasons such as ineligibility, inability to confirm payment authorization, suspected fraud, shipping restrictions and stock availability. Receipt of your Order will be acknowledged by email. However, the Order is only confirmed when you receive a notification from us confirming dispatch of the relevant item(s). No party other than us has the authority to confirm acceptance of the Order. We may at our sole discretion cancel any order due to any or no reason, provided that we shall refund you the amount we have received in lieu of the product/s that you ordered.</p>
+		
+		<span><h3 >6- Shipments and Delivery</h3></span><p style="font-size: 13px;">
+		Once the order is placed and confirmed, we process it further. You will receive an email with order confirmation and the expected date of delivery. Then the order is processed further and picked up by our courier service agent. All our orders can be tracked with the help of the tracking link provided by the courier. </p>
+		
+		
+		<span><h3 >7- Force Majeure </h3></span><p style="font-size: 13px;">
+		Where a force majeure event gives rise to a failure or delay in us performing our obligations under these terms and conditions, those obligations will be suspended for the duration of the force majeure event.If we become aware of a force majeure event which gives rise to, or which is likely to give rise to, any failure or delay in us performing our obligations under these terms of sale, we will notify you forthwith. We will take reasonable steps to mitigate the effects of the any force majeure event.</p>
+		
+		
+		
+		<span><h3 >8- Limitation of Liability:</h3></span><p style="font-size: 13px;">
+		In no event shall menamall.com or its affiliates be liable for any direct, indirect, incidental, special, consequential or exemplary, including but not limited to, losses or damages for loss of profits, goodwill, business, opportunity, data or other intangible losses arising out of or in connection with your use of the Site, its services or this User Agreement (however arising, including negligence or otherwise and whether or not menamall.com has been advised of the possibility of such losses or damages). menamall.com may change, suspend, or discontinue any aspect of this Site at any time. <br/>
+		Subject to this:
+		(a) our liability in connection with any product purchased through our website is strictly limited to the purchase price of the relevant product and the replacement cost of the relevant product;<br/>
+		(b) we will not under any circumstances be liable for any loss of income or revenue, loss of business, loss of profits or contracts, loss of anticipated savings, loss of data or waste of management or office time, or loss of goodwill or reputational damage; and<br/>
+		(c) we will not be liable for any losses arising out of a force majeure event.<br/></p>
+		
+		<span><h3>9- Indemnification</h3></span><p style="font-size: 13px;">
+		You shall indemnify and hold harmless menamall.com, its owner, licensee, affiliates, subsidiaries, group companies (as applicable) and their respective officers, directors, agents, and employees, from any claim or demand, or actions including but not limited to reasonable attorneys' fees, claims made by any third party or penalty imposed due to or arising out of and in connection with your breach of the Terms of Use, Privacy Policy and other Policies, or your violation of any law, rules or regulations or the rights of a third party.</p>
+		
+		<span><h3>10- No Warranty	</h3></span><p style="font-size: 13px;">
+		We provide the Site and its services on an "as is" and "as available" basis without any representation or endorsement made and without any warranty or guarantee of any kind whether express or implied, including but not limited to warranties of title, merchantability, fitness for a particular purpose, compatibility, security, accuracy and non-infringement. We make no representations or warranties about the accuracy, reliability, or completeness of any content, information, software, text, graphics, links or communications provided on or through the use of the Site or that the operation of the Site will be error free and/or uninterrupted. We make no warranty that defects will be corrected or that the Site or its servers are free of viruses or anything else which may be harmful or destructive. The nature of Internet communications means that this Site may be susceptible to data corruption, interception, non-availability and delays. The Site may also be unavailable from time to time due to repairs, maintenance or development work. You agree that Souq.com has no obligation to provide support for the Site. You expressly agree that you use the Site at your own risk.</p>
+		
+		<span><h3 >11- Applicable Law</h3></span><p style="font-size: 13px;">
+		The Laws of the United Arab Emirates shall govern the use of the site and the Terms of Use, without regards to conflict of laws principles. All disputes arising out of or in connection therewith shall be heard only by a court of competent jurisdiction in Dubai, U.A.E.</p>
+		<span><h3>12- Termination Rights</h3></span><p style="font-size: 13px;">
+		We reserve the right to terminate these Terms and Conditions with or without any prior notice to you, while releasing ourselves from any and all obligations, other than the ones that arose before the date of such termination. menamall.com shall relieve itself of any liabilities towards you or any other party as a consequence of such termination. You agree to waive all your rights including but not limited to any legal or equitable relief that may be available to you.<br/>
+		In the event that you do not agree to these Terms and Conditions and any other content included within our policies available on our website, you are advised to discontinue the use of our service and website immediately. This shall be your sole remedy.</p>
+							</div>
+						<!-- terms and conditions page starts here . . . .. -->
+						<div *ngIf="page == 'privacy-policy'">
+						
+							<p style="font-size: 13px;">
+								<u>menamall.com</u> is a website operated under the ownership of KSK General Trading L.L.C. 
+								with trade license number 780367 and registered address at 3502, Marina Plaza, Dubai.
+								
+								At menamall.com, we value the trust that you place in us by providing us with your
+								 personal information. Whenever we do, we will use your personal information in a way that is fair and worthy of your trust. Our Privacy Policy describes generally how we manage your personal information and safeguard your right privacy. The information provided by you is retained by us as per the applicable laws or as per the requirement.
+					  </p>
+	
+	
+								<span><h3>1- WHAT INFORMATION WE COLLECT?</h3></span>	
+								
+								      <p style="font-size: 13px;">
+											To improving your shopping experience and to ensure we
+											 can communicate with you for placing of the order and 
+											 post sales (as and when needed), we may ask for some personal details like:
+
+									</p>
+									<ul>
+										 <li>•	Your name, including title and gender </li>
+										
+										 <li>•	Billing and Shipping Address</li>
+										 <li>•  Contact number </li>
+										 
+										 <li>•  e-mail address and so on</li>
+										 <li>•	Bank Account or Card Details </li>								  	
+									  </ul>	
+									
+									  <span><h3>2- WHEN IS THE PERSONAL INFORMATION COLLECTED?</h3></span>
+	
+									  <p style="font-size: 13px;">
+											When you wish to create an account to log in on our
+											 website or interact with us at any of our departments such as customer service, sales or technical services through the website (chat), telephone, email or fax your personal Information is collected and stored with us. Information is required when you register with us, to subscribe to our newsletter and when you place an order on the website. In addition, your personal information is collected at other times, i.e., when you enter a contest or promotion sponsored by us or when you participate in surveys or other questionnaires. However, your financial information is not required to be collected for any purpose other than transactions on the website or for refunds/claims/awards. You shall only be contacted through any means of communication, provided that you have consented to being contacted by our team while registering with us. You may at any time after creating your account, withdraw your consent regarding any communications related to promotions, discounts, new products by clicking on the ‘Unsubscribe’ button.
+											The data shared by you regarding any transaction is
+											 routed through a payment gateway and the service provider 
+											 shall also have access to your information. There shall also be a
+											  vetting of the financial data for the purpose of Credit check and Fraud prevention.
+											</p>		
+	
+										<span><h3>3- HOW IS THE DATA USED?</h3></span>
+	
+										<p style="font-size: 13px;">
+												The information/data collected from you 
+												is used to create your account, authentication 
+												of your details, to concluded transactions for your 
+												purchases on the website and for any refunds or claims
+												 that may arise later, to monitor the footfalls on the 
+												 website, to keep a record of the web-content downloaded from 
+												 our website, forwarding you our newsletters, offers, promotions,
+												  discounts, sales etc. The data we collect from you may also be used 
+												  by our team to study and forecast customer behavior and patterns of buying
+												   products from our website.  This information may also be used by us to
+													advertise the products and services of our affiliate companies and with our
+													 business associates in order to understand the options available with the 
+													 data as per applicable laws. This data shall also be used with other parties like logistics service providers to deliver the products that you buy from our website and to Fraud detection agencies to protect the interest of our business. In the event that we decide to assign/sell the website to another business entity, the information provided by you shall be transferred to the Buyer.											
+												
+										</p>
+	
+	
+										<span><h3>4- ADVERTISING AND GUEST LINKS:</h3></span>
+									    <p style="font-size: 13px;"> There may be links and advertisement on our website that if clicked upon, shall re-route you to third party websites and web pages, we shall not assume any liability if the information you provide on any other link is leaked or used illegally due to the usage of any such links.
+												
+												If you connect to our website using your existing accounts with Facebook, Twitter or Google +, however, this Privacy policy shall apply for the information that was provided to us for the specific requirements pertaining to your transactions, without any liability towards any data breach that might take place due to the fault of any third party.
+												</p>
+	
+							
+	
+								 <span><h3>5- STORING AND SECURING YOUR INFORMATION:</h3></span>
+								 
+								 <p style="font-size: 13px;">
+										At menamall.com, we always make sure that your personal information is
+										 protected from unauthorized access, loss, misuse, disclosure or 
+										 alteration. We only collect personal information to the extent 
+										 deemed necessary to serve its legitimate business purposes. Additionally,
+										  we take measures to destroy or permanently de-identify personal information
+										   when it is no longer required. Nonetheless, menamall.com is not responsible
+											for any breach of its security or for the actions of any third parties who
+											 may obtain any Personal information. 
+								 </p>
+
+								 <p style="font-size: 13px;">
+									 
+									Generally, you have no obligation to provide any information
+									requested by us. If you choose to withhold requested information 
+									however, we may not be able to provide you with the goods and services that 
+									depend on the collection of that information.
+
+								 </p>
+	
+
+
+								 <span><h3>6- COOKIES:</h3></span>
+								 
+								 <p style="font-size: 13px;">
+										We use “cookies” to recognize you as you use or return to our site. Cookies are small pieces of information that are stored by your browser on your computer or mobile device. When you go to particular website pages on the Site, the cookie identifies your browser with a unique, random number. The cookies we use do not reveal any personal information about you. Cookies help us improve your experience of the Site and help us understand which parts of the Site are the most popular. Our aim is to offer you a fun, easy shopping experience on a website that is tailored to your tastes. You are always free to decline 
+										our cookies if your browser permits, although doing so may interfere with your use of the Site.
+								 </p>
+
+								 <p style="font-size: 13px;">									 
+								   <b>Consent: I hereby give permission for my user information to be stored on cookie files. I also allow these files to remain on my computer after I have ended my browser session so they may be used upon my next visit to the website. I reserve the right to retract this permission by changing my browser setting to delete cookies.</b>
+								 </p>
+
+
+								
+								 <span><h3>7-THIRD PARTY ADS, WEBSITE LINKS AND DISCLOSURE OF YOUR PERSONAL INFORMATION
+										Third Party Ads and Links:</h3></span>
+								 
+								 <p style="font-size: 13px;">
+										We may display advertisements from third parties and other content which 
+										links to third party websites who may set cookies. These cookies allow the ad server to recognize your computer each time they send you an online advertisement to compile information about you or others who use your computer. We cannot control or be held responsible for third parties’ privacy practices and content. Please read their privacy policies to find out how they collect and process your personal information. If any affiliate engages in abusive practices, including, for example, spam, trademark infringement,
+										 or unlawful activities, please let us know immediately and we will take necessary actions.
+								 </p>
+
+								 <p style="font-size: 13px;">
+									<b> Disclosure:</b>
+									We may pass your name and address on to
+									 a third party in order to make delivery 
+									 of the product to you (for example to our courier 
+									 or supplier) or for commercial purposes - such as
+									  advertising. However, no credit/debit cards’ details and
+									   personally identifiable information will be stored, sold, 
+									   shared, rented or leased to any third parties by us. Also, we may
+										exchange information with third parties for the purposes of fraud protection 
+										and credit risk reduction. Furthermore, in case of merger, acquisition, or sale of all or 
+										a portion of our assets, we may transfer your personal information to that company.
+																		
+								   </p>
+
+
+
+								 <span><h3>8-REVISIONS TO OUR PRIVACY POLICY:</h3></span>
+								 
+								 <p style="font-size: 13px;">
+										We may amend our privacy policy at any time by 
+										posting a revised version on the Site. The revised version
+										 will be effective at the time we post it and, following such posting,
+										  your continued use of the Site will constitute your express consent to us continuing to process your personal information in accordance with the terms of our revised privacy policy. We would encourage you to check the Site regularly for the announcement of any amendments to our privacy policy. If you have questions about accessing or correcting your personal
+										 data please get in touch with us through any of the ways listed at the menamall.com Help section.
+								 </p>
+
+								
+								 <span><h3>9-PRIVACY FOR MINORS:</h3></span>
+								 
+								 <p style="font-size: 13px;">
+										For the users in MENA region, menamall.com is not directed to children under the age of 18 and we do not knowingly collect personal information from minors under the age of 18. Minors are not advised and permitted to use the website or services and they should not submit any personal information to the website. Since information regarding minors is not collected, menamall.com does not knowingly distribute such personal information. If we become aware that a user is under the age of 18 and has submitted Personal Information, we will remove his or her personally identifiable information from our files.
+								 </p>
+
+								 <span><h3>10-CONSENT AND APPROVAL:</h3></span>
+								 
+								 <p style="font-size: 13px;">
+										By using or interacting with the Service and creating your account directly with us or using your preexisting social media accounts, you are entering into a binding contract with us and expressly consenting to the use of your information as explained in this Privacy Policy. If you don't agree with these terms, it is advisable to not use our Services </p>
+
+
+
+								 <span><h3>11-CONTACT US:</h3></span>
+								 
+								 <p style="font-size: 13px;">
+									 If you have any questions regarding the personal data that we hold about you or if you wish to make any changes to the data and if you have any suggestions related to this site and service, please contact us at : &nbsp; <u>info@menamall.com</u>
+								 </p>
+						</div>
+				
+
+		
+						<!-- carrers page starts here . . . .. -->
+						<div *ngIf="page == 'careers'">
+							
+							<p style="font-size: 13px;">
+									At <b>menamall.com</b>, our people are our passion. We seek talented and innovative thinkers in the e-commerce industry that we love. Discover how you can make a difference by sending your resume to: &nbsp; <u><a  href="mailto:careers@menamall.com">careers@menamall.com</a> </u>.		
+							</p>
+						
+						</div>
+
+						
+
+			</div>
+		</div>
+	</div>
+</section>
+<app-global-title-injector [titleInput] = "titleName"></app-global-title-injector>
+

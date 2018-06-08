@@ -1,0 +1,19 @@
+
+
+<section id="banner" class="container-fluid">
+			<div class="row">
+				<div class="container">
+					<div class="banner-carousel owl-carousel">
+					<div *ngFor="let banner of bannerData" class="item" style="position:relative">
+						<img class="main-banner-image img-responsive"  src="{{banner.image}}">
+						<div>
+							<h5>New arrival</h5>
+							<h2>{{banner.title}}</h2>
+							<p>{{banner.description}}</p>
+							<a href="{{banner.id}}">SHOP NOW <span class="ion-arrow-right-b"></span> </a>
+						</div>
+					</div>
+				</div>
+				</div>
+			</div>  
+		</section>

@@ -1,0 +1,7 @@
+{
+    "/rest/*": {
+        "target":"http://localhost/magentorest",
+        "secure": false,
+        "logLevel": "debug"
+    }
+}

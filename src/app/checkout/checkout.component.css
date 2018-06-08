@@ -1,0 +1,160 @@
+.data-input {
+    margin-top:20px;
+}
+
+.home-address .form-control {
+    height: 50px;
+    border-radius: 0;
+    color: #999999;
+    text-transform: capitalize;
+    font-size: 1em;
+    font-family: "Open Sans", sans-serif;
+    box-shadow: none;
+}
+.cart-tab-head { cursor: pointer }
+#address-itm, #payment-itm { display: none; }
+
+
+/* temporar 
+#payment-item-section, #payment-itm  {display:block;}
+#address-item-section, #payment-item-section { display: none; }
+*/
+
+#address-itm .error-text { position:absolute; }
+.card-holder .error-text { position:relative; }
+.proced-payment {
+    font-size: 1em;
+    font-weight: 700;
+    text-transform: uppercase;
+    height: 50px;
+    padding: 16px 67px;
+    margin-left: 22px;
+    color: #fff;
+    background: #000;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    border: none;
+}
+.proced-payment:hover {
+    background: #ff9400;
+    text-decoration: none;
+}
+.proced-payment.place-oder-btn { margin-left: 0; }
+.credit-exp { width: 50%; float:left }
+
+.address-button {
+    font-size: 1em;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align:center;
+    height: 50px;
+    padding: 16px 0px;
+    max-width: 206px;
+    color: #fff;
+    background: #000;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    border: none;
+    display: block;
+    margin-top:15px;
+}
+.address-button:hover {
+    background: #ff9400;
+    text-decoration: none;
+}
+#shippingEditModal .error-text, #billingEditModal .error-text { position: absolute; }
+.modal-card .submit {
+    font-size: 1em;
+    font-weight: 700;
+    text-transform: uppercase;
+    height: 50px;
+    padding: 16px 30px;
+    color: #fff;
+    background: #000;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    border: none;
+}
+.modal-card .submit:hover {
+    background: #ff9400;
+}
+
+.rowTerrible
+{
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+.error
+{
+    color: red;
+    font-weight: bold;
+    position: absolute;
+     margin-top: -1%;
+}
+
+.addressSection
+{
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.save-card-check-box
+{
+    padding-top: 5px;
+}
+
+
+.qtyMsg
+{
+    margin-left: 0%;   
+    font-weight: bold !important;
+    margin-top: 15%;
+}
+.btn-info
+{
+    background-color: black;
+    color: white;
+    float: right;
+   width: 20%;
+}
+
+ .btn-info:hover
+ {
+     background-color:  #ff8b00 !important;
+ }
+
+.body{
+    border-bottom: 1px solid #e5e5e5;
+}
+
+#customerPhoneNumberOriginal, #customerPhoneNumberBilling, #customerPhoneNumberBillingEdit,#customerPhoneNumberSecond, #customerPhoneNumberEdit
+{
+    padding-left: 50px !important;
+}
+
+.hidePayPal
+{
+    display: none;
+}
+
+.col-md-8, .data-input, .np
+{
+    padding-left: 0px !important;
+}
+
+.expiry
+{
+    padding-left: 0px !important;
+}
+
+.cvvC
+{
+    padding-right: 0px !important;
+}

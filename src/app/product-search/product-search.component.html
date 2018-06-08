@@ -1,0 +1,420 @@
+
+
+<section class="container-fluid product_wrap product-listing-wrap classed" >
+	<div class="row">
+		<div class="container">
+		<ol class="breadcram">
+		<li><a routerLink ="/">Home </a></li>
+		<li><a  href ="javascript:void(0)">{{searchedItem}} </a></li>
+	</ol>
+  <h2  *ngIf="searchResponse">Search result for: "{{searchedItem}}"</h2>
+	<p *ngIf="!searchResponse" style="color: red;">We are sorry, we could not find any product matches for: "{{searchedItem}}"</p>
+		</div>
+	</div>
+</section> 
+<section  class="product-listing-wrap container-fluid content-wrap" *ngIf="searchResponse">
+<div class="row eliminate" >
+<div class="container">	
+		<div class="category-inner" >
+			<div class="row eliminate">	
+			<div class="col-sm-9" style="float:none !important; margin: 0 auto !important; ">
+			
+				<div class="main-category-right">
+					
+					<!-- <h2 class="tittle-wrap">{{selectedItem}}</h2> -->
+					<!-- <p class="no-products-found" *ngIf="!productShow">No products found</p> -->
+					<div class="product-listing clearfix">
+					  <div>
+						
+						   <div class="product-size " >
+			 
+								
+							 <form name="slider" style="width: 100%">
+							<ul>
+							
+										<li class="items">
+												<span *ngIf="productInfo.length >0">{{totalPageCount}} &nbsp;Items</span>
+										</li>
+								<!-- color filter starts here-->
+							
+						
+								<li> 
+								
+										<div class="dropdown show">
+												<a class=" dropdown-toggle"  href="#" id="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+													PRICE <i class="ion-ios-arrow-down"></i>
+												</a>
+
+												<div class="dropdown-menu" aria-labelledby="dropdownMenu" style="left: -460% !important;">  
+														   <div (click)="preventEvent($event)" class="form-group dropdown-item product-size-1" style="padding-bottom: 20px;">																
+																 <div style="display: flex;" >
+																	 <span class="pricePadding">
+																	 <span  class="max " >MIN &nbsp;
+																	 </span>
+																	 <input  class="inputType " value="{{rangeValues[0]}}" type="text" readonly="" id="min" [disabled]="disabled">																			 
+																	</span>
+
+																	<span>
+																		<span class="max max-1" >MAX</span>
+
+																		<input  class="inputType inputType-1" value="{{rangeValues[1]}}" type="text" readonly="" id="max" [disabled]="disabled">
+																		
+																	  </span>
+																	
+																
+																	</div>
+
+																 <table style="width: 70%;">													
+																		<tr>
+																			<td><p-slider class="rangeDivSlider"  [min]="minPrice" [max]="maxPrice" [(ngModel)]="rangeValues" [style]="{'width':'233px'}" name="slider" [range]="true"></p-slider></td>
+																		</tr>
+																</table>
+																</div>
+														   <div ><button type="button" (click)="applyPriceFilter()" class="btn btn-default pull-right applyButton" >Apply</button> </div>														   														 
+												  </div>
+
+											</div>
+								
+							  </li>
+								<!-- color filter starts here-->
+								<li class = "hiddenFilter">
+									<div class="dropdown show">
+										<a class=" dropdown-toggle"  href="#" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										  COLOR <i class="ion-ios-arrow-down"></i>
+										</a>
+										<div class="dropdown-menu brandDropDownAjust" aria-labelledby="dropdownMenu">  
+											  <perfect-scrollbar (click)="preventEvent($event)" class="form-group dropdown-item innerFloater product-size-1 colorFilter">																
+													   <ul >
+														  <li *ngFor="let color of colorFilterArray" class="liStyle">
+															  
+																  <input (change)="colorCheck(color.value, color.option_id, $event.srcElement)" value="{{color.value}}" name="color.value"  type="checkbox" class="check-brand"  id="{{color.value}}" >
+																  <label for="{{color.value}}" class="checkbox-label">{{color.value}}</label>
+														  </li>
+													  </ul>
+													  <label style ="margin-top: 10px; margin-left: 185px;" *ngIf="colorFilterArray === undefined || colorFilterArray.length == 0"> NO COLOR FOUND </label>
+												 </perfect-scrollbar>
+												 <div *ngIf=" colorFilterArray !== undefined && colorFilterArray.length != 0"><button type="button" (click) ="applyColorFilter()" class="btn btn-default pull-right applyButton" >Apply</button> </div>														   														 
+										</div>
+										
+								  </div>
+								</li>
+								<!-- color filter ends here-->
+								<li class=""> 
+
+									<!-- swapped brand filter with color filter and commented out the rest of the filters [(ngModel)]="brand.checked" -->
+									<div class="dropdown show">
+										  <a class=" dropdown-toggle"  href="#" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											BRAND <i class="ion-ios-arrow-down"></i>
+										  </a>
+										  <div class="dropdown-menu brandDropDownAjust" aria-labelledby="dropdownMenu">  
+												<perfect-scrollbar class="form-group dropdown-item innerFloater product-size-1" (click)="preventEvent($event)">																
+														 <ul *ngIf=" productBrands !== undefined  && productBrands.length != 0" >
+															<li *ngFor="let brand of productBrands" [hidden]="brand == ''" class="liStyle">
+																
+																	<input (change)="brandCheck(brand, $event)" value="{{brand}}" name="brand"  type="checkbox" class="check-brand"  id="{{brand}}" >
+																	<label for="{{brand}}" class="checkbox-label">{{brand}}</label>
+															</li>
+														</ul>
+														<label style ="margin-top: 10px; margin-left: 185px;" *ngIf="productBrands === undefined || productBrands.length == 0"> NO BRAND FOUND </label>
+												   </perfect-scrollbar>
+												   <div *ngIf=" productBrands !== undefined && productBrands.length != 0"><button type="button" (click) ="applyBrandFilter()" class="btn btn-default pull-right applyButton" >Apply</button> </div>														   
+										  </div>
+										  
+								</div>
+										<!-- swap ended here -->
+								
+								</li>
+								<li>
+								 <div class="dropdown show">
+												<a class=" dropdown-toggle"  href="#" id="dropdownenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												  Sort by <i class="ion-ios-arrow-down"></i>
+												</a>
+
+													 <div class="dropdown-menu" aria-labelledby="dropdownMenu" style="margin-left:-100px;">
+														  <div *ngFor="let sort of sortOrder" class="form-group dropdown-item sorter">
+															  <p>
+																  <input (change)="sortCheck(sort.value, sort.label, $event)" value="{{sort.value}}" name="sortby" [(ngModel)]="sort.checked" type="checkbox" class="check-sort"  id="{{sort.value}}" >
+																  <label for="{{sort.value}}" class="checkbox-label">{{sort.label}}</label>
+															  </p>
+													   </div>
+												</div>
+
+											  </div>
+								</li>
+
+								<li  class="liReset" *ngIf="sortShow || brandShow || minShow">	
+									<div class="dropdown show">
+										  <a (click) ="cleanFilters('reset')">
+											   <i (click) ="cleanFilters('reset')" class="fa fa-refresh" aria-hidden="true"></i>&nbsp;Reset All 
+											</a>
+									</div>
+								</li>
+							</ul>
+						
+							</form>
+						</div> 
+					</div>
+						<div class="cross-size">
+								<ul *ngIf="colorShowBool" class="sortBy">
+										<span class="sortTags">Color:</span>
+									<li *ngFor="let selectedColor of checkedColors"><h6 >{{selectedColor.value |uppercase}}<a><i class="ion-close" (click)="removeColor(selectedColor.value, selectedColor.id)"></i></a></h6></li> 
+								</ul>
+								
+							 <ul *ngIf="sortShow" class="sortBy">
+									<span class="sortTags">Sort By:</span>
+								<li><h6 >{{selectedOrder |uppercase}}<a><i class="ion-close" (click)="removeSort(selectedOrder)"></i></a></h6></li> 
+							</ul>
+
+							<ul *ngIf="minShow" class="sortBy">
+									<span class="sortTags">Range:</span>
+								<li><h6 >{{minPriceSelected}}&nbsp;-&nbsp;{{maxPriceSelected}}<a><i class="ion-close" (click)="removeMin(minPriceSelected)"></i></a></h6></li> 
+							</ul>
+
+							<ul *ngIf="brandShow" class="brandValues">
+								  <span class="brandTags">Brand :</span> 
+								 <li *ngFor="let selectedBrands of checkedBrands"><h6>{{selectedBrands |uppercase}}<a><i class="ion-close" (click)="removeBrand(selectedBrands)"></i></a></h6></li>		
+							</ul>
+
+						</div>
+						
+						
+			 <div *ngFor="let product of productInfo"  class=" col-md-3 col-sm-6 ">							
+							<div *ngIf="productShow && productLoad && searchResponse" class="singlerating">
+								<div class="singlerating-inner">
+									<a (click)="prepareWishList(product.product_id)"><span class="ion ion-android-favorite-outline"
+										id="wishList{{product.product_id}}"
+										[ngClass]="wishListIdsArray.indexOf(product.product_id) > -1 ? 'wishListActive': ''"  id="wishList{{product.product_id}}"></span></a>
+									<div class="img-wrap">
+									 <a routerLink="/detail/{{replaceSpaces(productPath) |lowercase}}/{{
+											replaceSpaces(product.product_name) |lowercase
+									 }}/{{product.sku|lowercase}}" (click) ="injectObejctValues(product)"><img src="{{product.product_image}}" height="357" width="267" alt="{{product.product_name}}" class="img-responsive">
+									 </a>
+								 </div>
+							   
+							 </div>
+						<div class="rating-wrap">																			
+								<div class="rate rateStyle">
+								 <h5 class="itemName">{{handleProudctName(product.product_name)}}</h5>
+								 <p class="itemPrice">{{removeFractionForPrice(product.special_price, product.price)}}&nbsp;AED<span  *ngIf="product.special_price > 0 && product.special_price*1 < product.price*1" >&nbsp;&nbsp;&nbsp;{{removeFraction(product.price)}}&nbsp;AED</span></p>
+								</div>
+								<div class="add-card">
+								 <div class="add">
+									<ul class="clearfix">
+										<li><a (click)="wishlistAddToCart(product.product_name,product.sku, product.special_price, product.description, product.product_id, product.product_otherimages, 
+											product.product_image, product.price, product.sizes, product.productFlag,
+											 product.color_array, product.isInStock, product._size_object, product._color_object,product.qty)" class="tours-expand"><span class="fa fa-eye" (click) = "updateView()"></span></a></li>
+									
+											 <li><a (click)="wishlistAddToCartQuick(product.product_name,product.sku, product.special_price, product.description, product.product_id, product.product_otherimages, 
+											product.product_image, product.price, product.sizes, product.productFlag,
+											 product.color_array, product.isInStock, product._size_object, product._color_object, product.qty)"  href="javascript:;" class="quick_Add"><span class="ion ion-bag"></span></a></li>
+									</ul>
+								 </div>
+								</div>
+							 </div> <!--rating ends -->
+							
+								</div>
+						
+							  </div>	
+									<!--put here -->
+						   </div>						   
+							   <span id="pager" *ngIf="productLength">
+							  <a  (click)="loadMoreProducts('secondLoad')" class="load-more-button">Load More</a>
+							</span>					
+					   </div>
+					
+				<!-- image div ends here -->
+			</div>
+	
+			<!-- image div ends here -->
+		</div>
+	
+		</div>
+	</div>
+</div>
+</section>
+<div id="product-detail-modal" class="modal fade" role="dialog">
+<div class="modal-dialog">
+
+<div class="modal-content">
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" >&times;</button>
+</div>
+<div class="modal-body modalBody">
+  
+  <section class="container-fluid product_wrap" >
+	  <div class="row">
+	  
+			  <div class="col-lg-6 col-md-6 col-sm-12 clearfix mixedClass">
+			 <div class="pro-slide">
+				 <div id="large-img-section" class="right">
+					  <div class="slider-for main-product-img sliders " >
+						  <div id ="divSwapper">
+							  <a  href="javascript:void(0)" class="open-slider">
+								<img  id="prod-img-big" src=""  alt="" >
+							  </a>
+						  </div>                           
+					  </div>
+					  </div>
+					  <perfect-scrollbar  class="leftin slick-slider-1">
+						  <div class="slider-nav prod-thumbs sliders" id="gallery_01">
+						   <div *ngFor="let prodImg of _variantProductImages">
+							   <img  href="javascript:void(0)" (mouseenter)="changeImg(prodImg)" src="{{prodImg}}" height="134" width="95" alt="" class="img-responsive leftImageClass imageResWidth" >
+						  </div>
+					  </div>
+				  </perfect-scrollbar>
+			 </div>         
+			  </div>
+	   <div class="col-lg-6 col-md-6 descHeight">
+				  <div class="main-prod-desc descHeight">
+				  
+					  <h4 class="main-prod-title">{{product_Name}}</h4>
+				  
+					  <h3  class="prod-price" id="priceTag">{{removeFractionForPrice(individualProductSpecialPrice,_Price)}}&nbsp;AED</h3>
+					  <div class="prod-price-available"> 
+						  <ul>
+							  <li *ngIf="individualProductSpecialPrice > 0 && individualProductSpecialPrice*1 < _Price*1"><h6  class="linethrough" id="special_priceTag">{{ removeFraction(_Price)}}&nbsp;AED</h6>
+							  </li>
+							  <li *ngIf="individualProductSpecialPrice >0 && individualProductSpecialPrice*1 < _Price*1" class="orange">
+								  <h6 id="discount">{{productDiscountVal}}% OFF</h6>
+							  </li>
+						  </ul>
+						  <ul>
+							  <li><p><span>Product Code:</span>{{_product_Sku}}</p></li>
+							  <li><p>
+								  <span>Availability :</span>
+								  <ng-container *ngIf="productStock" id="inOfStock">In stock</ng-container>
+								  <ng-container *ngIf="!productStock" ><span class="outOfStock" id="outOfStock">Out of stock</span></ng-container>
+								  </p>
+							  </li>
+						  </ul>
+
+					  </div>
+
+					  <div  class="select-sc">
+					  <div class="size-selection shop-color colorHeight" >
+					  <p *ngIf="colorNotSelected" class="error-text errorText">Please select color *</p>
+							  <label *ngIf ="_colorFlag==='color_variant' || _colorFlag==='color_size_variant'">Select Color<span>*</span></label>	
+		  
+						  <span *ngIf ="_colorFlag==='color_variant' || _colorFlag==='color_size_variant'">
+				 <select id="colorDrop" class="form-control colorSelectOption" [(ngModel)]="_selectedColor" (change)="handleSelectedValueFromDropDown($event)">
+																	
+					<option   *ngFor="let color of _colorObj" value= {{color.value}}>{{color.label | uppercase}}</option>
+				</select>
+			  </span>
+
+		  </div>							
+					  <div class="size-selection colorHeight-2" *ngIf = "_globalArrayForSizes.length != 0 || _colorFlag=== 'color_size_variant' ">
+						  <p *ngIf="sizeNotSelected" class="error-text errorText">Please select size *</p>
+						  <label >Size <span>*</span></label>
+						  
+						  <span *ngIf ="_globalArrayForSizes.length != 0 || _colorFlag==='color_size_variant'">
+							  <select [(ngModel)] = "sizeVal" class="form-control sizeSelectOption" (change)="handleSelectedValueFromDropDownSize($event)">
+									  <option value= "0">Select Size</option>													
+									  <option *ngFor="let size of _globalArrayForSizes" value= {{size.value}}>{{size.label | uppercase}}</option>
+							  </select>
+					  </span>
+					   
+						   </div>
+					  </div>
+
+					  <p *ngIf="qtyMessage" class="error-text qtyMsg"> Available Quantity Exceeded</p>
+					  <p *ngIf="cartMessage" class="error-text qtyMsg"> {{loggerMessage}}</p>
+					  
+					  <div class="product-detail innerStyle prDetails">							
+						  <div class="quntity">
+							  <div class="input-number-wrap">								
+							  <span  class="fa fa-minus" (click)="decreaseQty()"></span>
+							  <input [disabled]="inputState" [(ngModel)]="productQty" type="text" name="qty" id="prod-qty" class="quantity">
+							   <span ><span class="fa fa-plus" (click)="increaseQty()" ></span></span>
+						  </div>
+						  </div>
+					  <!-- new wish list button -->
+						<div class="add-cart-btn ">
+								  <a (click)="addToWishlist()" class="btn-default wish-cart"><i class="ion-android-favorite-outline"></i> wish list</a>
+						  </div>
+
+						  <div  *ngIf="productStock && !addingToCart" class="add-cart-btn">
+							  <a [ngClass] ="cartButtonState ? 'disableBtnCart' : 'wish-cart-2'" (click)="addToCart()" class="btn-default wish-cart-2"><i class="ion ion-bag"></i>  add to cart</a>
+						  </div>
+
+							  <div  *ngIf="productStock && addingToCart" class="add-cart-btn">
+								  <a  class="btn-default wish-cart-2 disableBtnCartWait"><i class="ion ion-bag"></i> please wait</a>
+							  </div> 
+					  </div>
+
+					  <!-- newly added product description -->
+					  <label class="detailProduct">Product Details</label>
+					  <perfect-scrollbar class="product-detail product-description">
+					  
+						   <div [innerHTML] = "individualProductDescription" class="content">
+							  
+						  </div>
+					  </perfect-scrollbar>
+				  </div>
+	  
+		  </div>
+	  </div>
+  </section> <!-- end product detail -->
+
+</div>
+</div>
+
+</div>
+</div>
+
+<div id="cartModal" class="modal fade" role="dialog">
+<div class="modal-dialog">
+<!-- Modal content-->
+<div class="modal-content">
+
+<div class="modal-body">
+  <h3 class="text-center">{{cartNotif}}</h3>
+</div>
+
+</div>
+
+</div>
+</div>
+
+<div id="wishModal" class="modal fade" role="dialog">
+<div class="modal-dialog">
+<!-- Modal content-->
+<div class="modal-content">
+
+<div class="modal-body">
+  <h3 class="text-center">{{wishNotif}}</h3>
+</div>
+
+</div>
+
+</div>
+</div>
+
+<div id="cartModalSearch" class="modal fade" role="dialog">
+<div class="modal-dialog">
+	<!-- Modal content-->
+	<div class="modal-content">
+	 
+	<div class="modal-body">
+		<h3 class="text-center" style="color: red;">{{cartNotif}}</h3>
+	</div>
+	 
+	</div>
+
+</div>
+</div>
+
+<div id="wishModalSearch" class="modal fade" role="dialog">
+<div class="modal-dialog">
+	<!-- Modal content-->
+	<div class="modal-content">
+	 
+	<div class="modal-body">
+		<h3 class="text-center" style="color: black;">{{wishNotif}}</h3>
+	</div>
+	 
+	</div>
+
+</div>
+</div>
+<app-global-title-injector [titleInput] = "titleName"></app-global-title-injector>

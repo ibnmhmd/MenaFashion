@@ -1,0 +1,23 @@
+.body
+{
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.checkbox-label
+{
+    font-weight: 200 !important;
+}
+
+#make-default-billing:hover , #make-default-shipping:hover
+{
+    cursor: pointer !important;
+}
+
+#make-default-billing , #make-default-shipping
+{
+    position: absolute;
+}
+.checkbox-label
+{
+    margin-left: 20px !important;
+}

@@ -1,0 +1,244 @@
+#header {
+}
+#logo{
+	margin:0;
+	float: left;
+}
+.top_icons_row{
+	padding-top: 4px;
+	ul{
+		list-style: none; margin:0; padding:0; text-align: right;
+	}		
+	li{
+		display: inline-block; vertical-align: middle; margin-left: 12px;
+		a{
+			color: $theme-color;
+      @include transition(all 0.5s ease);  
+			&:hover, &:focus{
+				color: $orange;
+			}
+		}
+		i.fa-user-o{
+			font-size:2em;
+		}
+		i.ion-bag{
+			font-size:2em;
+		}
+		i.ion-android-favorite-outline{
+			font-size:2.307em;
+		}
+		
+	}
+}
+#NavWrap{
+    float:right;
+    margin-top: 30px;
+    background: transparent;
+}
+
+.navbar-nav{
+	display: inline-block;
+	vertical-align: bottom;
+	 ul{
+		  list-style: none;
+		  margin:0 0 0;
+		  padding:0;
+		  text-align: right;
+	   }
+ li{
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 12px;
+    line-height: 22px;
+    margin-bottom: 0;
+    @include transition(all 0.5s ease);
+	  a{
+	   color: $theme-color;
+	   font-weight:500;
+	   &:hover, &:focus, .active{
+	   	color: $orange;
+	   	text-decoration: none;
+	   }
+	  } 
+  }
+  .nav-stacked{
+  	text-align: left;
+  	li{
+  		display: block;
+  		margin-left: 0;
+  		text-transform: uppercase;
+  		font-size: 0.857em;
+  		margin-bottom: 15px;
+  	}
+  }
+  .sublink{
+  	ul{
+  	text-align: left;
+  	h6{
+  		font-size:0.857em;
+  		text-transform: uppercase;
+
+  	}
+  	li{
+  		display: block;
+  		line-height: 30px;
+  		margin-left: 0;
+  		a{
+  			font-weight: 400;
+  			text-transform: capitalize;
+        font-size:0.923em;
+  		}
+  	}
+  }
+  }
+}
+
+#main{
+  li{
+    a{
+      font-size:0.923em;
+      font-weight:400;
+      @include transition(all 0.5s ease);
+    }
+  }
+}
+#search-icon{
+	display: inline-block;
+	vertical-align: bottom;
+	margin-left: 21px;
+	width: 240px;
+	#searchbox{
+	 .form-control{
+		border: none;
+		border-bottom: 1px solid #e0e0e0; 
+		box-shadow: none;
+		background: url(../img/search-icon.png) no-repeat right center;
+		background-size: 16px auto;
+		font-size: 0.8571em;
+		color: #424242;  
+		border-radius: 0;
+		height: 25px;
+		padding: 0;
+    &:focus{
+      border-bottom: 1px solid $theme-color;
+    }
+		}
+	}	
+}
+
+.breadcram{
+  display: inline-block;
+  vertical-align: middle;
+  margin:20px 0 0 0;
+  padding:0;
+.active{
+      color: #000;
+    }
+  > li{
+    display: inline-block;
+    color: #969696;
+    font-size: 0.8571em;
+    letter-spacing: 0.050em;
+    text-transform: uppercase;
+    text-align: center; 
+    
+    + li:before{
+      content: "\f105";
+      font-family:'FontAwesome';
+      font-size:1.3em;
+      color:#969696;
+      margin-left:5px;
+      margin-right:5px;
+    }
+    > a{
+      color: #969696;
+      @include transition(all 0.5s ease);
+      &:hover{
+        color: $orange;
+        text-decoration: none;
+      }
+    }
+    
+  }
+}  
+
+
+
+#header{
+  padding-bottom:15px;
+  
+}
+    .shrink{
+
+  box-shadow:0 0 10px #e9e9e9;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:999;
+  background:#fff;
+    }
+
+    .close2{
+      a{
+         font-size:0.935em;
+      &:hover,&:focus{
+        text-decoration:none;
+      }
+      }
+     
+    }
+
+
+//    .dropdown.mega-dropdown .dropdown-toggle {
+//       &:after{
+//       border-bottom: 7px solid red;
+//       border-left: 7px solid transparent;
+//       border-right: 7px solid transparent;
+//       bottom: 0;
+//       content: "";
+//       left: 50%;
+//       opacity: 0;
+//       position: absolute;
+//       transform: translateX(-50%);
+//       z-index: 10;
+//     }
+//     &:hover{
+//       &:after{
+//         opacity:1;
+//       }
+//     }
+// }
+
+
+.dropdown-toggle1 {
+  
+  &:after{
+  content: "";
+width: 12px;
+height: 12px;
+background: #fff;
+display: block;
+right: 50%;
+bottom: -89%;
+margin-top: -6px;
+border-top: 1px solid #d3d3d3;
+border-right: 1px solid #d3d3d3;
+-webkit-transform: rotate(-45deg);
+-moz-transform: rotate(-45deg);
+-ms-transform: rotate(-45deg);
+-o-transform: rotate(-45deg);
+transform: rotate(-45deg);
+position: absolute;
+z-index: 99999;
+opacity: 0 ;
+}
+
+}
+
+a.dropdown-toggle1:hover:after{opacity: 1;}
+a.dropdown-toggle1.helloworld:after{opacity:1;}
+
+.wsdownmenu{
+  font-size:13px;
+}
