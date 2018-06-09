@@ -67,29 +67,6 @@ export class TrendingSliderComponent implements OnInit, AfterContentChecked,
     }
   ngOnInit() {
           window.scroll(0,0);
-          setTimeout(function() {
-            var isMulti = ($('.owl-carousel .item').length > 1) ? true : false
-            $('.banner-carousel').owlCarousel({
-              loop: isMulti,
-              animateIn: 'fadeIn',
-              animateOut: 'fadeOut',
-              margin:0,
-              nav:false,
-              dots:true,
-              responsive:{
-                0:{
-                  items:1
-                },
-                600:{
-                  items:1
-                },
-                1000:{
-                  items:1
-                }
-              }
-            });
-          }, 1);
-          
           this.titleName = 'menamall.com: Top UAE fashion destination for Clothes, Shoes, Bags, and more';
           let headers = new Headers();
          this.navigationService.getLandingPage(this.landingPagePath).subscribe(data =>
@@ -100,7 +77,28 @@ export class TrendingSliderComponent implements OnInit, AfterContentChecked,
                  this.landingPageContent =data.results.content;
                 
                 $('#landingPage').html(this.landingPageContent);
-             
+                setTimeout(function() {
+                  var isMulti = ($('.owl-carousel .item').length > 1) ? true : false
+                  $('.banner-carousel').owlCarousel({
+                    loop: isMulti,
+                    animateIn: 'fadeIn',
+                    animateOut: 'fadeOut',
+                    margin:0,
+                    nav:false,
+                    dots:true,
+                    responsive:{
+                      0:{
+                        items:1
+                      },
+                      600:{
+                        items:1
+                      },
+                      1000:{
+                        items:1
+                      }
+                    }
+                  });
+                }, 1);
 
                 $('.landingPage').append('<span class="content-fully-loaded"><!-- content loaded --> </span>');
                }

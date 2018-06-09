@@ -13908,3 +13908,13 @@ and (max-device-width : 1199px)
 {
   display: none;
 }
+
+#owl-demo .item img{
+    display: block;
+    width: 100%;
+    height: auto;
+}
+.carousel-caption{
+  color: black!important;
+  
+}
